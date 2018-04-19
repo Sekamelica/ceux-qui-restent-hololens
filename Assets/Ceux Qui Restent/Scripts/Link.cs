@@ -32,7 +32,7 @@ public class Link  {
 
     public bool Intersect(List<Vector2> otherLines)
     {
-        for(int l = 0; l < lines.Count - 1; l++)
+        for (int l = 0; l < lines.Count - 1; l++)
         {
             Vector2 a = lines[l];
             Vector2 b = lines[l + 1];

@@ -10,6 +10,9 @@ namespace CeuxQuiRestent
     {
         // Public attributes
         public Datamosh datamosh;
+        public GameObject linkPoseEffect;
+        public GameObject linkBrokeEffect;
+        public GameObject linkBrokeEffectSmall;
         public Vector3 gravityOffset;
         public GameObject linkPrefab;
         public float animationIntensity = 1;
@@ -61,20 +64,32 @@ namespace CeuxQuiRestent
             }
             positionLastFrame = transform.position;
 
-            // Draw debug line for intersection line line
-            List<Vector2> currentLinkLines = new List<Vector2>();
-            for (int p = 0; p < linkPoints.Count; p += linkCurveLength)
+            if(linkPoints.Count > 0)
             {
-                currentLinkLines.Add(new Vector2(linkPoints[p].x, linkPoints[p].z));
-                if (p + linkCurveLength >= linkPoints.Count)
-                    currentLinkLines.Add(new Vector2(linkPoints[linkPoints.Count - 1].x, linkPoints[linkPoints.Count - 1].z));
-            }
-            for(int l = 0; l < allLinks.Count; l++)
-            {
-                if(allLinks[l].Intersect(currentLinkLines))
+                // Draw debug line for intersection line line
+                List<Vector2> currentLinkLines = new List<Vector2>();
+                for (int p = 0; p < linkPoints.Count; p += linkCurveLength)
                 {
-                    allLinks[l].Clear();
-                    allLinks.RemoveAt(l);
+                    currentLinkLines.Add(new Vector2(linkPoints[p].x, linkPoints[p].z));
+                    if (p + linkCurveLength >= linkPoints.Count)
+                        currentLinkLines.Add(new Vector2(linkPoints[linkPoints.Count - 1].x, linkPoints[linkPoints.Count - 1].z));
+                }
+                for (int l = 0; l < allLinks.Count; l++)
+                {
+                    if (allLinks[l].Intersect(currentLinkLines))
+                    {
+                        BezierMultiCurves bmc = allLinks[l].objects[0].GetComponent<BezierMultiCurves>();
+                        int c = 0;
+                        for (int eff = 0; eff < bmc.points.Length; eff += 4)
+                        {
+                            for(int i = 0; i < 6; i++)
+                                GameObject.Instantiate(linkBrokeEffectSmall, bmc.GetPoint(c, ((float)i)/5.0f), Quaternion.identity);
+                            c++;
+                        }
+                        GameObject.Instantiate(linkBrokeEffect, linkPoints[linkPoints.Count - 1], Quaternion.identity);
+                        allLinks[l].Clear();
+                        allLinks.RemoveAt(l);
+                    }
                 }
             }
         }
@@ -200,6 +215,7 @@ namespace CeuxQuiRestent
 
         public void LinkableClick(Vector3 linkablePos)
         {
+            GameObject.Instantiate(linkPoseEffect, linkablePos, Quaternion.Euler(-90, 0, 0), null);
             if (isLinking)
                 StopLinking(linkablePos);
             else
