@@ -9,6 +9,7 @@ namespace CeuxQuiRestent
     public class Linker : MonoBehaviour
     {
         // Public attributes
+        public Energy energy;
         public Datamosh datamosh;
         public GameObject linkPoseEffect;
         public GameObject linkBrokeEffect;
@@ -34,6 +35,9 @@ namespace CeuxQuiRestent
         private List<BezierMeshMultiCurves> linkMeshes = new List<BezierMeshMultiCurves>();
         private bool isLinking = false;
 
+        // Private linkables
+        private GameObject origin;
+        private GameObject destination;
 
         // Use this for initialization
         void Start()
@@ -54,11 +58,18 @@ namespace CeuxQuiRestent
                     {
                         distanceWalk -= distanceBetweenTwoLinkPoints;
                         totalDistance += distanceBetweenTwoLinkPoints;
-                        
-                        linkPoints.Add(target.position);
-
-                        // Update how the link look likes
-                        UpdateLink();
+                        if (energy.AddToValue(-distanceBetweenTwoLinkPoints))
+                        {
+                            linkPoints.Add(target.position);
+                            // Update how the link look likes
+                            UpdateLink();
+                        }
+                        else
+                        {
+                            distanceWalk -= distanceBetweenTwoLinkPoints;
+                            totalDistance += distanceBetweenTwoLinkPoints;
+                            DestroyCurrentLink();
+                        }
                     }
                 }
             }
@@ -78,6 +89,8 @@ namespace CeuxQuiRestent
                 {
                     if (allLinks[l].Intersect(currentLinkLines))
                     {
+                        // Destroy Crossed Link
+                        /*
                         BezierMultiCurves bmc = allLinks[l].objects[0].GetComponent<BezierMultiCurves>();
                         int c = 0;
                         for (int eff = 0; eff < bmc.points.Length; eff += 4)
@@ -88,10 +101,41 @@ namespace CeuxQuiRestent
                         }
                         GameObject.Instantiate(linkBrokeEffect, linkPoints[linkPoints.Count - 1], Quaternion.identity);
                         allLinks[l].Clear();
-                        allLinks.RemoveAt(l);
+                        allLinks.RemoveAt(l);*/
+
+                        // Destroy Current Link
+                        DestroyCurrentLink();
                     }
                 }
             }
+        }
+
+        public void DestroyCurrentLink()
+        {
+            for (int bmc = links.Count - 1; bmc >= 0; bmc--)
+            {
+                BezierMultiCurves bmcurves = links[bmc];
+                int c = 0;
+                for (int eff = 0; eff < bmcurves.points.Length; eff += 4)
+                {
+                    for (int i = 0; i < 6; i++)
+                        GameObject.Instantiate(linkBrokeEffectSmall, bmcurves.GetPoint(c, ((float)i) / 5.0f), Quaternion.identity);
+                    c++;
+                }
+                GameObject.Instantiate(linkBrokeEffect, linkPoints[linkPoints.Count - 1], Quaternion.identity);
+                GameObject.Destroy(bmcurves.gameObject);
+            }
+
+            // Refill energy
+            energy.AddToValue(totalDistance);
+
+            // Clear & Reset
+            isLinking = false;
+            linkPoints.Clear();
+            links.Clear();
+            linkMeshes.Clear();
+            distanceWalk = 0;
+            totalDistance = 0;
         }
 
         public void UpdateLink()
@@ -213,13 +257,30 @@ namespace CeuxQuiRestent
             totalDistance = 0;
         }
 
-        public void LinkableClick(Vector3 linkablePos)
+        public void LinkableClick(Vector3 linkablePos, GameObject clicked, GameObject clickedPair)
         {
             GameObject.Instantiate(linkPoseEffect, linkablePos, Quaternion.Euler(-90, 0, 0), null);
             if (isLinking)
-                StopLinking(linkablePos);
+            {
+                if (destination == clicked && origin == clickedPair)
+                {
+                    StopLinking(linkablePos);
+                    energy.AddToMaximum(origin.GetComponent<Linkable>().energyMaximumIncrease);
+                    energy.ChangeValue(energy.GetMaximum());
+                    clicked.GetComponent<Linkable>().alreadyLinked = true;
+                    clickedPair.GetComponent<Linkable>().alreadyLinked = true;
+                }
+                else
+                {
+
+                }
+            }
             else
+            {
+                origin = clicked;
+                destination = clickedPair;
                 StartLinking(linkablePos);
+            }
         }
     }
 

@@ -9,8 +9,12 @@ namespace CeuxQuiRestent
     [System.Serializable]
     public class Linkable : MonoBehaviour, IInputClickHandler, IInputHandler
     {
+        public float energyMaximumIncrease = 2.5f;
+        [SerializeField]
+        private Linkable pair;
         [NonSerialized]
-        public Linkable pair;
+        public bool alreadyLinked = false;
+
         private Linker linker;
 
         // Use this for initialization
@@ -24,9 +28,16 @@ namespace CeuxQuiRestent
         {
         }
 
+        public void DrawLinkEditor(Color col, float time)
+        {
+            if (pair != null)
+                Debug.DrawLine(transform.position, pair.gameObject.transform.position, col, time);
+        }
+
         public void OnInputClicked(InputClickedEventData eventData)
         {
-            linker.LinkableClick(transform.position);
+            if (!alreadyLinked && pair != null)
+                linker.LinkableClick(transform.position, gameObject, pair.gameObject);
         }
         public void OnInputDown(InputEventData eventData)
         {
@@ -35,6 +46,16 @@ namespace CeuxQuiRestent
         public void OnInputUp(InputEventData eventData)
         {
             //linker.LinkableClick(transform.position);
+        }
+
+        public Linkable GetPair()
+        {
+            return pair;
+        }
+
+        public void SetPair(Linkable _newPair)
+        {
+            pair = _newPair;
         }
     }
 

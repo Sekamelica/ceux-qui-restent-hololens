@@ -18,23 +18,41 @@ namespace CeuxQuiRestent
 
         public override void OnInspectorGUI()
         {
-            Linkable newPair = EditorGUILayout.ObjectField("Pair", linkable.pair, typeof(Linkable), true) as Linkable;
-            if (newPair != linkable.pair)
+            //DrawDefaultInspector();
+            linkable.energyMaximumIncrease = EditorGUILayout.FloatField("Energy Increase", linkable.energyMaximumIncrease);
+            Linkable newPair = EditorGUILayout.ObjectField("Pair", linkable.GetPair(), typeof(Linkable), true) as Linkable;
+            if (newPair != linkable.GetPair())
             {
                 // Destroy potential old pairs
-                if (linkable.pair != null)
-                    linkable.pair.pair = null;
-                if (newPair.pair != null)
-                    newPair.pair.pair = null;
+                if (linkable.GetPair() != null)
+                {
+                    linkable.DrawLinkEditor(Color.red, 0.4f);
+                    (linkable.GetPair()).SetPair(null);
+                }
+                if (newPair.GetPair() != null)
+                {
+                    newPair.DrawLinkEditor(Color.red, 0.4f);
+                    (newPair.GetPair()).SetPair(null);
+                }
                 // Create new pairs
-                newPair.pair = linkable;
-                linkable.pair = newPair;
+                newPair.SetPair(linkable);
+                linkable.SetPair(newPair);
             }
+            
+            Linkable[] linkables = FindObjectsOfType<Linkable>();
+            foreach (Linkable lkbl in linkables)
+                if (lkbl != linkable)
+                    lkbl.DrawLinkEditor(Color.yellow, 0.2f);
+            linkable.DrawLinkEditor(Color.green, 0.2f);
 
-            if(linkable.pair != null)
-                Debug.DrawLine(linkable.gameObject.transform.position, linkable.pair.gameObject.transform.position, new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)));
-            serializedObject.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties(); 
             EditorUtility.SetDirty(target);
+        }
+
+        void OnDrawGizmos()
+        {
+            if (linkable.GetPair() != null)
+                Handles.Label(Vector3.Lerp(linkable.gameObject.transform.position, (linkable.GetPair()).gameObject.transform.position, 0.5f), Vector3.Distance(linkable.gameObject.transform.position, (linkable.GetPair()).gameObject.transform.position).ToString());
         }
     }
 }
