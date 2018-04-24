@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 
 namespace CeuxQuiRestent
 {
+    [System.Serializable]
     public class Linkable : MonoBehaviour, IInputClickHandler, IInputHandler
     {
-
-        Linker linker;
+        [NonSerialized]
+        public Linkable pair;
+        private Linker linker;
 
         // Use this for initialization
         void Start()
@@ -19,7 +22,6 @@ namespace CeuxQuiRestent
         // Update is called once per frame
         void Update()
         {
-
         }
 
         public void OnInputClicked(InputClickedEventData eventData)
