@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Link  {
-    // Attributes
+    // Public Attributes
     public float length;
     public List<GameObject> objects;
     public List<Vector2> lines = new List<Vector2>();
@@ -20,14 +20,9 @@ public class Link  {
     public void Clear()
     {
         for(int o = 0; o < objects.Count; o++)
-        {
             GameObject.Destroy(objects[o]);
-        }
         lines.Clear();
         objects.Clear();
-
-        // Refill Energy
-        //technician = GameObject.FindGameObjectWithTag("Player").GetComponent<ControllerColliderHit>();
     }
 
     public bool Intersect(List<Vector2> otherLines)

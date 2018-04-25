@@ -3,60 +3,88 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity.InputModule;
+using Utility;
 
 namespace CeuxQuiRestent
 {
     [System.Serializable]
     public class Linkable : MonoBehaviour, IInputClickHandler, IInputHandler
     {
+        // Public Attributes
         public float energyMaximumIncrease = 2.5f;
-        [SerializeField]
-        private Linkable pair;
-        [NonSerialized]
-        public bool alreadyLinked = false;
-
+        public Linkable pair;
+        public DoActionsAfterXSeconds actionsToDo;
+        
+        // Private attributes        
+        private bool alreadyLinked = false;
         private Linker linker;
 
-        // Use this for initialization
-        void Start()
-        {
-            linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
-        public void DrawLinkEditor(Color col, float time)
-        {
-            if (pair != null)
-                Debug.DrawLine(transform.position, pair.gameObject.transform.position, col, time);
-        }
-
-        public void OnInputClicked(InputClickedEventData eventData)
+        #region Linkable Methods
+        /// <summary>
+        /// Called when you try to interact with this Linkable.
+        /// </summary>
+        public void Interact()
         {
             if (!alreadyLinked && pair != null)
                 linker.LinkableClick(transform.position, gameObject, pair.gameObject);
         }
+
+        /// <summary>
+        /// When the linkable is linked to his pair.
+        /// </summary>
+        public void Linked()
+        {
+            if (actionsToDo != null)
+            {
+                actionsToDo.ResetCounter();
+                actionsToDo.StartCountSeconds();
+            }
+        }
+
+#if UNITY_EDITOR
+        public void EditorDrawLink(Color col, float time)
+        {
+            if (pair != null)
+                Debug.DrawLine(transform.position, pair.gameObject.transform.position, col, time);
+        }
+#endif
+        #endregion
+
+        #region MonoBehaviour Methods
+        void Start()
+        {
+            linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
+        }
+        #endregion
+
+        #region Input Management
+        /// <summary>
+        /// Simple click on object
+        /// </summary>
+        /// <param name="eventData"></param>
+        public void OnInputClicked(InputClickedEventData eventData)
+        {
+            Interact();
+        }
+
+        /// <summary>
+        /// When the click start to be pressed
+        /// </summary>
+        /// <param name="eventData"></param>
         public void OnInputDown(InputEventData eventData)
         {
-            //linker.LinkableClick(transform.position);
+
         }
+
+        /// <summary>
+        /// When the click is released.
+        /// </summary>
+        /// <param name="eventData"></param>
         public void OnInputUp(InputEventData eventData)
         {
-            //linker.LinkableClick(transform.position);
-        }
 
-        public Linkable GetPair()
-        {
-            return pair;
         }
-
-        public void SetPair(Linkable _newPair)
-        {
-            pair = _newPair;
-        }
+        #endregion
     }
 
 }

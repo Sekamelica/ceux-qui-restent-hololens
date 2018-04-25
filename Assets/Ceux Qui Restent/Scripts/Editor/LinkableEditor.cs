@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
+
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -18,32 +20,40 @@ namespace CeuxQuiRestent
 
         public override void OnInspectorGUI()
         {
-            //DrawDefaultInspector();
+            DoActionsAfterXSeconds newActionsToDo = EditorGUILayout.ObjectField("Actions to do", linkable.actionsToDo, typeof(DoActionsAfterXSeconds), true) as DoActionsAfterXSeconds;
+            if(newActionsToDo != linkable.actionsToDo)
+            {
+                linkable.actionsToDo = newActionsToDo;
+                if (linkable.pair != null)
+                    linkable.pair.actionsToDo = newActionsToDo;
+            }
+
             linkable.energyMaximumIncrease = EditorGUILayout.FloatField("Energy Increase", linkable.energyMaximumIncrease);
-            Linkable newPair = EditorGUILayout.ObjectField("Pair", linkable.GetPair(), typeof(Linkable), true) as Linkable;
-            if (newPair != linkable.GetPair())
+
+            Linkable newPair = EditorGUILayout.ObjectField("Pair", linkable.pair, typeof(Linkable), true) as Linkable;
+            if (newPair != linkable.pair)
             {
                 // Destroy potential old pairs
-                if (linkable.GetPair() != null)
+                if (linkable.pair != null)
                 {
-                    linkable.DrawLinkEditor(Color.red, 0.4f);
-                    (linkable.GetPair()).SetPair(null);
+                    linkable.EditorDrawLink(Color.red, 0.4f);
+                    linkable.pair.pair = null;
                 }
-                if (newPair.GetPair() != null)
+                if (newPair.pair != null)
                 {
-                    newPair.DrawLinkEditor(Color.red, 0.4f);
-                    (newPair.GetPair()).SetPair(null);
+                    newPair.EditorDrawLink(Color.red, 0.4f);
+                    newPair.pair.pair = null;
                 }
                 // Create new pairs
-                newPair.SetPair(linkable);
-                linkable.SetPair(newPair);
+                newPair.pair = linkable;
+                linkable.pair = newPair;
             }
             
             Linkable[] linkables = FindObjectsOfType<Linkable>();
             foreach (Linkable lkbl in linkables)
                 if (lkbl != linkable)
-                    lkbl.DrawLinkEditor(Color.yellow, 0.2f);
-            linkable.DrawLinkEditor(Color.green, 0.2f);
+                    lkbl.EditorDrawLink(Color.yellow, 0.2f);
+            linkable.EditorDrawLink(Color.green, 0.2f);
 
             serializedObject.ApplyModifiedProperties(); 
             EditorUtility.SetDirty(target);
@@ -51,8 +61,8 @@ namespace CeuxQuiRestent
 
         void OnDrawGizmos()
         {
-            if (linkable.GetPair() != null)
-                Handles.Label(Vector3.Lerp(linkable.gameObject.transform.position, (linkable.GetPair()).gameObject.transform.position, 0.5f), Vector3.Distance(linkable.gameObject.transform.position, (linkable.GetPair()).gameObject.transform.position).ToString());
+            if (linkable.pair != null)
+                Handles.Label(Vector3.Lerp(linkable.gameObject.transform.position, linkable.pair.gameObject.transform.position, 0.5f), Vector3.Distance(linkable.gameObject.transform.position, linkable.pair.gameObject.transform.position).ToString());
         }
     }
 }
