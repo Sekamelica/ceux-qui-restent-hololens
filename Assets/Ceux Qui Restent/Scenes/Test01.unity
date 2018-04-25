@@ -310,6 +310,11 @@ Prefab:
       propertyPath: pair
       value: 
       objectReference: {fileID: 1500092033}
+    - target: {fileID: 114816153213554570, guid: 18e8a671b95540948ad6624fe225aef6,
+        type: 2}
+      propertyPath: actionsToDo
+      value: 
+      objectReference: {fileID: 1506821609}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18e8a671b95540948ad6624fe225aef6, type: 2}
   m_IsPrefabParent: 0
@@ -555,6 +560,11 @@ Prefab:
       propertyPath: pair
       value: 
       objectReference: {fileID: 499390112}
+    - target: {fileID: 114816153213554570, guid: 18e8a671b95540948ad6624fe225aef6,
+        type: 2}
+      propertyPath: actionsToDo
+      value: 
+      objectReference: {fileID: 1506821609}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18e8a671b95540948ad6624fe225aef6, type: 2}
   m_IsPrefabParent: 0
@@ -1825,21 +1835,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: {fileID: 11400000, guid: 1ef60bf54f898cf4e9684acac260898c, type: 2}
-  datamosh: {fileID: 1785786359}
-  linkPoseEffect: {fileID: 1720765707381090, guid: 3704fe7ba35766a488f7099d93df9e9b,
-    type: 2}
-  linkBrokeEffect: {fileID: 1130439769177040, guid: 4821ef1bfc2795f49afa35d23a283594,
-    type: 2}
-  linkBrokeEffectSmall: {fileID: 1130439769177040, guid: 58ee2ef6f081add4092d563384678a35,
-    type: 2}
-  gravityOffset: {x: 0, y: -0.3, z: 0}
   linkPrefab: {fileID: 1378907795974902, guid: 79ca612a0dd16b6408aae8d984512f65, type: 2}
+  target: {fileID: 814268674}
+  distanceInteraction: 2
+  effect_startLink: {fileID: 0}
+  effect_endLink: {fileID: 0}
+  effect_brokeLink: {fileID: 0}
+  effect_brokeLink_small: {fileID: 0}
+  distanceBetweenTwoLinkPoints: 0.02
+  linkCurveLength: 15
+  gravityOffset: {x: 0, y: -0.3, z: 0}
   animationIntensity: 0.001
   animationSpeed: 0.5
-  distanceBetweenTwoLinkPoints: 0.02
-  target: {fileID: 814268674}
   gravityFactor: 0.1
-  linkCurveLength: 15
+  min_linkAmount: 2
+  max_linkAmount: 4
 --- !u!1 &1741629321
 GameObject:
   m_ObjectHideFlags: 0
