@@ -24,9 +24,7 @@ namespace Utility
         private void Start()
         {
             foreach (GenericAction action in actions)
-            {
                 action.SaveSecondsToWaitOrigin();
-            }
         }
 
         void Update()

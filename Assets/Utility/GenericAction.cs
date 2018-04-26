@@ -110,7 +110,7 @@ namespace Utility
                         {
                             CeuxQuiRestent.SubtitleHolder subtitleHolder = target.gameObject.GetComponent<CeuxQuiRestent.SubtitleHolder>();
                             GameObject subtitleDisplayer = GameObject.FindGameObjectWithTag("SubtitleDisplayer");
-                            subtitleDisplayer.GetComponent<CeuxQuiRestent.SubtitleDisplayer>().DisplaySubtitle(subtitleHolder.subtitle, subtitleHolder.duration);
+                            subtitleDisplayer.GetComponent<CeuxQuiRestent.SubtitleDisplayer>().DisplaySubtitle(subtitleHolder.subtitle, subtitleHolder.duration, subtitleHolder.soundName, subtitleHolder.gameObject);
                         }
                         break;
                     default:
