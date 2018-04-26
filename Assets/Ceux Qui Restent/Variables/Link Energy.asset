@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7179b9329501d0c44877607a7b0b1fbc, type: 3}
   m_Name: Link Energy
   m_EditorClassIdentifier: 
-  value: 12
-  maximum: 12
+  value: 4
+  maximum: 4
