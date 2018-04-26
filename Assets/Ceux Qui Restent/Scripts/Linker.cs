@@ -17,6 +17,10 @@ namespace CeuxQuiRestent
         [Tooltip("Maximum distance between you and the Linkable to interact with.")]
         public float distanceInteraction;
 
+        [Header("Linkable tracker")]
+        public Transform trackerPivot;
+        public Transform linkableParent;
+
         [Header("Particle Effects")]
         public GameObject effect_startLink;
         public GameObject effect_endLink;
@@ -59,6 +63,8 @@ namespace CeuxQuiRestent
 
         void Update()
         {
+            //TrackerUpdate();
+
             // IsLinking and has moved
             if (isLinking && (transform.position != positionLastFrame))
             {
@@ -69,14 +75,25 @@ namespace CeuxQuiRestent
 
                     // We have moved enough, we try to increase the link length according to the new position.
                     if (distanceWalk >= distanceBetweenTwoLinkPoints)
-                    {
                         IncreaseLinkLength(distanceBetweenTwoLinkPoints);
-                    }
                 }
             }
 
             // Register your position for detect if you have move in the next frame
             positionLastFrame = transform.position;
+        }
+        #endregion
+
+        #region Tracker Methods
+        public void TrackerUpdate()
+        {
+            List<Linkable> linkables = new List<Linkable>();
+            for (int c = 0; c < linkableParent.childCount; c++)
+            {
+                if (linkableParent.GetChild(c).gameObject.activeInHierarchy)
+                    if (linkableParent.GetChild(c).gameObject.GetComponent<Linkable>())
+                        linkables.Add(linkableParent.GetChild(c).gameObject.GetComponent<Linkable>());
+            }
         }
         #endregion
 
