@@ -20,7 +20,7 @@ namespace CeuxQuiRestent
 
         public override void OnInspectorGUI()
         {
-            DoActionsAfterXSeconds newActionsToDo = EditorGUILayout.ObjectField("Actions to do", linkable.actionsToDo, typeof(DoActionsAfterXSeconds), true) as DoActionsAfterXSeconds;
+            ActionExecuter newActionsToDo = EditorGUILayout.ObjectField("Actions to do", linkable.actionsToDo, typeof(ActionExecuter), true) as ActionExecuter;
             if(newActionsToDo != linkable.actionsToDo)
             {
                 linkable.actionsToDo = newActionsToDo;

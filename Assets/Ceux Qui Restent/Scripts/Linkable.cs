@@ -8,12 +8,13 @@ using Utility;
 namespace CeuxQuiRestent
 {
     [System.Serializable]
+    [RequireComponent(typeof(Collider))]
     public class Linkable : MonoBehaviour, IInputClickHandler, IInputHandler
     {
         // Public Attributes
         public float energyMaximumIncrease = 2.5f;
         public Linkable pair;
-        public DoActionsAfterXSeconds actionsToDo;
+        public ActionExecuter actionsToDo;
         
         // Private attributes        
         private bool alreadyLinked = false;
@@ -37,7 +38,7 @@ namespace CeuxQuiRestent
             if (actionsToDo != null)
             {
                 actionsToDo.ResetCounter();
-                actionsToDo.StartCountSeconds();
+                actionsToDo.StartActions();
             }
         }
 
@@ -83,6 +84,13 @@ namespace CeuxQuiRestent
         public void OnInputUp(InputEventData eventData)
         {
 
+        }
+        #endregion
+
+        #region Getters & Setters
+        public bool IsAlreadyLinked()
+        {
+            return alreadyLinked;
         }
         #endregion
     }

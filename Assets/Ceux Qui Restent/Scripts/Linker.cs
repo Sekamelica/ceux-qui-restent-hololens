@@ -70,8 +70,6 @@ namespace CeuxQuiRestent
                     // We have moved enough, we try to increase the link length according to the new position.
                     if (distanceWalk >= distanceBetweenTwoLinkPoints)
                     {
-                        distanceWalk -= distanceBetweenTwoLinkPoints;
-                        totalDistance += distanceBetweenTwoLinkPoints;
                         IncreaseLinkLength(distanceBetweenTwoLinkPoints);
                     }
                 }
@@ -89,6 +87,8 @@ namespace CeuxQuiRestent
         /// </summary>
         public bool IncreaseLinkLength(float distance)
         {
+            distanceWalk -= distance;
+            totalDistance += distance;
             if (energy.AddToValue(-distance)) // We have enough energy
             {
                 linkPoints.Add(target.position);
@@ -97,8 +97,6 @@ namespace CeuxQuiRestent
             }
             else // You don't have enough energy, the link broke.
             {
-                distanceWalk -= distance;
-                totalDistance += distance;
                 DestroyCurrentLink();
                 return false;
             }
@@ -358,14 +356,25 @@ namespace CeuxQuiRestent
             }
             else // Start a link on a Linkable.
             {
-                // Effect
-                if (effect_endLink != null)
-                    GameObject.Instantiate(effect_endLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
+                if (clicked.GetComponent<Linkable>().IsAlreadyLinked()) // Can't add a link, this linkable is already linked.
+                {
+                    
+                }
+                else if (clicked.GetComponent<Linkable>().pair != null) // Add the link on this linkable.
+                {
+                    // Effect
+                    if (effect_endLink != null)
+                        GameObject.Instantiate(effect_endLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
 
-                // Register the Linkable origin and the Linkable that should be the destination and start the link.
-                origin = clicked;
-                destination = clickedPair;
-                StartLinking(linkablePos);
+                    // Register the Linkable origin and the Linkable that should be the destination and start the link.
+                    origin = clicked;
+                    destination = clickedPair;
+                    StartLinking(linkablePos);
+                }
+                else // The linkable doesn't have a Pair Linkable
+                {
+                    
+                }
             }
         }
         #endregion

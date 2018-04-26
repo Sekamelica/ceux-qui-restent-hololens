@@ -8,7 +8,7 @@ namespace Utility
     public class TriggerDoActions : MonoBehaviour
     {
         [SerializeField]
-        private DoActionsAfterXSeconds actionsToDo;
+        private ActionExecuter actionsToDo;
         [SerializeField]
         private bool limitedToOneTime = true;
 
@@ -23,7 +23,7 @@ namespace Utility
                 if (actionsToDo != null)
                 {
                     actionsToDo.ResetCounter();
-                    actionsToDo.StartCountSeconds();
+                    actionsToDo.StartActions();
                     done = true;
                 }
             }

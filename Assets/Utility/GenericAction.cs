@@ -13,7 +13,8 @@ namespace Utility
         Destroy,
         PlayParticleSystem,
         PlaySoundEffect,
-        StartActionsExecuter
+        StartActionsExecuter,
+        DisplaySubtitle
     }
 
     [System.Serializable]
@@ -25,7 +26,11 @@ namespace Utility
         [SerializeField]
         private GameObject target;
         [SerializeField]
-        private int doneAmount = 0;
+        private float secondsToWait = 0;
+        [SerializeField]
+        private bool done = false;
+
+        private float secondsToWaitOrigin;
         
         // Constructors
         public GenericAction()
@@ -46,45 +51,73 @@ namespace Utility
         }
 
         // Methods
+        public void SaveSecondsToWaitOrigin()
+        {
+            secondsToWaitOrigin = secondsToWait;
+        }
+
+        public void ResetSecondsToWait()
+        {
+            secondsToWait = secondsToWaitOrigin;
+        }
+
+        public void ResetIsDone()
+        {
+            done = false;
+        }
+
         public void Execute(Transform master)
         {
-            switch(actionKind)
+            if (secondsToWait > 0)
+                secondsToWait -= Time.deltaTime;
+            if (secondsToWait <= 0)
             {
-                case GenericActionKind.Instantiate:
-                    GameObject.Instantiate(target, master.position, Quaternion.identity, master);
-                    break;
-                case GenericActionKind.Enable:
-                    target.SetActive(true);
-                    break;
-                case GenericActionKind.Disable:
-                    target.SetActive(false);
-                    break;
-                case GenericActionKind.EnableDisable:
-                    target.SetActive(!target.activeSelf);
-                    break;
-                case GenericActionKind.Destroy:
-                    GameObject.Destroy(target);
-                    break;
-                case GenericActionKind.PlayParticleSystem:
-                    if(target.gameObject.GetComponent<ParticleSystem>())
-                        target.gameObject.GetComponent<ParticleSystem>().Play();
-                    break;
-                case GenericActionKind.PlaySoundEffect:
-                    if (target.gameObject.GetComponent<AudioSource>())
-                        target.gameObject.GetComponent<AudioSource>().Play();
-                    break;
-                case GenericActionKind.StartActionsExecuter:
-                    if (target.gameObject.GetComponent<DoActionsAfterXSeconds>())
-                    {
-                        target.gameObject.GetComponent<DoActionsAfterXSeconds>().ResetCounter();
-                        target.gameObject.GetComponent<DoActionsAfterXSeconds>().StartCountSeconds();
-                    }
-                    break;
-                default:
-                    break;
+                secondsToWait = 0;
+                switch (actionKind)
+                {
+                    case GenericActionKind.Instantiate:
+                        GameObject.Instantiate(target, master.position, Quaternion.identity, master);
+                        break;
+                    case GenericActionKind.Enable:
+                        target.SetActive(true);
+                        break;
+                    case GenericActionKind.Disable:
+                        target.SetActive(false);
+                        break;
+                    case GenericActionKind.EnableDisable:
+                        target.SetActive(!target.activeSelf);
+                        break;
+                    case GenericActionKind.Destroy:
+                        GameObject.Destroy(target);
+                        break;
+                    case GenericActionKind.PlayParticleSystem:
+                        if (target.gameObject.GetComponent<ParticleSystem>())
+                            target.gameObject.GetComponent<ParticleSystem>().Play();
+                        break;
+                    case GenericActionKind.PlaySoundEffect:
+                        if (target.gameObject.GetComponent<AudioSource>())
+                            target.gameObject.GetComponent<AudioSource>().Play();
+                        break;
+                    case GenericActionKind.StartActionsExecuter:
+                        if (target.gameObject.GetComponent<ActionExecuter>())
+                        {
+                            target.gameObject.GetComponent<ActionExecuter>().ResetCounter();
+                            target.gameObject.GetComponent<ActionExecuter>().StartActions();
+                        }
+                        break;
+                    case GenericActionKind.DisplaySubtitle:
+                        if (target.gameObject.GetComponent<CeuxQuiRestent.SubtitleHolder>())
+                        {
+                            CeuxQuiRestent.SubtitleHolder subtitleHolder = target.gameObject.GetComponent<CeuxQuiRestent.SubtitleHolder>();
+                            GameObject subtitleDisplayer = GameObject.FindGameObjectWithTag("SubtitleDisplayer");
+                            subtitleDisplayer.GetComponent<CeuxQuiRestent.SubtitleDisplayer>().DisplaySubtitle(subtitleHolder.subtitle, subtitleHolder.duration);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                done = true;
             }
-
-            doneAmount++;
         }
 
         // Getters & Setters
@@ -108,14 +141,19 @@ namespace Utility
             target = _target;
         }
 
-        public bool isDone()
+        public float GetSecondsToWait()
         {
-            return (doneAmount > 0);
+            return secondsToWait;
         }
 
-        public int GetDoneAmount()
+        public void SetSecondsToWait(float _secondsToWait)
         {
-            return doneAmount;
+            secondsToWait = _secondsToWait;
+        }
+
+        public bool IsDone()
+        {
+            return done;
         }
     }
 
