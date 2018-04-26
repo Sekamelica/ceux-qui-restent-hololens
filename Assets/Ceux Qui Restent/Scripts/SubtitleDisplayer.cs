@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using AK;
 
 namespace CeuxQuiRestent
 {
@@ -23,10 +24,12 @@ namespace CeuxQuiRestent
                 text.text = "";
         }
 
-        public void DisplaySubtitle(string subtitle, float time)
+        public void DisplaySubtitle(string subtitle, float time, string soundName, GameObject origin)
         {
             text.text = subtitle;
             textDuration = time;
+            if (soundName != null && soundName != "")
+                AkSoundEngine.PostEvent(soundName, origin);
         }
     }
 
