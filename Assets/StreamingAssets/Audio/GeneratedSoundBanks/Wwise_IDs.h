@@ -32,8 +32,15 @@ namespace AK
         static const AkUniqueID PLAY_18 = 3185625597U;
         static const AkUniqueID PLAY_19 = 3185625596U;
         static const AkUniqueID PLAY_UI_CLIC = 3897570994U;
+        static const AkUniqueID PLAY_UI_ENERGIE_DOWN = 2526710407U;
+        static const AkUniqueID PLAY_UI_JAUGE_UP = 2527871859U;
         static const AkUniqueID PLAY_UI_LIEN_ANNULE = 4288039593U;
+        static const AkUniqueID PLAY_UI_LIEN_CROISE = 254787269U;
+        static const AkUniqueID PLAY_UI_LIEN_MAINTENU = 2918486003U;
         static const AkUniqueID PLAY_UI_LIEN_VALIDE = 771963053U;
+        static const AkUniqueID PLAY_UI_NEW_SOUVENIR = 4256590505U;
+        static const AkUniqueID PLAY_UI_SOUVENIR_COMPL_T_ = 498677938U;
+        static const AkUniqueID STOP_UI_LIEN_MAINTENU = 3943014341U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

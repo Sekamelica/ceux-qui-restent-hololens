@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using BezierUtility;
 using PCG;
+using UnityEngine.UI;
+using AK;
 
 namespace CeuxQuiRestent
 {
@@ -19,14 +21,29 @@ namespace CeuxQuiRestent
         public float distanceInteraction;
 
         [Header("Linkable tracker")]
-        public Transform trackerPivot;
-        public Transform linkableParent;
+        public Image tracker;
+        public Sprite tracker_normal;
+        public Sprite tracker_interact_too_far;
+        public Sprite tracker_interact;
+        public Image trackerArrow;
+        public LayerMask linkableLayer;
 
         [Header("Particle Effects")]
         public GameObject effect_startLink;
         public GameObject effect_endLink;
         public GameObject effect_brokeLink;
         public GameObject effect_brokeLink_small;
+
+        [Header("Sounds effects")]
+        public string sound_click;
+        public string sound_continuous;
+        [Space]
+        public string sound_linkCompleted;
+        public string sound_memoryCompleted;
+        public string sound_energyIncrease;
+        [Space]
+        public string sound_linkCrossed;
+        public string sound_lackEnergy;
 
         [Header("Link optimization")]
         public float distanceBetweenTwoLinkPoints = 1;
@@ -91,6 +108,18 @@ namespace CeuxQuiRestent
         #region Tracker Methods
         public void TrackerUpdate()
         {
+            Debug.DrawRay(transform.position, (target.position - transform.position), Color.red, 2);
+            Ray ray = new Ray(transform.position, (target.position - transform.position));
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit, 5000, linkableLayer.value))
+            {
+                if (rayHit.distance <= distanceInteraction)
+                    tracker.sprite = tracker_interact;
+                else
+                    tracker.sprite = tracker_interact_too_far;
+            }
+            else
+                tracker.sprite = tracker_normal;
             /*
             List<Linkable> linkables = new List<Linkable>();
             for (int c = 0; c < linkableParent.childCount; c++)
@@ -125,6 +154,7 @@ namespace CeuxQuiRestent
             }
             else // You don't have enough energy, the link broke.
             {
+                AkSoundEngine.PostEvent(sound_lackEnergy, gameObject);
                 DestroyCurrentLink();
                 return false;
             }
@@ -154,6 +184,7 @@ namespace CeuxQuiRestent
                 {
                     if (allLinks[l].Intersect(currentLinkLines))
                     {
+                        AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
                         DestroyCurrentLink();
                         return true;
                     }
@@ -364,10 +395,16 @@ namespace CeuxQuiRestent
                 return; // Too far away to interact with
             }
 
+            
+
             if (isLinking)
             {
                 if (destination == clicked && origin == clickedPair) // End the link on the good Linkable.
                 {
+                    AkSoundEngine.PostEvent(sound_click, gameObject);
+                    AkSoundEngine.PostEvent(sound_linkCompleted, gameObject);
+                    AkSoundEngine.PostEvent(sound_memoryCompleted, gameObject);
+                    AkSoundEngine.PostEvent(sound_energyIncrease, gameObject);
                     tutorial.ClickLinkable_Valid();
 
                     // Effect
@@ -387,6 +424,7 @@ namespace CeuxQuiRestent
                 }
                 else // Try to end the link on a wrong Linkable.
                 {
+                    AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
                     tutorial.ClickLinkable_WrongPair();
                 }
             }
@@ -394,10 +432,13 @@ namespace CeuxQuiRestent
             {
                 if (clicked.GetComponent<Linkable>().IsAlreadyLinked()) // Can't add a link, this linkable is already linked.
                 {
+                    AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
                     tutorial.ClickLinkable_AlreadyLinked();
                 }
                 else if (clicked.GetComponent<Linkable>().pair != null) // Add the link on this linkable.
                 {
+                    AkSoundEngine.PostEvent(sound_click, gameObject);
+                    AkSoundEngine.PostEvent(sound_continuous, gameObject);
                     tutorial.ClickLinkable_Valid();
 
                     // Effect
@@ -411,7 +452,7 @@ namespace CeuxQuiRestent
                 }
                 else // The linkable doesn't have a Pair Linkable
                 {
-                    
+                    AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
                 }
             }
         }

@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "NewEnergyVariable", menuName = "EnergyVariable")]
 public class Energy : ScriptableObject {
 
     // Attributes
-    [System.NonSerialized]
+    [NonSerialized]
     private float value;
-    [System.NonSerialized]
+    [NonSerialized]
     private float maximum;
     [SerializeField]
     private float energy;
@@ -65,5 +66,10 @@ public class Energy : ScriptableObject {
     public float GetMaximum()
     {
         return maximum;
+    }
+
+    public float GetEnergy()
+    {
+        return energy;
     }
 }

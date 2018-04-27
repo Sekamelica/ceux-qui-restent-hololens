@@ -35,6 +35,7 @@ namespace CeuxQuiRestent
         /// </summary>
         public void Linked()
         {
+            alreadyLinked = true;
             if (actionsToDo != null)
             {
                 actionsToDo.ResetCounter();
