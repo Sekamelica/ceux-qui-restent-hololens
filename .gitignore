@@ -3,9 +3,14 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
+
+#own modifs
+
 /Assets/AssetStoreTools*
-/Assets/WwiseSettings.xml
+
 /Assets/HoloToolkit/*.pdb.meta
+/Assets/Wwise/*.pdb.meta
+/Assets/WwiseSettings.xml
 
 # Visual Studio 2015 cache directory
 /.vs/
