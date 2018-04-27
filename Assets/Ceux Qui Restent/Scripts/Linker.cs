@@ -6,6 +6,7 @@ using PCG;
 
 namespace CeuxQuiRestent
 {
+    [RequireComponent(typeof(Tutorial))]
     public class Linker : MonoBehaviour
     {
         // - - - Public attributes - - - //
@@ -40,6 +41,7 @@ namespace CeuxQuiRestent
         public int max_linkAmount = 4;
 
         // - - - Private attributes - - - //
+        private Tutorial tutorial;
         private List<Link> allLinks = new List<Link>(); // Remember all links created.
 
         // Current Links
@@ -58,12 +60,13 @@ namespace CeuxQuiRestent
         #region MonoBehaviour Methods
         void Start()
         {
+            tutorial = GetComponent<Tutorial>();
             positionLastFrame = transform.position;
         }
 
         void Update()
         {
-            //TrackerUpdate();
+            TrackerUpdate();
 
             // IsLinking and has moved
             if (isLinking && (transform.position != positionLastFrame))
@@ -87,13 +90,20 @@ namespace CeuxQuiRestent
         #region Tracker Methods
         public void TrackerUpdate()
         {
+            /*
             List<Linkable> linkables = new List<Linkable>();
             for (int c = 0; c < linkableParent.childCount; c++)
             {
                 if (linkableParent.GetChild(c).gameObject.activeInHierarchy)
+                {
                     if (linkableParent.GetChild(c).gameObject.GetComponent<Linkable>())
-                        linkables.Add(linkableParent.GetChild(c).gameObject.GetComponent<Linkable>());
-            }
+                    {
+                        Linkable lkbl = linkableParent.GetChild(c).gameObject.GetComponent<Linkable>();
+                        if (!lkbl.IsAlreadyLinked())
+                            linkables.Add(linkableParent.GetChild(c).gameObject.GetComponent<Linkable>());
+                    }
+                }
+            }*/
         }
         #endregion
 
@@ -347,10 +357,18 @@ namespace CeuxQuiRestent
         /// <param name="clickedPair"></param>
         public void LinkableClick(Vector3 linkablePos, GameObject clicked, GameObject clickedPair)
         {
+            if (Vector3.Distance(transform.position, linkablePos) > distanceInteraction)
+            {
+                tutorial.ClickLinkable_TooFar();
+                return; // Too far away to interact with
+            }
+
             if (isLinking)
             {
                 if (destination == clicked && origin == clickedPair) // End the link on the good Linkable.
                 {
+                    tutorial.ClickLinkable_Valid();
+
                     // Effect
                     if (effect_startLink != null)
                         GameObject.Instantiate(effect_startLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
@@ -368,17 +386,19 @@ namespace CeuxQuiRestent
                 }
                 else // Try to end the link on a wrong Linkable.
                 {
-
+                    tutorial.ClickLinkable_WrongPair();
                 }
             }
             else // Start a link on a Linkable.
             {
                 if (clicked.GetComponent<Linkable>().IsAlreadyLinked()) // Can't add a link, this linkable is already linked.
                 {
-                    
+                    tutorial.ClickLinkable_AlreadyLinked();
                 }
                 else if (clicked.GetComponent<Linkable>().pair != null) // Add the link on this linkable.
                 {
+                    tutorial.ClickLinkable_Valid();
+
                     // Effect
                     if (effect_endLink != null)
                         GameObject.Instantiate(effect_endLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);

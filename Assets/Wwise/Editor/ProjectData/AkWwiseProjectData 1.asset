@@ -1,0 +1,395 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: AkWwiseProjectData 1
+  m_EditorClassIdentifier: Assembly-CSharp-Editor::AkWwiseProjectData
+  CurrentPluginConfig: 
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{AFD1D269-B450-4929-B7BF-01E0D7A78761}'
+    m_lastTimePsrt1: -1802057480
+    m_lastTimePart2: -1999262851
+    List:
+    - Name: Play_10
+      Path: Default Work Unit\Play_10
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_10
+        ObjectType: 3
+      ID: -1109341707
+      Guid: 462acaac88392e4ba738bed7c52fb95b
+      maxAttenuation: 0
+    - Name: Play_11
+      Path: Default Work Unit\Play_11
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_11
+        ObjectType: 3
+      ID: -1109341708
+      Guid: 601aa3d05c21dd4d8d647a824989d866
+      maxAttenuation: 0
+    - Name: Play_12
+      Path: Default Work Unit\Play_12
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_12
+        ObjectType: 3
+      ID: -1109341705
+      Guid: be868cc5440cee4dbb7b33194c9933e7
+      maxAttenuation: 0
+    - Name: Play_13
+      Path: Default Work Unit\Play_13
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_13
+        ObjectType: 3
+      ID: -1109341706
+      Guid: ebdab8997b2eb14e9d368f87b853f584
+      maxAttenuation: 0
+    - Name: Play_14
+      Path: Default Work Unit\Play_14
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_14
+        ObjectType: 3
+      ID: -1109341711
+      Guid: 392568d4832e3643a20b17f1d192ccb5
+      maxAttenuation: 0
+    - Name: Play_15
+      Path: Default Work Unit\Play_15
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_15
+        ObjectType: 3
+      ID: -1109341712
+      Guid: ee9e1368681fb44e85b1dcdef6ae8318
+      maxAttenuation: 0
+    - Name: Play_16
+      Path: Default Work Unit\Play_16
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_16
+        ObjectType: 3
+      ID: -1109341709
+      Guid: 00e4257abfab3748ad15e6839ba60046
+      maxAttenuation: 0
+    - Name: Play_17
+      Path: Default Work Unit\Play_17
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_17
+        ObjectType: 3
+      ID: -1109341710
+      Guid: fafcc22ec8e5c8428a69303a04d812dc
+      maxAttenuation: 0
+    - Name: Play_18
+      Path: Default Work Unit\Play_18
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_18
+        ObjectType: 3
+      ID: -1109341699
+      Guid: d160a242ba83584094ab9858f34ff63e
+      maxAttenuation: 0
+    - Name: Play_19
+      Path: Default Work Unit\Play_19
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_19
+        ObjectType: 3
+      ID: -1109341700
+      Guid: 4d420292ddc7354eb9d3e2e1e02fd440
+      maxAttenuation: 0
+    - Name: Play_2
+      Path: Default Work Unit\Play_2
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_2
+        ObjectType: 3
+      ID: 1774091844
+      Guid: bd931a8a03d30a4b9188eb45bbef1504
+      maxAttenuation: 0
+    - Name: Play_3
+      Path: Default Work Unit\Play_3
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_3
+        ObjectType: 3
+      ID: 1774091845
+      Guid: d83247dfd6a5fa45bb87a1b781ed298d
+      maxAttenuation: 0
+    - Name: Play_4
+      Path: Default Work Unit\Play_4
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_4
+        ObjectType: 3
+      ID: 1774091842
+      Guid: eac7a19c173a08429ba4d454838e3b8a
+      maxAttenuation: 0
+    - Name: Play_5
+      Path: Default Work Unit\Play_5
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_5
+        ObjectType: 3
+      ID: 1774091843
+      Guid: 199c5d87c722a649b4b69b90c9c876c9
+      maxAttenuation: 0
+    - Name: Play_6
+      Path: Default Work Unit\Play_6
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_6
+        ObjectType: 3
+      ID: 1774091840
+      Guid: 477ba35f6fbe0344a9e4c533edb4326c
+      maxAttenuation: 0
+    - Name: Play_7
+      Path: Default Work Unit\Play_7
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_7
+        ObjectType: 3
+      ID: 1774091841
+      Guid: 9c2b66a96add194b9ea91d59010e7dc4
+      maxAttenuation: 0
+    - Name: Play_8
+      Path: Default Work Unit\Play_8
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_8
+        ObjectType: 3
+      ID: 1774091854
+      Guid: 28b834cb1fd15548a6874a21d558a031
+      maxAttenuation: 0
+    - Name: Play_9
+      Path: Default Work Unit\Play_9
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_9
+        ObjectType: 3
+      ID: 1774091855
+      Guid: 053ad5e926aeb54c940b253ffa76e0de
+      maxAttenuation: 0
+    - Name: Play_Ui_clic
+      Path: Default Work Unit\Play_Ui_clic
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ui_clic
+        ObjectType: 3
+      ID: -397396302
+      Guid: b28ecdd285ba564f8f7b8f0c8e222009
+      maxAttenuation: 0
+    - Name: Play_Ui_lien_annule
+      Path: Default Work Unit\Play_Ui_lien_annule
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ui_lien_annule
+        ObjectType: 3
+      ID: -6927703
+      Guid: a6df3553b68a804b8988acc6f8aee5b3
+      maxAttenuation: 0
+    - Name: Play_Ui_lien_valide
+      Path: Default Work Unit\Play_Ui_lien_valide
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ui_lien_valide
+        ObjectType: 3
+      ID: 771963053
+      Guid: 737258dba978d54aa4e054ca812c2c85
+      maxAttenuation: 0
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{7DFC0186-65ED-4309-9D1E-E4040FCCB83B}'
+    m_lastTimePsrt1: 634181126
+    m_lastTimePart2: -1999262858
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{BE401A50-447E-479F-983C-1E9FB740AE21}'
+    m_lastTimePsrt1: 634126349
+    m_lastTimePart2: -1999262858
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{7A216E96-AF27-4C26-A795-B4A57921DE07}'
+    m_lastTimePsrt1: 634276099
+    m_lastTimePart2: -1999262858
+    List: []
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{6B48B716-BD04-4A2A-9F64-6B33B890EEFA}'
+    m_lastTimePsrt1: -1801987482
+    m_lastTimePart2: -1999262851
+    List:
+    - Name: Main
+      Path: Default Work Unit\Main
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Main
+        ObjectType: 7
+      ID: -1133058374
+      Guid: cc0974e5e9ed544aacda217fbcb90e81
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{A5BD9065-B06D-4896-902A-C50A29D3AD5B}'
+    m_lastTimePsrt1: 634371107
+    m_lastTimePart2: -1999262858
+    List: []
+  - PhysicalPath: Game Parameters\Factory SoundSeed Air Game Syncs.wwu
+    ParentPhysicalPath: 
+    Guid: '{3B167755-FB42-458B-98BF-96F557AFB3B9}'
+    m_lastTimePsrt1: 1398587166
+    m_lastTimePart2: -1999262859
+    List:
+    - Name: SS_Air_Fear
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Fear
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Fear
+        ObjectType: 13
+      ID: 1351367891
+      Guid: 59062ef746431c4ea1b1dab46a05101e
+    - Name: SS_Air_Freefall
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Freefall
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Freefall
+        ObjectType: 13
+      ID: -1292209176
+      Guid: 37fe2d2f9e4f944d83d853cca39781ad
+    - Name: SS_Air_Fury
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Fury
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Fury
+        ObjectType: 13
+      ID: 1029930033
+      Guid: dc79aea23acaba4696529986c322a87b
+    - Name: SS_Air_Month
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Month
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Month
+        ObjectType: 13
+      ID: -1646418679
+      Guid: 45b4e209a3c47f44b3ca818a1d925ef7
+    - Name: SS_Air_Presence
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Presence
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Presence
+        ObjectType: 13
+      ID: -447042342
+      Guid: 1a81b7e32f7b0f49b44f5fe51b468041
+    - Name: SS_Air_RPM
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_RPM
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_RPM
+        ObjectType: 13
+      ID: 822163944
+      Guid: ab9048a3d5b92645a64d5290c43ef2dc
+    - Name: SS_Air_Size
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Size
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Size
+        ObjectType: 13
+      ID: -1220270574
+      Guid: efeb291393a12e47a38c64668b494879
+    - Name: SS_Air_Storm
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Storm
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Storm
+        ObjectType: 13
+      ID: -579304704
+      Guid: db8c3fe9d1063747acaf7cd44bbed783
+    - Name: SS_Air_TimeOfDay
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_TimeOfDay
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_TimeOfDay
+        ObjectType: 13
+      ID: -1091570167
+      Guid: 2ca76f537e8c8b4cae03ef34fdadc314
+    - Name: SS_Air_Turbulence
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Turbulence
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Turbulence
+        ObjectType: 13
+      ID: -134719478
+      Guid: 197ba8edaa73a0409f192073606db710
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{99C1566C-39DE-4BA9-821C-D280BB377249}'
+    m_lastTimePsrt1: 634616406
+    m_lastTimePart2: -1999262858
+    List: []
+  ExpandedItems:
+  - /CeuxQuiRestent - WWiseProject
+  - /CeuxQuiRestent - WWiseProject/Events
+  - /CeuxQuiRestent - WWiseProject/Events/Default Work Unit
+  - /CeuxQuiRestent - WWiseProject/SoundBanks
+  - /CeuxQuiRestent - WWiseProject/SoundBanks/Default Work Unit
+  m_lastPopulateTimePsrt1: 0
+  m_lastPopulateTimePart2: 0
+  autoPopulateEnabled: 1
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  callbackManagerBufferSize: 4
