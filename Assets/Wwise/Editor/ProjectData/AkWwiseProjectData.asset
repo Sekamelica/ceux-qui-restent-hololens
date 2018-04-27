@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{AFD1D269-B450-4929-B7BF-01E0D7A78761}'
-    m_lastTimePsrt1: 1585056307
-    m_lastTimePart2: -1999262655
+    m_lastTimePsrt1: -1540148722
+    m_lastTimePart2: -1999262667
     List:
     - Name: Play_10
       Path: Default Work Unit\Play_10
@@ -209,26 +209,6 @@ MonoBehaviour:
       ID: -397396302
       Guid: b28ecdd285ba564f8f7b8f0c8e222009
       maxAttenuation: 0
-    - Name: Play_Ui_Energie_down
-      Path: Default Work Unit\Play_Ui_Energie_down
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Ui_Energie_down
-        ObjectType: 3
-      ID: -1768256889
-      Guid: 9f31270f9efa9145bedff1a4128a9e08
-      maxAttenuation: 0
-    - Name: Play_UI_jauge_up
-      Path: Default Work Unit\Play_UI_jauge_up
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_UI_jauge_up
-        ObjectType: 3
-      ID: -1767095437
-      Guid: f68830346c388340af48af08439fe92a
-      maxAttenuation: 0
     - Name: Play_Ui_lien_annule
       Path: Default Work Unit\Play_Ui_lien_annule
       PathAndIcons:
@@ -238,26 +218,6 @@ MonoBehaviour:
         ObjectType: 3
       ID: -6927703
       Guid: a6df3553b68a804b8988acc6f8aee5b3
-      maxAttenuation: 0
-    - Name: Play_UI_lien_croise
-      Path: Default Work Unit\Play_UI_lien_croise
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_UI_lien_croise
-        ObjectType: 3
-      ID: 254787269
-      Guid: 7ceb4517b2ea9e44bc7273e468cc0af5
-      maxAttenuation: 0
-    - Name: Play_UI_lien_maintenu
-      Path: Default Work Unit\Play_UI_lien_maintenu
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_UI_lien_maintenu
-        ObjectType: 3
-      ID: -1376481293
-      Guid: f13c5638cca9aa468c0c4b459249fd7f
       maxAttenuation: 0
     - Name: Play_Ui_lien_valide
       Path: Default Work Unit\Play_Ui_lien_valide
@@ -269,63 +229,33 @@ MonoBehaviour:
       ID: 771963053
       Guid: 737258dba978d54aa4e054ca812c2c85
       maxAttenuation: 0
-    - Name: Play_Ui_new_souvenir
-      Path: Default Work Unit\Play_Ui_new_souvenir
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Ui_new_souvenir
-        ObjectType: 3
-      ID: -38376791
-      Guid: 4bb0148e2a9acd4ea5e31752d57742e9
-      maxAttenuation: 0
-    - Name: Play_Ui_Souvenir_compl_t_
-      Path: Default Work Unit\Play_Ui_Souvenir_compl_t_
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Ui_Souvenir_compl_t_
-        ObjectType: 3
-      ID: 498677938
-      Guid: b2260b963c52f34e85e19fb76e8c4a6a
-      maxAttenuation: 0
-    - Name: Stop_UI_lien_maintenu
-      Path: Default Work Unit\Stop_UI_lien_maintenu
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Stop_UI_lien_maintenu
-        ObjectType: 3
-      ID: -351952955
-      Guid: 7856c6e1df47014781de127d8f662cf2
-      maxAttenuation: 0
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{7DFC0186-65ED-4309-9D1E-E4040FCCB83B}'
-    m_lastTimePsrt1: 634181126
-    m_lastTimePart2: -1999262858
+    m_lastTimePsrt1: -1536338588
+    m_lastTimePart2: -1999262667
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{BE401A50-447E-479F-983C-1E9FB740AE21}'
-    m_lastTimePsrt1: 634126349
-    m_lastTimePart2: -1999262858
+    m_lastTimePsrt1: -1530322477
+    m_lastTimePart2: -1999262667
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{7A216E96-AF27-4C26-A795-B4A57921DE07}'
-    m_lastTimePsrt1: 634276099
-    m_lastTimePart2: -1999262858
+    m_lastTimePsrt1: -1530317460
+    m_lastTimePart2: -1999262667
     List: []
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{6B48B716-BD04-4A2A-9F64-6B33B890EEFA}'
-    m_lastTimePsrt1: -1801987482
-    m_lastTimePart2: -1999262851
+    m_lastTimePsrt1: -1530332500
+    m_lastTimePart2: -1999262667
     List:
     - Name: Main
       Path: Default Work Unit\Main
@@ -340,14 +270,14 @@ MonoBehaviour:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{A5BD9065-B06D-4896-902A-C50A29D3AD5B}'
-    m_lastTimePsrt1: 634371107
-    m_lastTimePart2: -1999262858
+    m_lastTimePsrt1: -1540138695
+    m_lastTimePart2: -1999262667
     List: []
   - PhysicalPath: Game Parameters\Factory SoundSeed Air Game Syncs.wwu
     ParentPhysicalPath: 
     Guid: '{3B167755-FB42-458B-98BF-96F557AFB3B9}'
-    m_lastTimePsrt1: 1398587166
-    m_lastTimePart2: -1999262859
+    m_lastTimePsrt1: -1540138695
+    m_lastTimePart2: -1999262667
     List:
     - Name: SS_Air_Fear
       Path: Factory SoundSeed Air Game Syncs\SS_Air_Fear
@@ -443,8 +373,8 @@ MonoBehaviour:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{99C1566C-39DE-4BA9-821C-D280BB377249}'
-    m_lastTimePsrt1: 634616406
-    m_lastTimePart2: -1999262858
+    m_lastTimePsrt1: -1530312415
+    m_lastTimePart2: -1999262667
     List: []
   ExpandedItems:
   - /CeuxQuiRestent - WWiseProject
