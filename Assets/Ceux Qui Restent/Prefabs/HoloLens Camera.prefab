@@ -38,10 +38,11 @@ GameObject:
   - component: {fileID: 20585314461403876}
   - component: {fileID: 92218871641389276}
   - component: {fileID: 124965450218303958}
-  - component: {fileID: 81243130121705140}
   - component: {fileID: 114087668139475304}
   - component: {fileID: 114354344877593982}
   - component: {fileID: 114327619203606136}
+  - component: {fileID: 114876723859872076}
+  - component: {fileID: 114189998860853470}
   m_Layer: 0
   m_Name: HoloLens Camera
   m_TagString: MainCamera
@@ -205,7 +206,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4068009796658212}
+  - component: {fileID: 114953567121328964}
   - component: {fileID: 114439323371764380}
+  - component: {fileID: 136101252949426330}
   m_Layer: 0
   m_Name: TechnicianController
   m_TagString: Player
@@ -507,13 +510,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &81243130121705140
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1058018236364540}
-  m_Enabled: 1
 --- !u!92 &92218871641389276
 Behaviour:
   m_ObjectHideFlags: 1
@@ -565,6 +561,26 @@ MonoBehaviour:
   Axis0Destination: 0
   Axis1Destination: 2
   Axis2Destination: 6
+--- !u!114 &114189998860853470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058018236364540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a80a7c13f6b0a4a9587fdd304ff0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_positionOffsetData:
+    positionOffset: {x: 0, y: 0, z: 0}
+    KeepMe: 0
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_listeners:
+    initialListenerList: []
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!114 &114195881897088022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -685,7 +701,16 @@ MonoBehaviour:
   energy: {fileID: 11400000, guid: 1ef60bf54f898cf4e9684acac260898c, type: 2}
   linkPrefab: {fileID: 1378907795974902, guid: 79ca612a0dd16b6408aae8d984512f65, type: 2}
   target: {fileID: 4449095467174344}
-  distanceInteraction: 0
+  distanceInteraction: 1.4
+  tracker: {fileID: 0}
+  tracker_normal: {fileID: 21300000, guid: de0381df256351d418595a50a71b6abb, type: 3}
+  tracker_interact_too_far: {fileID: 21300000, guid: e4a80f39d2f43bc4c87b14db20bac2f9,
+    type: 3}
+  tracker_interact: {fileID: 21300000, guid: e1b987f82cfdc8349b79f7b56d8ec2a3, type: 3}
+  trackerArrow: {fileID: 0}
+  linkableLayer:
+    serializedVersion: 2
+    m_Bits: 512
   effect_startLink: {fileID: 1720765707381090, guid: 3704fe7ba35766a488f7099d93df9e9b,
     type: 2}
   effect_endLink: {fileID: 1720765707381090, guid: 3704fe7ba35766a488f7099d93df9e9b,
@@ -694,6 +719,13 @@ MonoBehaviour:
     type: 2}
   effect_brokeLink_small: {fileID: 1130439769177040, guid: 58ee2ef6f081add4092d563384678a35,
     type: 2}
+  sound_click: Play_Ui_clic
+  sound_continuous: Plau_Ui_lien_maintenu
+  sound_linkCompleted: Play_Ui_lien_valide
+  sound_memoryCompleted: Play_Ui_Souvenir_compl_t_
+  sound_energyIncrease: Play_Ui_jauge_up
+  sound_linkCrossed: Play_Ui_lien_croise
+  sound_lackEnergy: Play_Ui_lien_annule
   distanceBetweenTwoLinkPoints: 0.02
   linkCurveLength: 15
   gravityOffset: {x: 0, y: -0.3, z: 0}
@@ -831,6 +863,19 @@ MonoBehaviour:
   Axis0Destination: 5
   Axis1Destination: 4
   Axis2Destination: 6
+--- !u!114 &114876723859872076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058018236364540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2389e09f4ef9b9f4180933090e87fb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
 --- !u!114 &114931658468997072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -851,6 +896,31 @@ MonoBehaviour:
   Axis0Destination: 4
   Axis1Destination: 6
   Axis2Destination: 6
+--- !u!114 &114953567121328964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575327007497826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c32353ceb54302488abb02f29750bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialEnabled: 1
+  dontMoveTime: 10
+  dontMoveDistanceThreshold: 2.5
+  dontMoveAction: {fileID: 0}
+  clickVoid: {fileID: 0}
+  clickLinkable_ButTooFar: {fileID: 0}
+  clickLinkable_ButWrongPair: {fileID: 0}
+  clickLinkable_ButAlreadyLinked: {fileID: 0}
+  clickLinkable_Valid: {fileID: 0}
+  dontClickTime: 10
+  dontClickAction: {fileID: 0}
+  linkBrokeAction: {fileID: 0}
+  energyEmptyAmount: 2
+  energyEmpty: {fileID: 0}
 --- !u!114 &114990930272512816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -889,6 +959,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1058018236364540}
   m_Enabled: 1
+--- !u!136 &136101252949426330
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575327007497826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.75
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!222 &222175261459458168
 CanvasRenderer:
   m_ObjectHideFlags: 1

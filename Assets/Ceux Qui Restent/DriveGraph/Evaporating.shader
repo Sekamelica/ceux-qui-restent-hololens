@@ -88,7 +88,7 @@
 		// the gradient texture
 		float gradient = tex2D(_GradientTex, float4(input.texCoord.xy, 0, 0)).a;
 		// the noise texture padded with the noisePadding and moving up with _Time.y*_Speed
-		float noise = tex2Dlod(_NoiseTex, float4(noisePadding.x, noisePadding.y - _Time.y*_Speed, 0, 0));
+		float noise = tex2D(_NoiseTex, float4(noisePadding.x, noisePadding.y - _Time.y*_Speed, 0, 0));
 		// for gradient and noise we can get only one color channel since these textures are just grayscale
 
 		// choosing what will be transparent
