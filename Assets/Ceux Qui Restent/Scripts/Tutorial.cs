@@ -22,16 +22,30 @@ namespace CeuxQuiRestent
 
         [Space]
         [Header("Help - Click")]
-        public ActionExecuter clickTooFarAction;
-        public ActionExecuter clickOnVoidAction;
+        public ActionExecuter clickVoid;
+        public ActionExecuter clickLinkable_ButTooFar;
+        public ActionExecuter clickLinkable_ButWrongPair;
+        public ActionExecuter clickLinkable_ButAlreadyLinked;
+        public ActionExecuter clickLinkable_Valid;
+
+        private float currentDontClickTime = 0;
 
         [Space]
         [Header("Help - Don't click")]
         public float dontClickTime = 10;
         public ActionExecuter dontClickAction;
 
-        private float currentDontClickTime = 0;
+        [Space]
+        [Header("Help - Links")]
+        public ActionExecuter linkBrokeAction;
 
+        [Space]
+        [Header("Help - Energy")]
+        public int energyEmptyAmount = 2;
+        public ActionExecuter energyEmpty;
+
+        private int currentEnergyEmptyAmount = 0;
+        
         #region MonoBehaviour Methods
         void Update()
         {
@@ -68,8 +82,12 @@ namespace CeuxQuiRestent
         // Move Helpers
         public void DontMove()
         {
+            if (!tutorialEnabled)
+                return;
+
             if (dontMoveAction != null)
                 dontMoveAction.SetStarted(true);
+            currentDontMoveTime = 0;
         }
 
         // Click Helpers
@@ -79,6 +97,8 @@ namespace CeuxQuiRestent
                 return;
 
             dontClickTime = 0;
+            if (clickLinkable_Valid != null)
+                clickLinkable_ButTooFar.SetStarted(true);
         }
 
         public void ClickLinkable_TooFar()
@@ -87,18 +107,28 @@ namespace CeuxQuiRestent
                 return;
 
             dontClickTime = 0;
-            if (clickTooFarAction != null)
-                clickTooFarAction.SetStarted(true);
+            if (clickLinkable_ButTooFar != null)
+                clickLinkable_ButTooFar.SetStarted(true);
         }
 
         public void ClickLinkable_WrongPair()
         {
+            if (!tutorialEnabled)
+                return;
 
+            dontClickTime = 0;
+            if (clickLinkable_ButWrongPair != null)
+                clickLinkable_ButTooFar.SetStarted(true);
         }
 
         public void ClickLinkable_AlreadyLinked()
         {
+            if (!tutorialEnabled)
+                return;
 
+            dontClickTime = 0;
+            if (clickLinkable_ButAlreadyLinked != null)
+                clickLinkable_ButAlreadyLinked.SetStarted(true);
         }
 
         public void ClickVoid()
@@ -107,8 +137,8 @@ namespace CeuxQuiRestent
                 return;
 
             dontClickTime = 0;
-            if (clickOnVoidAction != null)
-                clickOnVoidAction.SetStarted(true);
+            if (clickVoid != null)
+                clickVoid.SetStarted(true);
         }
 
         public void DontClick()
@@ -118,17 +148,29 @@ namespace CeuxQuiRestent
 
             if (dontClickAction != null)
                 dontClickAction.SetStarted(true);
+            currentDontClickTime = 0;
         }
 
-        // Energy/Link Helpers
+        // Link Helpers
         public void LinkIntersectAndBroke()
         {
+            if (!tutorialEnabled)
+                return;
 
+            if (linkBrokeAction != null)
+                linkBrokeAction.SetStarted(true);
         }
 
+        // Energy Helpers
         public void EnergyEmpty()
         {
-
+            if (!tutorialEnabled)
+                return;
+            
+            currentEnergyEmptyAmount++;
+            if (currentEnergyEmptyAmount >= energyEmptyAmount)
+                if (energyEmpty != null)
+                    energyEmpty.SetStarted(true);
         }
         #endregion
     }

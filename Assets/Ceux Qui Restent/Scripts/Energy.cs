@@ -6,10 +6,18 @@ using UnityEngine;
 public class Energy : ScriptableObject {
 
     // Attributes
-    [SerializeField]
+    [System.NonSerialized]
     private float value;
-    [SerializeField]
+    [System.NonSerialized]
     private float maximum;
+    [SerializeField]
+    private float energy;
+
+    public void Initialize()
+    {
+        maximum = energy;
+        value = energy;
+    }
 
     // Setters
     public bool ChangeValue(float _newValue)

@@ -60,6 +60,7 @@ namespace CeuxQuiRestent
         #region MonoBehaviour Methods
         void Start()
         {
+            energy.Initialize();
             tutorial = GetComponent<Tutorial>();
             positionLastFrame = transform.position;
         }
