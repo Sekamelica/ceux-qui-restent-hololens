@@ -73,6 +73,7 @@ namespace CeuxQuiRestent
         // Linker
         private bool isLinking = false;
         private Vector3 positionLastFrame;
+        private Quaternion rotationLastFrame;
 
         #region MonoBehaviour Methods
         void Start()
@@ -90,17 +91,18 @@ namespace CeuxQuiRestent
             if (isLinking && (transform.position != positionLastFrame))
             {
                 // When the technician is creating a link, add a point to the list everytime he or she move a defined distance.
-                if (transform.position != positionLastFrame)
+                if (transform.position != positionLastFrame || transform.rotation != rotationLastFrame)
                 {
                     distanceWalk += Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(positionLastFrame.x, positionLastFrame.z));
 
                     // We have moved enough, we try to increase the link length according to the new position.
                     if (distanceWalk >= distanceBetweenTwoLinkPoints)
-                        IncreaseLinkLength(distanceBetweenTwoLinkPoints);
+                        IncreaseLinkLength(distanceBetweenTwoLinkPoints, target.position);
                 }
             }
 
             // Register your position for detect if you have move in the next frame
+            rotationLastFrame = transform.rotation;
             positionLastFrame = transform.position;
         }
         #endregion
@@ -142,13 +144,13 @@ namespace CeuxQuiRestent
         /// Consume energy and increase the link length, broke if it collides another link or if there is not enough energy.
         /// Return false if the link has been destroyed in the process, return true otherwise.
         /// </summary>
-        public bool IncreaseLinkLength(float distance)
+        public bool IncreaseLinkLength(float distance, Vector3 pointToAdd)
         {
             distanceWalk -= distance;
             totalDistance += distance;
             if (energy.AddToValue(-distance)) // We have enough energy
             {
-                linkPoints.Add(target.position);
+                linkPoints.Add(pointToAdd);
                 UpdateLink();
                 return !CheckLinkIntersection();
             }
@@ -184,7 +186,6 @@ namespace CeuxQuiRestent
                 {
                     if (allLinks[l].Intersect(currentLinkLines))
                     {
-                        AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
                         DestroyCurrentLink();
                         return true;
                     }
@@ -198,6 +199,8 @@ namespace CeuxQuiRestent
         /// </summary>
         public void DestroyCurrentLink()
         {
+            AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
+
             // Link destruction
             for (int bmc = links.Count - 1; bmc >= 0; bmc--)
             {
@@ -242,10 +245,13 @@ namespace CeuxQuiRestent
                     Vector3 vec = linkPoints[v];
                     if (v != 0 && v != linkPoints.Count - 1)
                     {
-                        float percent = (float)v / (float)(linkPoints.Count - 1);
-                        percent = Mathf.Cos((2 * Mathf.PI * percent) - Mathf.PI);
-                        percent += l * gravityFactor * percent;
-                        vec = vec + gravityOffset + gravityOffset * percent;
+                        if (v != 0 && v != linkPoints.Count - 1)
+                        {
+                            float percent = (float)v / (float)(linkPoints.Count - 1);
+                            percent = Mathf.Cos((2 * Mathf.PI * percent) - Mathf.PI);
+                            percent += l * gravityFactor * percent;
+                            vec = vec + gravityOffset + gravityOffset * percent;
+                        }
                     }
                     linkPointsSin[l].Add(vec);
                 }
@@ -312,12 +318,11 @@ namespace CeuxQuiRestent
                 links.Add(linkGO.GetComponent<BezierMultiCurves>());
                 linkMeshes.Add(linkGO.GetComponent<BezierMeshMultiCurves>());
             }
-            isLinking = true;
 
             // Add first points
+            isLinking = true;
             linkPoints.Add(linkablePos);
-            linkPoints.Add(target.position);
-            IncreaseLinkLength(Vector3.Distance(linkablePos, target.position));
+            IncreaseLinkLength(Vector3.Distance(linkablePos, target.position), target.position);
         }
 
         /// <summary>
@@ -330,7 +335,7 @@ namespace CeuxQuiRestent
             isLinking = false;
             linkPoints.Add(linkablePos);
 
-            if (IncreaseLinkLength(Vector3.Distance(linkablePos, target.position)))
+            if (IncreaseLinkLength(Vector3.Distance(linkPoints[linkPoints.Count - 2], linkablePos), linkablePos))
             {
                 // The link has been sucessfully completed
                 for (int lm = 0; lm < linkMeshes.Count; lm++)
@@ -389,30 +394,29 @@ namespace CeuxQuiRestent
         /// <param name="clickedPair"></param>
         public void LinkableClick(Vector3 linkablePos, GameObject clicked, GameObject clickedPair)
         {
+            // Too Far
             if (Vector3.Distance(transform.position, linkablePos) > distanceInteraction)
             {
                 tutorial.ClickLinkable_TooFar();
                 return; // Too far away to interact with
             }
 
-            
-
             if (isLinking)
             {
-                if (destination == clicked && origin == clickedPair) // End the link on the good Linkable.
+                if (destination == clicked) // End the link on the good Linkable.
                 {
-                    AkSoundEngine.PostEvent(sound_click, gameObject);
-                    AkSoundEngine.PostEvent(sound_linkCompleted, gameObject);
-                    AkSoundEngine.PostEvent(sound_memoryCompleted, gameObject);
-                    AkSoundEngine.PostEvent(sound_energyIncrease, gameObject);
-                    tutorial.ClickLinkable_Valid();
-
-                    // Effect
-                    if (effect_startLink != null)
-                        GameObject.Instantiate(effect_startLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
-
                     if (StopLinking(linkablePos))
                     {
+                        AkSoundEngine.PostEvent(sound_click, gameObject);
+                        AkSoundEngine.PostEvent(sound_linkCompleted, gameObject);
+                        AkSoundEngine.PostEvent(sound_memoryCompleted, gameObject);
+                        AkSoundEngine.PostEvent(sound_energyIncrease, gameObject);
+                        tutorial.ClickLinkable_Valid();
+
+                        // Effect
+                        if (effect_startLink != null)
+                            GameObject.Instantiate(effect_startLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
+
                         // Energy (Increase max energy and refill energy)
                         energy.AddToMaximum(origin.GetComponent<Linkable>().energyMaximumIncrease);
                         energy.ChangeValue(energy.GetMaximum());

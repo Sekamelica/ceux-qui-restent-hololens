@@ -177,7 +177,7 @@ Prefab:
     - target: {fileID: 114439323371764380, guid: f3170dc92cb3a1145b92e225e4ebd8af,
         type: 2}
       propertyPath: distanceInteraction
-      value: 3
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 223263913813201978, guid: f3170dc92cb3a1145b92e225e4ebd8af,
         type: 2}
@@ -302,6 +302,15 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: -300
       objectReference: {fileID: 0}
+    - target: {fileID: 4449095467174344, guid: f3170dc92cb3a1145b92e225e4ebd8af, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.927
+      objectReference: {fileID: 0}
+    - target: {fileID: 114439323371764380, guid: f3170dc92cb3a1145b92e225e4ebd8af,
+        type: 2}
+      propertyPath: distanceBetweenTwoLinkPoints
+      value: 0.005
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114553615372501486, guid: f3170dc92cb3a1145b92e225e4ebd8af, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f3170dc92cb3a1145b92e225e4ebd8af, type: 2}
@@ -316,7 +325,7 @@ GameObject:
   - component: {fileID: 91281296}
   - component: {fileID: 91281295}
   m_Layer: 0
-  m_Name: (8.0s) Link lengths limited by energy
+  m_Name: (14.0s) Link lengths limited by energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,8 +345,8 @@ MonoBehaviour:
   subtitle: "La longueur des liens que vous pouvez cr\xE9er est limit\xE9e par l'\xE9nergie
     m\xE9morielle que vous avez pr\xE9c\xE9demment recueillis en compl\xE9tant des
     fragments. Si vous n\u2019avez pas assez d'\xE9nergie, le lien se d\xE9litera. "
-  duration: 8
-  soundName: 
+  duration: 14
+  soundName: Play_16
 --- !u!4 &91281296
 Transform:
   m_ObjectHideFlags: 0
@@ -385,6 +394,7 @@ Transform:
   - {fileID: 1995965827}
   - {fileID: 816637634}
   - {fileID: 457270367}
+  - {fileID: 360627305}
   - {fileID: 1765043916}
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -404,7 +414,7 @@ GameObject:
   - component: {fileID: 182010639}
   - component: {fileID: 182010638}
   m_Layer: 0
-  m_Name: (10.0s) Fragments linked felicitations
+  m_Name: (10.0s) Fragments linked felicitations & explore again
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -545,23 +555,23 @@ MonoBehaviour:
     secondsToWait: 3.2
     done: 0
   - actionKind: 1
-    target: {fileID: 1409114630}
-    secondsToWait: 4.2
+    target: {fileID: 2119110132}
+    secondsToWait: 10.2
     done: 0
   - actionKind: 2
-    target: {fileID: 1409114630}
+    target: {fileID: 2119110132}
     secondsToWait: 0.5
     done: 0
   - actionKind: 1
-    target: {fileID: 1409114630}
+    target: {fileID: 2119110132}
     secondsToWait: 0.5
     done: 0
   - actionKind: 2
-    target: {fileID: 1409114630}
+    target: {fileID: 2119110132}
     secondsToWait: 0.5
     done: 0
   - actionKind: 1
-    target: {fileID: 1409114630}
+    target: {fileID: 2119110132}
     secondsToWait: 0.5
     done: 0
   - actionKind: 8
@@ -570,7 +580,7 @@ MonoBehaviour:
     done: 0
   - actionKind: 1
     target: {fileID: 779230366}
-    secondsToWait: 5.2
+    secondsToWait: 14.2
     done: 0
   - actionKind: 1
     target: {fileID: 2086830613}
@@ -654,6 +664,36 @@ MonoBehaviour:
     target: {fileID: 586614016}
     secondsToWait: 0
     done: 0
+--- !u!1 &360627304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 360627305}
+  m_Layer: 0
+  m_Name: Subtitles - Tutorial Ending
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &360627305
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 360627304}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.4702046, y: 6.0422697, z: -5.707254}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 556588152}
+  - {fileID: 1579547511}
+  m_Father: {fileID: 96255205}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &392122300
 Prefab:
   m_ObjectHideFlags: 0
@@ -905,6 +945,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1608642902673308, guid: 8419d429dc57fcf4b8dc6df529b615d6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8419d429dc57fcf4b8dc6df529b615d6, type: 2}
   m_IsPrefabParent: 0
@@ -914,6 +958,49 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 508454056}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &556588151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 556588152}
+  - component: {fileID: 556588153}
+  m_Layer: 0
+  m_Name: (10.0s) Fragments linked felicitations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &556588152
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556588151}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 360627305}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &556588153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556588151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f994bec7091aa334ba7054c0d8daf6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitle: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations. "
+  duration: 10
+  soundName: Play_14
 --- !u!1 &586614016 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1473068114459420, guid: 507d047c075773e468e8abff1e459c62,
@@ -929,7 +1016,7 @@ GameObject:
   - component: {fileID: 646620968}
   - component: {fileID: 646620967}
   m_Layer: 0
-  m_Name: (4.0s) Move into environment to scan
+  m_Name: (8.0s) Move into environment to scan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -948,7 +1035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitle: "Pour commencer, d\xE9placez vous dans l'environnement \xE0 scanner afin
     que le dispositif aille rechercher les souvenirs correspondant."
-  duration: 4
+  duration: 8
   soundName: 
 --- !u!4 &646620968
 Transform:
@@ -1110,6 +1197,7 @@ Transform:
   - {fileID: 788325581}
   - {fileID: 331346108}
   - {fileID: 345736393}
+  - {fileID: 1654987672}
   m_Father: {fileID: 96255205}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1393,7 +1481,7 @@ GameObject:
   - component: {fileID: 865669234}
   - component: {fileID: 865669233}
   m_Layer: 0
-  m_Name: (4.0s) Move and look around for fragments
+  m_Name: (9.0s) Move and look around for fragments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1412,7 +1500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitle: "D\xE9placez vous et regardez autour de vous afin de visualiser le premier
     fragment m\xE9moriel. Le tracker est la pour vous aider"
-  duration: 4
+  duration: 9
   soundName: Play_3
 --- !u!4 &865669234
 Transform:
@@ -1603,7 +1691,7 @@ Prefab:
         type: 2}
       propertyPath: actionsToDo
       value: 
-      objectReference: {fileID: 1844095540}
+      objectReference: {fileID: 1654987673}
     - target: {fileID: 1473068114459420, guid: 507d047c075773e468e8abff1e459c62, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -1665,7 +1753,7 @@ GameObject:
   - component: {fileID: 1004045697}
   - component: {fileID: 1004045696}
   m_Layer: 0
-  m_Name: (4.0s) Corresponding memory fragments
+  m_Name: (10.0s) Corresponding memory fragments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1684,8 +1772,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitle: "Les fragments m\xE9moriels correspondants ont toujours un aspect en commun
     mais cela peut varier d\u2019une paire a une autre."
-  duration: 4
-  soundName: 
+  duration: 10
+  soundName: Play_15
 --- !u!4 &1004045697
 Transform:
   m_ObjectHideFlags: 0
@@ -1882,7 +1970,7 @@ Prefab:
         type: 2}
       propertyPath: actionsToDo
       value: 
-      objectReference: {fileID: 1844095540}
+      objectReference: {fileID: 1654987673}
     - target: {fileID: 1473068114459420, guid: 507d047c075773e468e8abff1e459c62, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -2112,11 +2200,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4511081478557626, guid: 507d047c075773e468e8abff1e459c62,
     type: 2}
   m_PrefabInternal: {fileID: 1399056348}
---- !u!1 &1409114630 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1620869982591200, guid: 8419d429dc57fcf4b8dc6df529b615d6,
-    type: 2}
-  m_PrefabInternal: {fileID: 508454056}
 --- !u!1 &1443576906
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,7 +2450,7 @@ MonoBehaviour:
     done: 0
   - actionKind: 8
     target: {fileID: 1385105188}
-    secondsToWait: 4.2
+    secondsToWait: 8.2
     done: 0
   - actionKind: 8
     target: {fileID: 865669232}
@@ -2375,7 +2458,7 @@ MonoBehaviour:
     done: 0
   - actionKind: 1
     target: {fileID: 1498017334}
-    secondsToWait: 5
+    secondsToWait: 0.2
     done: 0
   - actionKind: 1
     target: {fileID: 2009959443}
@@ -2455,6 +2538,49 @@ GameObject:
   m_PrefabParentObject: {fileID: 1473068114459420, guid: 507d047c075773e468e8abff1e459c62,
     type: 2}
   m_PrefabInternal: {fileID: 678825859}
+--- !u!1 &1579547510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1579547511}
+  - component: {fileID: 1579547512}
+  m_Layer: 0
+  m_Name: (5.0s) Tutorial End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1579547511
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1579547510}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 360627305}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579547512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1579547510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f994bec7091aa334ba7054c0d8daf6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitle: Fin du Tutoriel.
+  duration: 5
+  soundName: 
 --- !u!1 &1582214545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,6 +2609,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1654987671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1654987672}
+  - component: {fileID: 1654987673}
+  m_Layer: 0
+  m_Name: '[EVNT] - Tutorial Ending'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1654987672
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1654987671}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 746823653}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1654987673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1654987671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a3c666ff543f444b81b6ae1d2f6af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionsName: Actions List
+  started: 0
+  secondsToWait: 0
+  loop: 0
+  actions:
+  - actionKind: 8
+    target: {fileID: 556588151}
+    secondsToWait: 0
+    done: 0
+  - actionKind: 8
+    target: {fileID: 1579547510}
+    secondsToWait: 10.2
+    done: 0
 --- !u!1001 &1699380300
 Prefab:
   m_ObjectHideFlags: 0
@@ -2599,7 +2778,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 96255205}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1844095539
 GameObject:
@@ -2991,3 +3170,8 @@ Transform:
   m_Father: {fileID: 96255205}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &2119110132 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1608642902673308, guid: 8419d429dc57fcf4b8dc6df529b615d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 508454056}
