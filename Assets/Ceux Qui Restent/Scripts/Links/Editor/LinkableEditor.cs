@@ -20,6 +20,7 @@ namespace CeuxQuiRestent
 
         public override void OnInspectorGUI()
         {
+            // Set Actions
             ActionExecuter newActionsToDo = EditorGUILayout.ObjectField("Actions to do", linkable.actionsToDo, typeof(ActionExecuter), true) as ActionExecuter;
             if(newActionsToDo != linkable.actionsToDo)
             {
@@ -28,8 +29,19 @@ namespace CeuxQuiRestent
                     linkable.pair.actionsToDo = newActionsToDo;
             }
 
-            linkable.energyMaximumIncrease = EditorGUILayout.FloatField("Energy Increase", linkable.energyMaximumIncrease);
+            // Set Energy Increase
+            float newEnergyIncrease = EditorGUILayout.FloatField("Energy Increase", linkable.energyMaximumIncrease);
+            if (newEnergyIncrease != linkable.energyMaximumIncrease)
+            {
+                linkable.energyMaximumIncrease = newEnergyIncrease;
+                if (linkable.pair != null)
+                    linkable.pair.energyMaximumIncrease = newEnergyIncrease;
+            }
 
+            EditorGUI.BeginDisabledGroup(true);
+            string unused_name = EditorGUILayout.TextField("Name", linkable.gameObject.name);
+            EditorGUI.EndDisabledGroup();
+            // Set New Pair
             Linkable newPair = EditorGUILayout.ObjectField("Pair", linkable.pair, typeof(Linkable), true) as Linkable;
             if (newPair != linkable.pair)
             {
@@ -44,16 +56,65 @@ namespace CeuxQuiRestent
                     newPair.EditorDrawLink(Color.red, 0.4f);
                     newPair.pair.pair = null;
                 }
-                // Create new pairs
-                newPair.pair = linkable;
-                linkable.pair = newPair;
+
+                if (newPair != null)
+                {
+                    // Create new pairs
+                    newPair.pair = linkable;
+                    linkable.pair = newPair;
+                    linkable.pair.actionsToDo = linkable.actionsToDo;
+                    linkable.pair.energyMaximumIncrease = linkable.energyMaximumIncrease;
+                }
+
             }
-            
+
+            // Display all pair links
             Linkable[] linkables = FindObjectsOfType<Linkable>();
             foreach (Linkable lkbl in linkables)
                 if (lkbl != linkable)
                     lkbl.EditorDrawLink(Color.yellow, 0.2f);
             linkable.EditorDrawLink(Color.green, 0.2f);
+
+
+            if (linkable.pair != null)
+            {
+                linkable.pair.actionsToDo = linkable.actionsToDo;
+                linkable.pair.energyMaximumIncrease = linkable.energyMaximumIncrease;
+                if (linkable.pair.pair != null)
+                    linkable.pair.pair = null;
+                linkable.pair.pair = linkable;
+            }
+            /*
+            // Display current pair data
+            if (linkable.pair != null)
+            {
+                
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
+
+                EditorGUILayout.LabelField("Pair datas:");
+
+                if (GUILayout.Button("Correct Pair"))
+                {
+                    linkable.pair.actionsToDo = linkable.actionsToDo;
+                    linkable.pair.energyMaximumIncrease = linkable.energyMaximumIncrease;
+                    if (linkable.pair.pair != null)
+                        linkable.pair.pair = null;
+                    linkable.pair.pair = linkable;
+                }
+
+                EditorGUI.indentLevel++;
+                EditorGUI.indentLevel++;
+
+                EditorGUI.BeginDisabledGroup(true);
+                ActionExecuter unused_ac = EditorGUILayout.ObjectField("Actions to do", linkable.pair.actionsToDo, typeof(ActionExecuter), true) as ActionExecuter;
+                float unused_en = EditorGUILayout.FloatField("Energy Increase", linkable.pair.energyMaximumIncrease);
+                Linkable unused_pair = EditorGUILayout.ObjectField("Pair", linkable.pair.pair, typeof(Linkable), true) as Linkable;
+                EditorGUI.EndDisabledGroup();
+                EditorGUI.indentLevel--;
+                EditorGUI.indentLevel--;
+            }*/
+            
 
             serializedObject.ApplyModifiedProperties(); 
             EditorUtility.SetDirty(target);

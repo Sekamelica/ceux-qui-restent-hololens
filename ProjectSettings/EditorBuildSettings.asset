@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Ceux Qui Restent/Scenes/Test03.unity
+    path: Assets/Ceux Qui Restent/Scenes/Tutoriel.unity
     guid: db159a40dce97b34cbc299a5b2c961cb
   - enabled: 0
     path: Assets/Ceux Qui Restent/Scenes/Test01.unity

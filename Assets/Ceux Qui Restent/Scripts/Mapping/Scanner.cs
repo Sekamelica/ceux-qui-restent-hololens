@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utility;
 using PCG;
-using UnityEditor;
+//using UnityEditor;
 
 namespace CeuxQuiRestent
 {
     public class Scanner : MonoBehaviour
     {
+        [Header("Tutorial Room")]
+        public Transform tutorialRoom;
+        public Transform tutorialRoomCenter;
+        public Transform tutorialRoomMin;
+
+        [Header("Spatial Mapping")]
+        public Transform meshesWrapper;
+
         [Header("Scan")]
         public float scan_waitTime = 6;
         private float scan_currentWaitTime = 0;
@@ -16,6 +24,7 @@ namespace CeuxQuiRestent
 
         // Attributes
         // WallScan
+        /*
         [Header("Wall scan")]
         public Transform wallScan_target;
         public float wallScan_timeBetweenIterations = 0.5f;
@@ -38,24 +47,25 @@ namespace CeuxQuiRestent
         private List<int> impactPointsID_XOrdered = new List<int>();
         private List<int> impactPointsID_ZOrdered = new List<int>();
         public bool orderX = true;
+        */
 
         // Debug WallScan
-        [Header("Debug")]
-        public GameObject wallScan_impactPoint;
+        /*[Header("Debug")]
+        public GameObject wallScan_impactPoint;*/
 
-        private Transform player;
-        public Transform meshesWrapper;
-        public Transform tutorialRoom;
-        public Transform tutorialRoomCenter;
-        public Transform meshesWrapper2;
-        private List<MeshFilter> meshes = new List<MeshFilter>();
+        //private Transform player;
+        
+        
+        //public Transform meshesWrapper2;
+        //private List<MeshFilter> meshes = new List<MeshFilter>();
 
         // MonoBehaviour Methods
         void Start()
         {
+            /*
             player = GameObject.FindGameObjectWithTag("MainCamera").transform;
             raysPerIteration = wallScan_totalRays / wallScan_iterations;
-            angleIncrement = 360.0f / (float)(wallScan_totalRays);
+            angleIncrement = 360.0f / (float)(wallScan_totalRays);*/
         }
 
         // Update is called once per frame
@@ -67,6 +77,7 @@ namespace CeuxQuiRestent
                 if (scan_currentWaitTime >= scan_waitTime)
                 {
                     Vector3 centerLargestRoomBounds = new Vector3(0, 0, 0);
+                    Vector3 mappedRoomMin = new Vector3();
                     float largestRoomArea = 0;
                     for (int c = 0; c < meshesWrapper.childCount; c++)
                     {
@@ -76,11 +87,31 @@ namespace CeuxQuiRestent
                         {
                             largestRoomArea = roomArea;
                             centerLargestRoomBounds = mf.sharedMesh.bounds.center;
+                            mappedRoomMin = mf.sharedMesh.bounds.min;
                         }
                     }
-                    Instantiate(wallScan_impactPoint, centerLargestRoomBounds, Quaternion.identity);
-                    Vector3 differentiel = tutorialRoomCenter.position - tutorialRoom.position;
-                    tutorialRoom.position = centerLargestRoomBounds - differentiel;
+
+                    float angle = 0;
+                    do
+                    {
+                        Vector3 differentielRealRoom_VirtualRoom = tutorialRoomCenter.position - centerLargestRoomBounds;
+
+                        Vector3 a = mappedRoomMin - new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z);
+                        Vector3 b = (tutorialRoomMin.position - differentielRealRoom_VirtualRoom) - (new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom);
+
+                        /*
+                        Debug.DrawLine(mappedRoomMin, new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z), Color.yellow, 3);
+                        Debug.DrawLine(tutorialRoomMin.position - differentielRealRoom_VirtualRoom, new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom, Color.green, 3);*/
+
+                        angle = Vector3.Angle(a, b);
+                        Debug.Log("Angle: " + angle);
+                        tutorialRoom.Rotate(Vector3.up, -angle);
+
+                        Vector3 differentielRoomPositionCenterRoom = tutorialRoomCenter.position - tutorialRoom.position;
+                        tutorialRoom.position = centerLargestRoomBounds - differentielRoomPositionCenterRoom;
+                    } while (angle >= 1 || angle <= -1);
+
+
                     scan_done = true;
                 }
             }
@@ -111,6 +142,7 @@ namespace CeuxQuiRestent
 
         }
 
+        /*
         void OnDrawGizmosSelected()
         {
             MeshFilter largestMeshFilter = new MeshFilter();
@@ -154,12 +186,14 @@ namespace CeuxQuiRestent
                     Handles.DrawWireCube(mf2.sharedMesh.bounds.center, mf2.sharedMesh.bounds.size);
                     Handles.DrawWireCube(mf2.sharedMesh.bounds.min, Vector3.one);
                     Handles.DrawWireCube(mf2.sharedMesh.bounds.max, Vector3.one);
+
                 }
             }
-        }
+        }*/
 
         // WallScan Methods
-        private void WallScanIteration()
+        
+        /*private void WallScanIteration()
         {
             for (int r = 0; r < raysPerIteration; r++)
             {
@@ -179,16 +213,17 @@ namespace CeuxQuiRestent
                 currentAngle += angleIncrement;
             }
             raysShot += raysPerIteration;
-        }
+        }*/
 
-        Vector3 RotatePointAroundAxis(Vector3 point, float angle, Vector3 axis)
+        /*Vector3 RotatePointAroundAxis(Vector3 point, float angle, Vector3 axis)
         {
             Quaternion q = Quaternion.AngleAxis(angle, axis);
             return q * point; //Note: q must be first (point * q wouldn't compile)
-        }
+        }*/
 
         private void FinalizeWallScan()
         {
+            /*
             // Init
             bool wallScanCompleted = true;
 
@@ -233,7 +268,7 @@ namespace CeuxQuiRestent
             Vector3 minX = impactPoints[impactPointsID_XOrdered[0]];
             Vector3 maxX = impactPoints[impactPointsID_XOrdered[impactPointsID_XOrdered.Count - 1]];
             Vector3 minZ = impactPoints[impactPointsID_ZOrdered[0]];
-            Vector3 maxZ = impactPoints[impactPointsID_ZOrdered[impactPointsID_ZOrdered.Count - 1]];
+            Vector3 maxZ = impactPoints[impactPointsID_ZOrdered[impactPointsID_ZOrdered.Count - 1]];*/
 
             /*
             Mesh cube = MeshUtility.CombineMeshes(MeshUtility.GenerateCube(new Vector3(Mathf.Lerp(minX.x, maxX.x, 0.5f), player.position.y, 0), new Vector3(Vector3.Distance(minX, maxX) / 2, 5, 1), MeshFaces.Outside));
@@ -321,7 +356,7 @@ namespace CeuxQuiRestent
 
 
             // End
-            if (wallScanCompleted)
+            /*if (wallScanCompleted)
             {
                 if (wallScan_endActions != null)
                     wallScan_endActions.SetStarted(true);
@@ -332,9 +367,10 @@ namespace CeuxQuiRestent
                 raysShot = 0;
                 currentAngle = 0;
                 wallScan_finished = false;
-            }
+            }*/
         }
 
+        /*
         public List<int> CutStartEnd(float percent, List<int> listToCut)
         {
             int amount = (int)(percent * listToCut.Count);
@@ -343,7 +379,7 @@ namespace CeuxQuiRestent
             for (int a = 0; a < amount; a++)
                 listToCut.RemoveAt(listToCut.Count - 1);
             return listToCut;
-        }
+        }*/
     }
 
 }
