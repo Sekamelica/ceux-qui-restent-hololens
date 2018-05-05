@@ -20,14 +20,6 @@ namespace CeuxQuiRestent
         [Tooltip("Maximum distance between you and the Linkable to interact with.")]
         public float distanceInteraction;
 
-        [Header("Linkable tracker")]
-        public Image tracker;
-        public Sprite tracker_normal;
-        public Sprite tracker_interact_too_far;
-        public Sprite tracker_interact;
-        public Image trackerArrow;
-        public LayerMask linkableLayer;
-
         [Header("Particle Effects")]
         public GameObject effect_startLink;
         public GameObject effect_endLink;
@@ -85,8 +77,6 @@ namespace CeuxQuiRestent
 
         void Update()
         {
-            TrackerUpdate();
-
             // IsLinking and has moved
             if (isLinking && (transform.position != positionLastFrame))
             {
@@ -106,38 +96,7 @@ namespace CeuxQuiRestent
             positionLastFrame = transform.position;
         }
         #endregion
-
-        #region Tracker Methods
-        public void TrackerUpdate()
-        {
-            Debug.DrawRay(transform.position, (target.position - transform.position), Color.red, 2);
-            Ray ray = new Ray(transform.position, (target.position - transform.position));
-            RaycastHit rayHit;
-            if (Physics.Raycast(ray, out rayHit, 5000, linkableLayer.value))
-            {
-                if (rayHit.distance <= distanceInteraction)
-                    tracker.sprite = tracker_interact;
-                else
-                    tracker.sprite = tracker_interact_too_far;
-            }
-            else
-                tracker.sprite = tracker_normal;
-            /*
-            List<Linkable> linkables = new List<Linkable>();
-            for (int c = 0; c < linkableParent.childCount; c++)
-            {
-                if (linkableParent.GetChild(c).gameObject.activeInHierarchy)
-                {
-                    if (linkableParent.GetChild(c).gameObject.GetComponent<Linkable>())
-                    {
-                        Linkable lkbl = linkableParent.GetChild(c).gameObject.GetComponent<Linkable>();
-                        if (!lkbl.IsAlreadyLinked())
-                            linkables.Add(linkableParent.GetChild(c).gameObject.GetComponent<Linkable>());
-                    }
-                }
-            }*/
-        }
-        #endregion
+        
 
         #region Linker Methods
         /// <summary>

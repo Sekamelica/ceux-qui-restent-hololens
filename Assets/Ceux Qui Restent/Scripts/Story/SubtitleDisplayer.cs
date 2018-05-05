@@ -6,15 +6,15 @@ using AK;
 
 namespace CeuxQuiRestent
 {
-    [RequireComponent(typeof(Text))]
+    [RequireComponent(typeof(TextMesh))]
     public class SubtitleDisplayer : MonoBehaviour
     {
-        private Text text;
+        private TextMesh text;
         private float textDuration;
 
         private void Start()
         {
-            text = GetComponent<Text>();
+            text = GetComponent<TextMesh>();
         }
 
         private void Update()
