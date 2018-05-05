@@ -104,7 +104,6 @@ namespace CeuxQuiRestent
                         Debug.DrawLine(tutorialRoomMin.position - differentielRealRoom_VirtualRoom, new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom, Color.green, 3);*/
 
                         angle = Vector3.Angle(a, b);
-                        Debug.Log("Angle: " + angle);
                         tutorialRoom.Rotate(Vector3.up, -angle);
 
                         Vector3 differentielRoomPositionCenterRoom = tutorialRoomCenter.position - tutorialRoom.position;
