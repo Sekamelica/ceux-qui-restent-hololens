@@ -126,6 +126,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &54479275 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114708673596727382, guid: 7b3f2f5f27322e24eb26e8477ad34f66,
@@ -336,6 +346,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &216343613
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +655,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1703619046780402, guid: 7b3f2f5f27322e24eb26e8477ad34f66,
     type: 2}
   m_PrefabInternal: {fileID: 1967878393}
---- !u!114 &253142062
+--- !u!114 &253142066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -646,6 +666,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &309494550
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +884,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &508454057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,6 +1302,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1016023505 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1577450909505176, guid: 7b3f2f5f27322e24eb26e8477ad34f66,
@@ -1432,7 +1482,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1545639116176900, guid: 7b3f2f5f27322e24eb26e8477ad34f66,
     type: 2}
   m_PrefabInternal: {fileID: 1967878393}
---- !u!114 &1130362757
+--- !u!114 &1130362761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1443,6 +1493,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1290169656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1573,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1068974713855100, guid: 7b3f2f5f27322e24eb26e8477ad34f66,
     type: 2}
   m_PrefabInternal: {fileID: 1967878393}
---- !u!114 &1327958363
+--- !u!114 &1327958367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1524,6 +1584,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1352016319 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1840539252729232, guid: 7b3f2f5f27322e24eb26e8477ad34f66,
@@ -1707,6 +1777,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1520391714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,6 +2027,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1675858623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,7 +2989,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1920811351612174, guid: 7b3f2f5f27322e24eb26e8477ad34f66,
     type: 2}
   m_PrefabInternal: {fileID: 1967878393}
---- !u!114 &2014056781
+--- !u!114 &2014056785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2910,6 +3000,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFocusEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onFocusExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &2021035537
 GameObject:
   m_ObjectHideFlags: 0

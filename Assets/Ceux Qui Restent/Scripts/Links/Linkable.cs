@@ -8,8 +8,9 @@ using Utility;
 namespace CeuxQuiRestent
 {
     [System.Serializable]
+    [RequireComponent(typeof(Focusable))]
     [RequireComponent(typeof(Collider))]
-    public class Linkable : MonoBehaviour, IInputClickHandler, IInputHandler
+    public class Linkable : MonoBehaviour, IInputClickHandler
     {
         // Public Attributes
         public float energyMaximumIncrease = 2.5f;
@@ -19,6 +20,13 @@ namespace CeuxQuiRestent
         // Private attributes        
         private bool alreadyLinked = false;
         private Linker linker;
+
+        #region Input Management
+        public void OnInputClicked(InputClickedEventData eventData)
+        {
+            Interact();
+        }
+        #endregion
 
         #region Linkable Methods
         /// <summary>
@@ -56,35 +64,6 @@ namespace CeuxQuiRestent
         void Start()
         {
             linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
-        }
-        #endregion
-
-        #region Input Management
-        /// <summary>
-        /// Simple click on object
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnInputClicked(InputClickedEventData eventData)
-        {
-            Interact();
-        }
-
-        /// <summary>
-        /// When the click start to be pressed
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnInputDown(InputEventData eventData)
-        {
-
-        }
-
-        /// <summary>
-        /// When the click is released.
-        /// </summary>
-        /// <param name="eventData"></param>
-        public void OnInputUp(InputEventData eventData)
-        {
-
         }
         #endregion
 
