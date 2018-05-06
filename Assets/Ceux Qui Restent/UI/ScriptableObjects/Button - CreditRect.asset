@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd77270dc83953a40bd709461c9fac31, type: 3}
+  m_Name: Button - CreditRect
+  m_EditorClassIdentifier: 
+  normal: {fileID: 21300000, guid: b782bfeb45bdec445b23604e4ceb0487, type: 3}
+  over: {fileID: 21300000, guid: 1e5fcc747bb3ce241883295a5d4a8639, type: 3}
+  textModel: {fileID: 11400000, guid: aa653e5fa6e50db4789179e6bd69a6bb, type: 2}
+  changeScale: 1
+  scale: {x: 0.4, y: 0.03, z: 1}

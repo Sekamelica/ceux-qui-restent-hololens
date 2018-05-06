@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using BezierUtility;
 using PCG;
-using UnityEngine.UI;
-using AK;
 
-namespace CeuxQuiRestent
+namespace CeuxQuiRestent.Gameplay
 {
     [RequireComponent(typeof(Tutorial))]
     public class Linker : MonoBehaviour
     {
+        #region Attributes
         // - - - Public attributes - - - //
         [Header("General")]
         public Energy energy;
@@ -66,6 +64,7 @@ namespace CeuxQuiRestent
         private bool isLinking = false;
         private Vector3 positionLastFrame;
         private Quaternion rotationLastFrame;
+        #endregion
 
         #region MonoBehaviour Methods
         void Start()
@@ -97,7 +96,6 @@ namespace CeuxQuiRestent
         }
         #endregion
         
-
         #region Linker Methods
         /// <summary>
         /// Consume energy and increase the link length, broke if it collides another link or if there is not enough energy.

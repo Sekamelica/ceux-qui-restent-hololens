@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Utility;
 
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace CeuxQuiRestent
+namespace CeuxQuiRestent.Gameplay
 {
     [CustomEditor(typeof(Linkable))]
     public class LinkableEditor : Editor
@@ -39,7 +37,7 @@ namespace CeuxQuiRestent
             }
 
             EditorGUI.BeginDisabledGroup(true);
-            string unused_name = EditorGUILayout.TextField("Name", linkable.gameObject.name);
+            EditorGUILayout.TextField("Name", linkable.gameObject.name);
             EditorGUI.EndDisabledGroup();
             // Set New Pair
             Linkable newPair = EditorGUILayout.ObjectField("Pair", linkable.pair, typeof(Linkable), true) as Linkable;

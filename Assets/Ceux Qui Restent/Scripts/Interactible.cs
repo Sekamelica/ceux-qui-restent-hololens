@@ -1,21 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine.Events;
+using CeuxQuiRestent.UI;
 
-namespace CeuxQuiRestent
+namespace CeuxQuiRestent.Gameplay
 {
     [RequireComponent(typeof(Focusable))]
     public class Interactible : MonoBehaviour, IInputClickHandler
     {
+        #region Attributes
+        // Public attributes
         public bool interactableFromAnyDistance = false;
         public UnityEvent onInteractEvent;
 
+        // Private attributes
         private float distanceInteraction;
         private Transform technician;
         private TechicianCursor cursor;
+        #endregion
 
+        #region MonoBehaviour Methods
         private void Start()
         {
             if (!interactableFromAnyDistance)
@@ -26,7 +30,9 @@ namespace CeuxQuiRestent
             }
             GetComponent<Focusable>().interactableFromAnyDistance = interactableFromAnyDistance;
         }
+        #endregion
 
+        #region Methods
         public void OnInputClicked(InputClickedEventData eventData)
         {
             if (onInteractEvent != null)
@@ -45,6 +51,7 @@ namespace CeuxQuiRestent
                     onInteractEvent.Invoke();
             }
         }
+        #endregion
     }
 
 }

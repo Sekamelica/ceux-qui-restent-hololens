@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using Utility;
 
-namespace CeuxQuiRestent
+namespace CeuxQuiRestent.Gameplay
 {
     [System.Serializable]
     [RequireComponent(typeof(Focusable))]
     [RequireComponent(typeof(Collider))]
     public class Linkable : MonoBehaviour, IInputClickHandler
     {
+        #region Attributes
         // Public Attributes
         public float energyMaximumIncrease = 2.5f;
         public Linkable pair;
@@ -20,6 +18,14 @@ namespace CeuxQuiRestent
         // Private attributes        
         private bool alreadyLinked = false;
         private Linker linker;
+        #endregion
+
+        #region MonoBehaviour Methods
+        void Start()
+        {
+            linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
+        }
+        #endregion
 
         #region Input Management
         public void OnInputClicked(InputClickedEventData eventData)
@@ -58,13 +64,6 @@ namespace CeuxQuiRestent
                 Debug.DrawLine(transform.position, pair.gameObject.transform.position, col, time);
         }
 #endif
-        #endregion
-
-        #region MonoBehaviour Methods
-        void Start()
-        {
-            linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
-        }
         #endregion
 
         #region Getters & Setters

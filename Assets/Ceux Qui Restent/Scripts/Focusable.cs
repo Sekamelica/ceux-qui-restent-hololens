@@ -1,28 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine.Events;
+using CeuxQuiRestent.UI;
     
-namespace CeuxQuiRestent
+namespace CeuxQuiRestent.Gameplay
 {
     public class Focusable : MonoBehaviour, IFocusable
     {
+        #region Attributes
+        [System.NonSerialized]
         public bool interactableFromAnyDistance = false;
         public UnityEvent onFocusEnterEvent;
         public UnityEvent onFocusExitEvent;
 
         private TechicianCursor cursor;
+        #endregion
 
+        #region MonoBehaviour Methods
         private void Start()
         {
             cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
         }
 
+        private void OnDisable()
+        {
+            if (!Application.isPlaying)
+                return;
+            onFocusExitEvent.Invoke();
+            if (cursor == null)
+                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
+            cursor.StopFocus(transform);
+        }
+        #endregion
+
+        #region Focusable Methods
         public void OnFocusEnter()
         {
-            if (onFocusEnterEvent != null)
-                onFocusEnterEvent.Invoke();
+            onFocusEnterEvent.Invoke();
             if (cursor == null)
                 cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
             cursor.FocusObject(transform, interactableFromAnyDistance);
@@ -30,12 +44,12 @@ namespace CeuxQuiRestent
 
         public void OnFocusExit()
         {
-            if (onFocusExitEvent != null)
-                onFocusExitEvent.Invoke();
+            onFocusExitEvent.Invoke();
             if (cursor == null)
                 cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
             cursor.StopFocus(transform);
         }
+        #endregion
     }
 
 }
