@@ -16,6 +16,7 @@ namespace CeuxQuiRestent
         private Transform technician;
         private Image image;
         private Transform focusedObject;
+        private bool interactableFromAnyDistance = false;
 
         // Use this for initialization
         void Start()
@@ -29,6 +30,38 @@ namespace CeuxQuiRestent
         {
             if (focusing)
             {
+                if (interactableFromAnyDistance)
+                {
+                    image.sprite = tracker_interact;
+                }
+                else
+                {
+                    Ray ray = new Ray(technician.position, focusedObject.position - technician.position);
+                    RaycastHit rayHit = new RaycastHit();
+                    if (Physics.Raycast(ray, out rayHit, 30, LayerMask.GetMask(new string[] { LayerMask.LayerToName(focusedObject.gameObject.layer) })))
+                    {
+                        if (rayHit.distance <= distanceInteraction)
+                            image.sprite = tracker_interact;
+                        else
+                            image.sprite = tracker_interact_too_far;
+                    }
+                    else
+                        StopFocus(focusedObject);
+                }
+            }
+        }
+
+        public void FocusObject(Transform _focusedObject, bool _interactableFromAnyDistance)
+        {
+            interactableFromAnyDistance = _interactableFromAnyDistance;
+            focusedObject = _focusedObject;
+            focusing = true;
+            if (interactableFromAnyDistance)
+            {
+                image.sprite = tracker_interact;
+            }
+            else
+            {
                 Ray ray = new Ray(technician.position, focusedObject.position - technician.position);
                 RaycastHit rayHit = new RaycastHit();
                 if (Physics.Raycast(ray, out rayHit, 30, LayerMask.GetMask(new string[] { LayerMask.LayerToName(focusedObject.gameObject.layer) })))
@@ -39,27 +72,8 @@ namespace CeuxQuiRestent
                         image.sprite = tracker_interact_too_far;
                 }
                 else
-                    image.sprite = tracker_normal;
+                    StopFocus(focusedObject);
             }
-        }
-
-        public void FocusObject(Transform _focusedObject)
-        {
-            focusedObject = _focusedObject;
-            Ray ray = new Ray(technician.position, focusedObject.position - technician.position);
-            RaycastHit rayHit = new RaycastHit();
-            if (Physics.Raycast(ray, out rayHit, 30, LayerMask.GetMask(new string[] { LayerMask.LayerToName(focusedObject.gameObject.layer) })))
-            {
-
-                if (rayHit.distance <= distanceInteraction)
-                    image.sprite = tracker_interact;
-                else
-                    image.sprite = tracker_interact_too_far;
-            }
-            else
-                image.sprite = tracker_normal;
-            focusing = true;
-
         }
 
         public void StopFocus(Transform _stopFocusedObject)

@@ -8,9 +8,11 @@ namespace CeuxQuiRestent
 {
     public class Focusable : MonoBehaviour, IFocusable
     {
-        private TechicianCursor cursor;
+        public bool interactableFromAnyDistance = false;
         public UnityEvent onFocusEnterEvent;
         public UnityEvent onFocusExitEvent;
+
+        private TechicianCursor cursor;
 
         private void Start()
         {
@@ -19,13 +21,19 @@ namespace CeuxQuiRestent
 
         public void OnFocusEnter()
         {
-            onFocusEnterEvent.Invoke();
-            cursor.FocusObject(transform);
+            if (onFocusEnterEvent != null)
+                onFocusEnterEvent.Invoke();
+            if (cursor == null)
+                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
+            cursor.FocusObject(transform, interactableFromAnyDistance);
         }
 
         public void OnFocusExit()
         {
-            onFocusExitEvent.Invoke();
+            if (onFocusExitEvent != null)
+                onFocusExitEvent.Invoke();
+            if (cursor == null)
+                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
             cursor.StopFocus(transform);
         }
     }
