@@ -1,0 +1,105 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using CeuxQuiRestent.Gameplay;
+
+namespace CeuxQuiRestent
+{
+    public class PairingTutorial : MonoBehaviour
+    {
+        #region Attributes
+        [Header("Reproducable events")]
+        public UnityEvent enterFocusFragment_event;
+        public UnityEvent exitFocusFragment_event;
+
+        [Space]
+        [Header("Unique events")]
+        public float focusFirstFragment_time = 0.25f;
+        public UnityEvent focusFirstFragment_event;
+        public UnityEvent interactWithFragment_event;
+        public UnityEvent focusSecondFragment_event;
+
+        private bool focusFirstFragment_delayEnabled = false;
+        private float focusFirstFragment_time_current = 0;
+        private bool focusFirstFragment_eventDone = false;
+        private bool interactWithFragment_eventDone = false;
+        private bool focusSecondFragment_eventDone = false;
+        private Linkable lastFragmentYouInteractWith;
+        private Linker linker;
+        #endregion
+
+        #region Methods
+        private void Start()
+        {
+            linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
+        }
+
+        private void Update()
+        {
+            // Short delay before triggering the help voiceline when focusing the first linkable
+            if (!focusFirstFragment_eventDone)
+            {
+                if (focusFirstFragment_delayEnabled)
+                {
+                    focusFirstFragment_time_current += Time.deltaTime;
+                    if (focusFirstFragment_time_current >= focusFirstFragment_time)
+                    {
+                        focusFirstFragment_event.Invoke();
+                        focusFirstFragment_eventDone = true;
+                        focusFirstFragment_delayEnabled = false;
+                    }
+                }
+            }
+        }
+
+        public void FocusFragment(Linkable fragment)
+        {
+            if (fragment.CanBeLinked())
+            {
+                enterFocusFragment_event.Invoke();
+                if (linker.IsLinking())
+                {
+                    if (lastFragmentYouInteractWith != null)
+                    {
+                        if (!focusSecondFragment_eventDone && fragment != lastFragmentYouInteractWith)
+                        {
+                            focusSecondFragment_event.Invoke();
+                            focusSecondFragment_eventDone = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (!focusFirstFragment_eventDone)
+                    {
+                        focusFirstFragment_time_current = 0;
+                        focusFirstFragment_delayEnabled = true;
+                    }
+                }
+            }
+        }
+
+        public void ExitFocusFragment()
+        {
+            exitFocusFragment_event.Invoke();
+            focusFirstFragment_delayEnabled = false;
+        }
+
+        public void InteractFragment(Linkable fragment)
+        {
+            if (fragment.CanBeLinked())
+            {
+                exitFocusFragment_event.Invoke();
+                lastFragmentYouInteractWith = fragment;
+                if (!interactWithFragment_eventDone)
+                {
+                    interactWithFragment_event.Invoke();
+                    interactWithFragment_eventDone = true;
+                }
+            }
+        }
+        #endregion
+    }
+}
+

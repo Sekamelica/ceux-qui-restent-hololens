@@ -24,12 +24,7 @@ namespace CeuxQuiRestent.Gameplay
 
         private void OnDisable()
         {
-            if (!Application.isPlaying)
-                return;
-            onFocusExitEvent.Invoke();
-            if (cursor == null)
-                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
-            cursor.StopFocus(transform);
+            OnFocusExit();
         }
         #endregion
 
@@ -37,17 +32,19 @@ namespace CeuxQuiRestent.Gameplay
         public void OnFocusEnter()
         {
             onFocusEnterEvent.Invoke();
-            if (cursor == null)
-                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
             cursor.FocusObject(transform, interactableFromAnyDistance);
         }
 
         public void OnFocusExit()
         {
-            onFocusExitEvent.Invoke();
-            if (cursor == null)
-                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
-            cursor.StopFocus(transform);
+            try
+            {
+                onFocusExitEvent.Invoke();
+                cursor.StopFocus(transform);
+            } catch (System.Exception exc)
+            {
+
+            }
         }
         #endregion
     }

@@ -6,27 +6,46 @@ namespace CeuxQuiRestent.Gameplay
     [CreateAssetMenu(fileName = "New Energy", menuName = "CeuxQuiRestent/Energy")]
     public class Energy : ScriptableObject
     {
-        // Attributes
-        [NonSerialized]
-        private float value;
-        [NonSerialized]
-        private float maximum;
+        #region Attributes
         [SerializeField]
-        private float energy;
+        private float[] energyLevels;
+        [Tooltip("Start at index 0.")]
+        [SerializeField]
+        private int startingEnergyLevelIndex = 0;
 
-        // Methods
+        [Space]
+        [Header("Debug: Change energy value at run-time:")]
+        [SerializeField]
+        private float value;
+        private int currentEnergyLevelIndex = 0;
+        
+        #endregion
+
+        #region Methods
         public void Initialize()
         {
-            maximum = energy;
-            value = energy;
+            if (startingEnergyLevelIndex >= 0 && startingEnergyLevelIndex < energyLevels.Length)
+                currentEnergyLevelIndex = startingEnergyLevelIndex;
+            value = GetEnergyLevel();
         }
 
-        // Setters
+        public bool IncreaseEnergyLevel()
+        {
+            return SetEnergyLevel(currentEnergyLevelIndex + 1);
+        }
+
+        public void Fill()
+        {
+            value = GetEnergyLevel();
+        }
+        #endregion
+
+        #region Setters
         public bool ChangeValue(float _newValue)
         {
-            if (_newValue > maximum)
+            if (_newValue > GetEnergyLevel())
             {
-                value = maximum;
+                value = GetEnergyLevel();
                 return false;
             }
             else if (_newValue < 0)
@@ -41,37 +60,61 @@ namespace CeuxQuiRestent.Gameplay
             }
         }
 
-        public void ChangeMaximum(float _newMaximum)
-        {
-            if (value > _newMaximum)
-                value = _newMaximum;
-            maximum = _newMaximum;
-        }
-
         public bool AddToValue(float _valueAdded)
         {
             return ChangeValue(value + _valueAdded);
         }
 
-        public void AddToMaximum(float _maximumAdded)
+        private bool SetEnergyLevel(int _energyLevelIndex)
         {
-            ChangeMaximum(maximum + _maximumAdded);
+            if (_energyLevelIndex < 0 || _energyLevelIndex > energyLevels.Length)
+                return false;
+            else
+            {
+                currentEnergyLevelIndex = _energyLevelIndex;
+                if (value > energyLevels[currentEnergyLevelIndex])
+                    value = energyLevels[currentEnergyLevelIndex];
+                return true;
+            }
+        }
+        #endregion
+
+        #region Getters
+        public float[] GetEnergyLevels()
+        {
+            return energyLevels;
         }
 
-        // Getters
+        public float GetEnergyLevel()
+        {
+            return energyLevels[currentEnergyLevelIndex];
+        }
+
+        public float GetEnergyLevel(int _energyLevelIndex)
+        {
+            if (_energyLevelIndex < 0 || _energyLevelIndex > energyLevels.Length)
+                return 0;
+            else
+                return energyLevels[_energyLevelIndex];
+        }
+
+        public float GetStartingEnergyLevel()
+        {
+            if (startingEnergyLevelIndex < 0 || startingEnergyLevelIndex > energyLevels.Length)
+                return 0;
+            else
+                return energyLevels[startingEnergyLevelIndex];
+        }
+
+        public int GetEnergyLevelIndex()
+        {
+            return currentEnergyLevelIndex;
+        }
+
         public float GetValue()
         {
             return value;
         }
-
-        public float GetMaximum()
-        {
-            return maximum;
-        }
-
-        public float GetEnergy()
-        {
-            return energy;
-        }
+        #endregion
     }
 }

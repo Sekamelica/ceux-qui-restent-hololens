@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{AFD1D269-B450-4929-B7BF-01E0D7A78761}'
-    m_lastTimePsrt1: -1540148722
-    m_lastTimePart2: -1999262667
+    m_lastTimePsrt1: 1585056307
+    m_lastTimePart2: -1999262655
     List:
     - Name: Play_10
       Path: Default Work Unit\Play_10
@@ -209,6 +209,26 @@ MonoBehaviour:
       ID: -397396302
       Guid: b28ecdd285ba564f8f7b8f0c8e222009
       maxAttenuation: 0
+    - Name: Play_Ui_Energie_down
+      Path: Default Work Unit\Play_Ui_Energie_down
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ui_Energie_down
+        ObjectType: 3
+      ID: -1768256889
+      Guid: 9f31270f9efa9145bedff1a4128a9e08
+      maxAttenuation: 0
+    - Name: Play_UI_jauge_up
+      Path: Default Work Unit\Play_UI_jauge_up
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_UI_jauge_up
+        ObjectType: 3
+      ID: -1767095437
+      Guid: f68830346c388340af48af08439fe92a
+      maxAttenuation: 0
     - Name: Play_Ui_lien_annule
       Path: Default Work Unit\Play_Ui_lien_annule
       PathAndIcons:
@@ -219,6 +239,26 @@ MonoBehaviour:
       ID: -6927703
       Guid: a6df3553b68a804b8988acc6f8aee5b3
       maxAttenuation: 0
+    - Name: Play_UI_lien_croise
+      Path: Default Work Unit\Play_UI_lien_croise
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_UI_lien_croise
+        ObjectType: 3
+      ID: 254787269
+      Guid: 7ceb4517b2ea9e44bc7273e468cc0af5
+      maxAttenuation: 0
+    - Name: Play_UI_lien_maintenu
+      Path: Default Work Unit\Play_UI_lien_maintenu
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_UI_lien_maintenu
+        ObjectType: 3
+      ID: -1376481293
+      Guid: f13c5638cca9aa468c0c4b459249fd7f
+      maxAttenuation: 0
     - Name: Play_Ui_lien_valide
       Path: Default Work Unit\Play_Ui_lien_valide
       PathAndIcons:
@@ -228,6 +268,36 @@ MonoBehaviour:
         ObjectType: 3
       ID: 771963053
       Guid: 737258dba978d54aa4e054ca812c2c85
+      maxAttenuation: 0
+    - Name: Play_Ui_new_souvenir
+      Path: Default Work Unit\Play_Ui_new_souvenir
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ui_new_souvenir
+        ObjectType: 3
+      ID: -38376791
+      Guid: 4bb0148e2a9acd4ea5e31752d57742e9
+      maxAttenuation: 0
+    - Name: Play_Ui_Souvenir_compl_t_
+      Path: Default Work Unit\Play_Ui_Souvenir_compl_t_
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ui_Souvenir_compl_t_
+        ObjectType: 3
+      ID: 498677938
+      Guid: b2260b963c52f34e85e19fb76e8c4a6a
+      maxAttenuation: 0
+    - Name: Stop_UI_lien_maintenu
+      Path: Default Work Unit\Stop_UI_lien_maintenu
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stop_UI_lien_maintenu
+        ObjectType: 3
+      ID: -351952955
+      Guid: 7856c6e1df47014781de127d8f662cf2
       maxAttenuation: 0
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -254,8 +324,8 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{6B48B716-BD04-4A2A-9F64-6B33B890EEFA}'
-    m_lastTimePsrt1: -1530332500
-    m_lastTimePart2: -1999262667
+    m_lastTimePsrt1: -2092007793
+    m_lastTimePart2: -1999262630
     List:
     - Name: Main
       Path: Default Work Unit\Main

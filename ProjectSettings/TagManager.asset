@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SubtitleDisplayer
   - Cursor
+  - RoomManager
+  - SpatialMappingManager
   layers:
   - Default
   - TransparentFX

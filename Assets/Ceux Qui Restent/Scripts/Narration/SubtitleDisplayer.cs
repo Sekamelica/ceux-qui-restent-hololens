@@ -12,6 +12,7 @@ namespace CeuxQuiRestent
         #region Attributes
         private TextMesh text;
         private float textDuration;
+        private GameObject lastStoredVoiceline_object;
         #endregion
 
         #region MonoBehaviour Methods
@@ -33,8 +34,11 @@ namespace CeuxQuiRestent
         {
             text.text = subtitle;
             textDuration = time;
+            if (lastStoredVoiceline_object != null)
+                AkSoundEngine.StopAll(lastStoredVoiceline_object);
             if (soundName != null && soundName != "")
                 AkSoundEngine.PostEvent(soundName, origin);
+            lastStoredVoiceline_object = origin;
         }
         #endregion
     }

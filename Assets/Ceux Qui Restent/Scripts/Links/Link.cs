@@ -5,24 +5,24 @@ using UnityEngine;
 public class Link  {
     // Public Attributes
     public float length;
-    public List<GameObject> objects;
+    public List<GameObject> linkGameObjects = new List<GameObject>();
     public List<Vector2> lines = new List<Vector2>();
 
     // Constructors
-    public Link(float _length, List<GameObject> _objects, List<Vector2> _lines)
+    public Link(float _length, List<GameObject> _linkGameObjects, List<Vector2> _lines)
     {
         this.length = _length;
-        this.objects = _objects;
+        this.linkGameObjects = _linkGameObjects;
         this.lines = _lines;
     }
 
     // Methods
     public void Clear()
     {
-        for(int o = 0; o < objects.Count; o++)
-            GameObject.Destroy(objects[o]);
+        for (int lgo = linkGameObjects.Count; lgo >= 0; lgo--)
+            GameObject.Destroy(linkGameObjects[lgo]);
+        linkGameObjects.Clear();
         lines.Clear();
-        objects.Clear();
     }
 
     public bool Intersect(List<Vector2> otherLines)
@@ -36,7 +36,7 @@ public class Link  {
             {
                 Vector2 c = otherLines[ol];
                 Vector2 d = otherLines[ol + 1];
-                Debug.DrawRay(new Vector3(c.x, 8, c.y), new Vector3(d.x, 8, d.y) - new Vector3(c.x, 8, c.y), Color.yellow, 1);
+                //Debug.DrawRay(new Vector3(c.x, 8, c.y), new Vector3(d.x, 8, d.y) - new Vector3(c.x, 8, c.y), Color.yellow, 1);
                 if (LineLineIntersect(a, b, c, d))
                     return true;
             }
@@ -105,8 +105,8 @@ public class Link  {
         if (dot1 * dot2 < 0f)
         {
             intersect = true;
-            Debug.DrawRay(new Vector3(p1.x, 8.2f, p1.y), new Vector3(p2.x, 8.2f, p2.y) - new Vector3(p1.x, 8.2f, p1.y), Color.red, 2);
-            Debug.DrawRay(new Vector3(p3.x, 8.2f, p3.y), new Vector3(p4.x, 8.2f, p4.y) - new Vector3(p3.x, 8.2f, p3.y), Color.red, 2);
+            //Debug.DrawRay(new Vector3(p1.x, 8.2f, p1.y), new Vector3(p2.x, 8.2f, p2.y) - new Vector3(p1.x, 8.2f, p1.y), Color.red, 2);
+            //Debug.DrawRay(new Vector3(p3.x, 8.2f, p3.y), new Vector3(p4.x, 8.2f, p4.y) - new Vector3(p3.x, 8.2f, p3.y), Color.red, 2);
         }
 
         return intersect;

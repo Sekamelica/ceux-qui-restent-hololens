@@ -9,18 +9,157 @@ namespace CeuxQuiRestent
 {
     public class Scanner : MonoBehaviour
     {
-        [Header("Tutorial Room")]
-        public Transform tutorialRoom;
-        public Transform tutorialRoomCenter;
-        public Transform tutorialRoomMin;
+        [Header("Materials")]
+        public Material scanningMaterial;
+        public Material obfuscationMaterial;
+        public Transform scannerObject;
+
+        [Header("Room Manager")]
+        public Transform roomManager;
+        public Transform roomCenter;
+        public Transform roomBoundsMin;
 
         [Header("Spatial Mapping")]
         public Transform meshesWrapper;
+        public int ecartCenterAmount = 10;
 
         [Header("Scan")]
         public float scan_waitTime = 6;
         private float scan_currentWaitTime = 0;
         private bool scan_done = false;
+        private bool scan_active = false;
+
+        private Transform technician;
+        private Vector3 lastPositionCenter = Vector3.zero;
+        private List<float> ecartCenter = new List<float>();
+        private int lastScanningLoop = 0;
+
+        private void Start()
+        {
+            technician = GameObject.FindGameObjectWithTag("Cursor").transform;
+        }
+
+        public void ActiveScan()
+        {
+            scan_active = true;
+            scannerObject.gameObject.SetActive(true);
+            for (int c = 0; c < meshesWrapper.childCount; c++)
+            {
+                GameObject child = meshesWrapper.GetChild(c).gameObject;
+                child.GetComponent<MeshRenderer>().material = scanningMaterial;
+            }
+        }
+
+        public void FinishScan()
+        {
+            scan_done = true;
+            for (int c = 0; c < meshesWrapper.childCount; c++)
+            {
+                GameObject child = meshesWrapper.GetChild(c).gameObject;
+                child.GetComponent<MeshRenderer>().material = obfuscationMaterial;
+            }
+            scannerObject.gameObject.SetActive(false);
+            scan_active = false;
+        }
+
+        void FixedUpdate()
+        {
+            int scanningLoop = Mathf.FloorToInt((Time.timeSinceLevelLoad) / (5 / scanningMaterial.GetFloat("_Speed")));
+            if (!scan_active)
+                return;
+            Ray ray = new Ray(technician.position, technician.forward);
+            RaycastHit rayHit = new RaycastHit();
+            if (Physics.Raycast(ray, out rayHit, 500, LayerMask.GetMask(new string[] { "Spatial Mapping Mesh" })))
+            {
+                //Shader.SetGlobalVector("_Center", rayHit.point);
+                if (lastScanningLoop != scanningLoop)
+                    scanningMaterial.SetVector("_Center", rayHit.point);
+                lastScanningLoop = scanningLoop;
+            }
+            if (!scan_done)
+            {
+                //ScanV1();
+                scan_currentWaitTime += Time.deltaTime;
+                if (scan_currentWaitTime >= scan_waitTime)
+                {
+                    for (int c = 0; c < meshesWrapper.childCount; c++)
+                    {
+                        GameObject child = meshesWrapper.GetChild(c).gameObject;
+                        child.GetComponent<MeshRenderer>().material = scanningMaterial;
+                    }
+
+                    scan_currentWaitTime = 0;
+                    Vector3 centerLargestRoomBounds = new Vector3(0, 0, 0);
+                    Vector3 mappedRoomMin = new Vector3();
+                    float largestRoomArea = 0;
+                    for (int c = 0; c < meshesWrapper.childCount; c++)
+                    {
+
+                        MeshFilter mf = (meshesWrapper.GetChild(c).gameObject.GetComponent<MeshFilter>());
+                        float roomArea = mf.sharedMesh.bounds.size.x * mf.sharedMesh.bounds.size.z;
+                        if (roomArea > largestRoomArea)
+                        {
+                            largestRoomArea = roomArea;
+                            centerLargestRoomBounds = mf.sharedMesh.bounds.center;
+                            mappedRoomMin = mf.sharedMesh.bounds.min;
+                        }
+                    }
+                    scannerObject.position = centerLargestRoomBounds;
+                    if (lastPositionCenter != Vector3.zero)
+                    {
+                        ecartCenter.Add(Vector3.Distance(scannerObject.position, lastPositionCenter));
+                        while (ecartCenter.Count > ecartCenterAmount && ecartCenterAmount >= 1)
+                            ecartCenter.RemoveAt(0);
+                    }
+                    float sumEcarts = 0;
+                    for (int ec = 0; ec < ecartCenter.Count; ec++)
+                        sumEcarts += ecartCenter[ec];
+                    lastPositionCenter = scannerObject.position;
+                }
+            }
+        }
+
+        public void PlaceRoom()
+        {
+            Vector3 centerLargestRoomBounds = new Vector3(0, 0, 0);
+            Vector3 mappedRoomMin = new Vector3();
+            float largestRoomArea = 0;
+            for (int c = 0; c < meshesWrapper.childCount; c++)
+            {
+
+                MeshFilter mf = (meshesWrapper.GetChild(c).gameObject.GetComponent<MeshFilter>());
+                float roomArea = mf.sharedMesh.bounds.size.x * mf.sharedMesh.bounds.size.z;
+                if (roomArea > largestRoomArea)
+                {
+                    largestRoomArea = roomArea;
+                    centerLargestRoomBounds = mf.sharedMesh.bounds.center;
+                    mappedRoomMin = mf.sharedMesh.bounds.min;
+                }
+            }
+
+            int loop = 0;
+            float angle = 0;
+            do
+            {
+                loop++;
+                Vector3 differentielRealRoom_VirtualRoom = roomCenter.position - centerLargestRoomBounds;
+
+                Vector3 a = mappedRoomMin - new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z);
+                Vector3 b = (roomBoundsMin.position - differentielRealRoom_VirtualRoom) - (new Vector3(roomCenter.position.x, 0, roomCenter.position.z) - differentielRealRoom_VirtualRoom);
+
+                /*
+                Debug.DrawLine(mappedRoomMin, new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z), Color.yellow, 3);
+                Debug.DrawLine(tutorialRoomMin.position - differentielRealRoom_VirtualRoom, new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom, Color.green, 3);*/
+
+                angle = Vector3.Angle(a, b);
+                roomManager.Rotate(Vector3.up, -angle);
+
+                Vector3 differentielRoomPositionCenterRoom = roomCenter.position - roomManager.position;
+                roomManager.position = centerLargestRoomBounds - differentielRoomPositionCenterRoom;
+            } while ((angle >= 1 || angle <= -1) && loop < 20);
+
+            FinishScan();
+        }
 
         // Attributes
         // WallScan
@@ -54,67 +193,19 @@ namespace CeuxQuiRestent
         public GameObject wallScan_impactPoint;*/
 
         //private Transform player;
-        
-        
+
+
         //public Transform meshesWrapper2;
         //private List<MeshFilter> meshes = new List<MeshFilter>();
 
         // MonoBehaviour Methods
-        void Start()
-        {
+        //void Start()
+        //{
             /*
             player = GameObject.FindGameObjectWithTag("MainCamera").transform;
             raysPerIteration = wallScan_totalRays / wallScan_iterations;
             angleIncrement = 360.0f / (float)(wallScan_totalRays);*/
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            if (!scan_done)
-            {
-                scan_currentWaitTime += Time.deltaTime;
-                if (scan_currentWaitTime >= scan_waitTime)
-                {
-                    Vector3 centerLargestRoomBounds = new Vector3(0, 0, 0);
-                    Vector3 mappedRoomMin = new Vector3();
-                    float largestRoomArea = 0;
-                    for (int c = 0; c < meshesWrapper.childCount; c++)
-                    {
-                        MeshFilter mf = (meshesWrapper.GetChild(c).gameObject.GetComponent<MeshFilter>());
-                        float roomArea = mf.sharedMesh.bounds.size.x * mf.sharedMesh.bounds.size.z;
-                        if (roomArea > largestRoomArea)
-                        {
-                            largestRoomArea = roomArea;
-                            centerLargestRoomBounds = mf.sharedMesh.bounds.center;
-                            mappedRoomMin = mf.sharedMesh.bounds.min;
-                        }
-                    }
-
-                    float angle = 0;
-                    do
-                    {
-                        Vector3 differentielRealRoom_VirtualRoom = tutorialRoomCenter.position - centerLargestRoomBounds;
-
-                        Vector3 a = mappedRoomMin - new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z);
-                        Vector3 b = (tutorialRoomMin.position - differentielRealRoom_VirtualRoom) - (new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom);
-
-                        /*
-                        Debug.DrawLine(mappedRoomMin, new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z), Color.yellow, 3);
-                        Debug.DrawLine(tutorialRoomMin.position - differentielRealRoom_VirtualRoom, new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom, Color.green, 3);*/
-
-                        angle = Vector3.Angle(a, b);
-                        tutorialRoom.Rotate(Vector3.up, -angle);
-
-                        Vector3 differentielRoomPositionCenterRoom = tutorialRoomCenter.position - tutorialRoom.position;
-                        tutorialRoom.position = centerLargestRoomBounds - differentielRoomPositionCenterRoom;
-                    } while (angle >= 1 || angle <= -1);
-
-
-                    scan_done = true;
-                }
-            }
-            
+        //}
 
             /*
             if (!wallScan_finished)
@@ -139,6 +230,49 @@ namespace CeuxQuiRestent
                 }
             }*/
 
+        public void ScanV1()
+        {
+            scan_currentWaitTime += Time.deltaTime;
+            if (scan_currentWaitTime >= scan_waitTime)
+            {
+                Vector3 centerLargestRoomBounds = new Vector3(0, 0, 0);
+                Vector3 mappedRoomMin = new Vector3();
+                float largestRoomArea = 0;
+                for (int c = 0; c < meshesWrapper.childCount; c++)
+                {
+
+                    MeshFilter mf = (meshesWrapper.GetChild(c).gameObject.GetComponent<MeshFilter>());
+                    float roomArea = mf.sharedMesh.bounds.size.x * mf.sharedMesh.bounds.size.z;
+                    if (roomArea > largestRoomArea)
+                    {
+                        largestRoomArea = roomArea;
+                        centerLargestRoomBounds = mf.sharedMesh.bounds.center;
+                        mappedRoomMin = mf.sharedMesh.bounds.min;
+                    }
+                }
+
+                float angle = 0;
+                do
+                {
+                    Vector3 differentielRealRoom_VirtualRoom = roomCenter.position - centerLargestRoomBounds;
+
+                    Vector3 a = mappedRoomMin - new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z);
+                    Vector3 b = (roomBoundsMin.position - differentielRealRoom_VirtualRoom) - (new Vector3(roomCenter.position.x, 0, roomCenter.position.z) - differentielRealRoom_VirtualRoom);
+
+                    /*
+                    Debug.DrawLine(mappedRoomMin, new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z), Color.yellow, 3);
+                    Debug.DrawLine(tutorialRoomMin.position - differentielRealRoom_VirtualRoom, new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom, Color.green, 3);*/
+
+                    angle = Vector3.Angle(a, b);
+                    roomManager.Rotate(Vector3.up, -angle);
+
+                    Vector3 differentielRoomPositionCenterRoom = roomCenter.position - roomManager.position;
+                    roomManager.position = centerLargestRoomBounds - differentielRoomPositionCenterRoom;
+                } while (angle >= 1 || angle <= -1);
+
+
+                scan_done = true;
+            }
         }
 
         /*

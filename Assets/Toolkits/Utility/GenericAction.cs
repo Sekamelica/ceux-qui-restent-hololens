@@ -14,7 +14,8 @@ namespace Utility
         PlayParticleSystem,
         PlaySoundEffect,
         StartActionsExecuter,
-        DisplaySubtitle
+        DisplaySubtitle,
+        StartEventExecuter
     }
 
     [System.Serializable]
@@ -105,13 +106,13 @@ namespace Utility
                             target.gameObject.GetComponent<ActionExecuter>().StartActions();
                         }
                         break;
+                    case GenericActionKind.StartEventExecuter:
+                        if (target.gameObject.GetComponent<EventExecuter>())
+                            target.gameObject.GetComponent<EventExecuter>().Execute();
+                        break;
                     case GenericActionKind.DisplaySubtitle:
                         if (target.gameObject.GetComponent<CeuxQuiRestent.SubtitleHolder>())
-                        {
-                            CeuxQuiRestent.SubtitleHolder subtitleHolder = target.gameObject.GetComponent<CeuxQuiRestent.SubtitleHolder>();
-                            GameObject subtitleDisplayer = GameObject.FindGameObjectWithTag("SubtitleDisplayer");
-                            subtitleDisplayer.GetComponent<CeuxQuiRestent.SubtitleDisplayer>().DisplaySubtitle(subtitleHolder.subtitle, subtitleHolder.duration, subtitleHolder.soundName, subtitleHolder.gameObject);
-                        }
+                            target.gameObject.GetComponent<CeuxQuiRestent.SubtitleHolder>().Play();
                         break;
                     default:
                         break;

@@ -11,7 +11,6 @@ namespace CeuxQuiRestent.Gameplay
     {
         #region Attributes
         // Public Attributes
-        public float energyMaximumIncrease = 2.5f;
         public Linkable pair;
         public ActionExecuter actionsToDo;
         
@@ -70,6 +69,11 @@ namespace CeuxQuiRestent.Gameplay
         public bool IsAlreadyLinked()
         {
             return alreadyLinked;
+        }
+
+        public bool CanBeLinked()
+        {
+            return !alreadyLinked;
         }
         #endregion
     }

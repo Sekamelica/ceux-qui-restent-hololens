@@ -31,7 +31,7 @@ namespace CeuxQuiRestent.UI
 
         void Update()
         {
-            float ratio = energy.GetMaximum() / energy.GetEnergy();
+            float ratio = energy.GetEnergyLevel() / energy.GetStartingEnergyLevel();
 
             if (!increase)
             {
@@ -58,7 +58,7 @@ namespace CeuxQuiRestent.UI
             }
 
 
-            filler.fillAmount = energy.GetValue() / energy.GetMaximum();
+            filler.fillAmount = energy.GetValue() / energy.GetEnergyLevel();
             if (!increase)
                 previousRatio = ratio;
         }

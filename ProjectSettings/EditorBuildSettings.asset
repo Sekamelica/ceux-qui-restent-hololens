@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Ceux Qui Restent/Scenes/Tutoriel.unity
+    path: Assets/Ceux Qui Restent/Scenes/[Dev] - Scanning.unity
     guid: db159a40dce97b34cbc299a5b2c961cb
   - enabled: 0
-    path: Assets/Ceux Qui Restent/Scenes/Test01.unity
+    path: 
     guid: 667d6e11a73adb3459acf3ebb0b487eb

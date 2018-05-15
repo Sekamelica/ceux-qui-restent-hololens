@@ -2,10 +2,11 @@
 using UnityEngine;
 using BezierUtility;
 using PCG;
+using CeuxQuiRestent.UI;
 
 namespace CeuxQuiRestent.Gameplay
 {
-    [RequireComponent(typeof(Tutorial))]
+    [RequireComponent(typeof(Help))]
     public class Linker : MonoBehaviour
     {
         #region Attributes
@@ -15,8 +16,6 @@ namespace CeuxQuiRestent.Gameplay
         public GameObject linkPrefab;
         [Tooltip("Position at where the next link point will be instantiate.")]
         public Transform target;
-        [Tooltip("Maximum distance between you and the Linkable to interact with.")]
-        public float distanceInteraction;
 
         [Header("Particle Effects")]
         public GameObject effect_startLink;
@@ -38,25 +37,23 @@ namespace CeuxQuiRestent.Gameplay
         [Header("Link optimization")]
         public float distanceBetweenTwoLinkPoints = 1;
         public int linkCurveLength = 30;
-
+        
         [Header("Link polish")]
         public Vector3 gravityOffset;
-        public float animationIntensity = 1;
-        public float animationSpeed = 1;
         public float gravityFactor = 0.1f;
         public int min_linkAmount = 2;
         public int max_linkAmount = 4;
 
         // - - - Private attributes - - - //
-        private Tutorial tutorial;
+        private Help helper;
         private List<Link> allLinks = new List<Link>(); // Remember all links created.
 
         // Current Links
         private float totalDistance = 0;
         private float distanceWalk = 0;
         private List<Vector3> linkPoints = new List<Vector3>();
-        private List<BezierMultiCurves> links = new List<BezierMultiCurves>();
-        private List<BezierMeshMultiCurves> linkMeshes = new List<BezierMeshMultiCurves>();
+        private List<LinkCurve> linkCurves = new List<LinkCurve>();
+        private List<LinkMesh> linkMeshes = new List<LinkMesh>();
         private GameObject origin;
         private GameObject destination;
 
@@ -64,14 +61,18 @@ namespace CeuxQuiRestent.Gameplay
         private bool isLinking = false;
         private Vector3 positionLastFrame;
         private Quaternion rotationLastFrame;
+        private float distanceInteraction;
+        private RoomManager roomManager;
         #endregion
 
         #region MonoBehaviour Methods
         void Start()
         {
+            roomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
             energy.Initialize();
-            tutorial = GetComponent<Tutorial>();
+            helper = GetComponent<Help>();
             positionLastFrame = transform.position;
+            distanceInteraction = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>().distanceInteraction;
         }
 
         void Update()
@@ -82,11 +83,12 @@ namespace CeuxQuiRestent.Gameplay
                 // When the technician is creating a link, add a point to the list everytime he or she move a defined distance.
                 if (transform.position != positionLastFrame || transform.rotation != rotationLastFrame)
                 {
-                    distanceWalk += Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(positionLastFrame.x, positionLastFrame.z));
+                    //distanceWalk += Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(positionLastFrame.x, positionLastFrame.z));
+                    distanceWalk = Vector3.Distance(linkPoints[linkPoints.Count - 1], target.position);
 
                     // We have moved enough, we try to increase the link length according to the new position.
                     if (distanceWalk >= distanceBetweenTwoLinkPoints)
-                        IncreaseLinkLength(distanceBetweenTwoLinkPoints, target.position);
+                        IncreaseLinkLength(distanceWalk, target.position);
                 }
             }
 
@@ -115,6 +117,7 @@ namespace CeuxQuiRestent.Gameplay
             {
                 AkSoundEngine.PostEvent(sound_lackEnergy, gameObject);
                 DestroyCurrentLink();
+                helper.EnergyEmpty();
                 return false;
             }
         }
@@ -144,6 +147,7 @@ namespace CeuxQuiRestent.Gameplay
                     if (allLinks[l].Intersect(currentLinkLines))
                     {
                         DestroyCurrentLink();
+                        helper.LinkIntersectAndBroke();
                         return true;
                     }
                 }
@@ -159,28 +163,27 @@ namespace CeuxQuiRestent.Gameplay
             AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
 
             // Link destruction
-            for (int bmc = links.Count - 1; bmc >= 0; bmc--)
+            for (int lc = linkCurves.Count - 1; lc >= 0; lc--)
             {
-                BezierMultiCurves bmcurves = links[bmc];
-
+                LinkCurve linkCurve = linkCurves[lc];
                 // Effects
                 if (effect_brokeLink_small != null)
                 {
+
                     int c = 0;
-                    for (int eff = 0; eff < bmcurves.points.Length; eff += 4)
+                    for (int pointID = 0; pointID < linkCurve.points.Length; pointID += 2)
                     {
                         for (int i = 0; i < 6; i++)
-                            GameObject.Instantiate(effect_brokeLink_small, bmcurves.GetPoint(c, ((float)i) / 5.0f), Quaternion.identity);
+                            GameObject.Instantiate(effect_brokeLink_small, linkCurve.GetPoint(c, ((float)i) / 5.0f), Quaternion.identity);
                         c++;
                     }
+                    if (effect_brokeLink != null)
+                        GameObject.Instantiate(effect_brokeLink, linkPoints[linkPoints.Count - 1], Quaternion.identity);
                 }
-                if (effect_brokeLink != null)
-                    GameObject.Instantiate(effect_brokeLink, linkPoints[linkPoints.Count - 1], Quaternion.identity);
-
                 // Destroy link
-                GameObject.Destroy(bmcurves.gameObject);
+                GameObject.Destroy(linkCurve.gameObject);
             }
-
+            
             // Refill energy
             energy.AddToValue(totalDistance);
 
@@ -192,48 +195,49 @@ namespace CeuxQuiRestent.Gameplay
         /// </summary>
         public void UpdateLink()
         {
-            List<List<Vector3>> linkPointsSin = new List<List<Vector3>>();
-            for (int l = 0; l < links.Count; l++)
+            for (int lc = 0; lc < linkCurves.Count; lc++)
             {
+                // Initialization
+                LinkCurve linkCurve = linkCurves[lc];
+                LinkMesh linkMesh = linkMeshes[lc];
+                List<Vector3> linkPointsWithGravity = new List<Vector3>();
+
                 // Recreate the point list with a decalage for gravity, based on eloignment from link extremities
-                linkPointsSin.Add(new List<Vector3>());
                 for (int v = 0; v < linkPoints.Count; v++)
                 {
                     Vector3 vec = linkPoints[v];
-                    if (v != 0 && v != linkPoints.Count - 1)
+                    if ((v != 0 && v != linkPoints.Count - 1) && (v != 0 && v != linkPoints.Count - 1))
                     {
-                        if (v != 0 && v != linkPoints.Count - 1)
-                        {
-                            float percent = (float)v / (float)(linkPoints.Count - 1);
-                            percent = Mathf.Cos((2 * Mathf.PI * percent) - Mathf.PI);
-                            percent += l * gravityFactor * percent;
-                            vec = vec + gravityOffset + gravityOffset * percent;
-                        }
+                        float percent = (float)v / (float)(linkPoints.Count - 1);
+                        percent = Mathf.Cos((2 * Mathf.PI * percent) - Mathf.PI);
+                        percent += lc * gravityFactor * percent;
+                        vec = vec + gravityOffset + gravityOffset * percent;
                     }
-                    linkPointsSin[l].Add(vec);
+                    linkPointsWithGravity.Add(vec);
                 }
 
                 // Calculate how many curves the link contains.
-                int curves = Mathf.FloorToInt(linkPointsSin[l].Count / linkCurveLength);
-                if (linkPointsSin[l].Count % linkCurveLength != 0)
+                int curves = Mathf.FloorToInt(linkPoints.Count / linkCurveLength);
+                if (linkPointsWithGravity.Count % linkCurveLength != 0)
                     curves++;
 
                 // Fill the curves points
-                List<Vector3> curveLinkPoints = new List<Vector3>();
+                List<Vector3> curvePoints = new List<Vector3>();
+                List<Vector3> curveModifiers = new List<Vector3>();
                 for (int c = 0; c < curves; c++)
                 {
                     // Find curve extremities
                     int aID = c * linkCurveLength;
-                    int bID = ((c == curves - 1) ? linkPointsSin[l].Count - 1 : (c + 1) * linkCurveLength - 1);
-                    Vector3 a = linkPointsSin[l][aID];
-                    Vector3 b = linkPointsSin[l][bID];
+                    int bID = ((c == curves - 1) ? linkPointsWithGravity.Count - 1 : (c + 1) * linkCurveLength - 1);
+                    Vector3 a = linkPointsWithGravity[aID];
+                    Vector3 b = linkPointsWithGravity[bID];
 
                     // Find farthest point from the line defined by the extremities of the curve. This point will be used to define the curvature.
                     int longestID = -1;
                     float longestDist = 0;
                     for (int i = aID; i < bID; i++)
                     {
-                        float distance = Vector3.Cross((b - a), linkPointsSin[l][i] - a).magnitude;
+                        float distance = Vector3.Cross((b - a), linkPointsWithGravity[i] - a).magnitude;
                         if (distance > longestDist)
                         {
                             longestDist = distance;
@@ -244,18 +248,15 @@ namespace CeuxQuiRestent.Gameplay
                         longestID = bID;
 
                     // Add thoses points to the curves points lists
-                    curveLinkPoints.Add(a);
-                    curveLinkPoints.Add(linkPointsSin[l][longestID]);
-                    curveLinkPoints.Add(linkPointsSin[l][longestID]);
-                    curveLinkPoints.Add(b);
+                    curvePoints.Add(a);
+                    curvePoints.Add(b);
+                    curveModifiers.Add(linkPointsWithGravity[longestID]);
+                    curveModifiers.Add(linkPointsWithGravity[longestID]);
+
                 }
-                links[l].SetCurves(curveLinkPoints.ToArray());
-            }
-
-            // Regenerate the link meshes according to the curves points previously sets.
-            foreach (BezierMeshMultiCurves linkMesh in linkMeshes)
+                linkCurve.SetCurves(curvePoints.ToArray(), curveModifiers.ToArray());
                 linkMesh.Regenerate();
-
+            }
         }
 
         /// <summary>
@@ -271,12 +272,13 @@ namespace CeuxQuiRestent.Gameplay
             int nbLinks = Random.Range(min_linkAmount, max_linkAmount);
             for (int i = 0; i < nbLinks; i++)
             {
-                GameObject linkGO = GameObject.Instantiate(linkPrefab);
-                links.Add(linkGO.GetComponent<BezierMultiCurves>());
-                linkMeshes.Add(linkGO.GetComponent<BezierMeshMultiCurves>());
+                GameObject linkGameObject = GameObject.Instantiate(linkPrefab, roomManager.currentRoom.GetLinksRepository());
+                linkCurves.Add(linkGameObject.GetComponent<LinkCurve>());
+                linkMeshes.Add(linkGameObject.GetComponent<LinkMesh>());
             }
 
             // Add first points
+            helper.SetIsLinking(true);
             isLinking = true;
             linkPoints.Add(linkablePos);
             IncreaseLinkLength(Vector3.Distance(linkablePos, target.position), target.position);
@@ -289,36 +291,28 @@ namespace CeuxQuiRestent.Gameplay
         /// <returns></returns>
         public bool StopLinking(Vector3 linkablePos)
         {
+            helper.SetIsLinking(false);
             isLinking = false;
-            linkPoints.Add(linkablePos);
+            Vector3 lastLinkPoint = linkPoints[linkPoints.Count - 1];
 
-            if (IncreaseLinkLength(Vector3.Distance(linkPoints[linkPoints.Count - 2], linkablePos), linkablePos))
+            if (IncreaseLinkLength(Vector3.Distance(lastLinkPoint, linkablePos), linkablePos))
             {
-                // The link has been sucessfully completed
-                for (int lm = 0; lm < linkMeshes.Count; lm++)
-                {
-                    linkMeshes[lm].animationSpeed = animationSpeed;
-                    linkMeshes[lm].animationIntensity = animationIntensity;
-                    linkMeshes[lm].gravityAnimation = true;
-                }
-
                 // GameObjects of links created
                 List<GameObject> linksGO = new List<GameObject>();
-                foreach (BezierMultiCurves bmmc in links)
-                    linksGO.Add(bmmc.gameObject);
+                foreach (LinkCurve linkCurve in linkCurves)
+                    linksGO.Add(linkCurve.gameObject);
 
-                // Colliders lines of links created
-                List<Vector2> linkColliders = new List<Vector2>();
+                // Collider defined by the lines of the link created
+                List<Vector2> linkCollider = new List<Vector2>();
                 for (int p = 0; p < linkPoints.Count; p += linkCurveLength)
                 {
-                    linkColliders.Add(new Vector2(linkPoints[p].x, linkPoints[p].z));
+                    linkCollider.Add(new Vector2(linkPoints[p].x, linkPoints[p].z));
                     if (p + linkCurveLength >= linkPoints.Count)
-                        linkColliders.Add(new Vector2(linkPoints[linkPoints.Count - 1].x, linkPoints[linkPoints.Count - 1].z));
+                        linkCollider.Add(new Vector2(linkPoints[linkPoints.Count - 1].x, linkPoints[linkPoints.Count - 1].z));
                 }
 
                 // Remember them
-                allLinks.Add(new Link(totalDistance, linksGO, linkColliders));
-
+                allLinks.Add(new Link(totalDistance, linksGO, linkCollider));
                 ClearVariables();
                 return true;
             }
@@ -337,7 +331,7 @@ namespace CeuxQuiRestent.Gameplay
         {
             isLinking = false;
             linkPoints.Clear();
-            links.Clear();
+            linkCurves.Clear();
             linkMeshes.Clear();
             distanceWalk = 0;
             totalDistance = 0;
@@ -354,7 +348,7 @@ namespace CeuxQuiRestent.Gameplay
             // Too Far
             if (Vector3.Distance(transform.position, linkablePos) > distanceInteraction)
             {
-                tutorial.ClickLinkable_TooFar();
+                helper.ClickLinkable_TooFar();
                 return; // Too far away to interact with
             }
 
@@ -368,15 +362,15 @@ namespace CeuxQuiRestent.Gameplay
                         AkSoundEngine.PostEvent(sound_linkCompleted, gameObject);
                         AkSoundEngine.PostEvent(sound_memoryCompleted, gameObject);
                         AkSoundEngine.PostEvent(sound_energyIncrease, gameObject);
-                        tutorial.ClickLinkable_Valid();
+                        helper.ClickLinkable_Valid();
 
                         // Effect
                         if (effect_startLink != null)
                             GameObject.Instantiate(effect_startLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
 
                         // Energy (Increase max energy and refill energy)
-                        energy.AddToMaximum(origin.GetComponent<Linkable>().energyMaximumIncrease);
-                        energy.ChangeValue(energy.GetMaximum());
+                        energy.IncreaseEnergyLevel();
+                        energy.Fill();
 
                         // Link the Linkables
                         clicked.GetComponent<Linkable>().Linked();
@@ -386,7 +380,7 @@ namespace CeuxQuiRestent.Gameplay
                 else // Try to end the link on a wrong Linkable.
                 {
                     AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
-                    tutorial.ClickLinkable_WrongPair();
+                    helper.ClickLinkable_WrongPair();
                 }
             }
             else // Start a link on a Linkable.
@@ -394,13 +388,13 @@ namespace CeuxQuiRestent.Gameplay
                 if (clicked.GetComponent<Linkable>().IsAlreadyLinked()) // Can't add a link, this linkable is already linked.
                 {
                     AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
-                    tutorial.ClickLinkable_AlreadyLinked();
+                    helper.ClickLinkable_AlreadyLinked();
                 }
                 else if (clicked.GetComponent<Linkable>().pair != null) // Add the link on this linkable.
                 {
                     AkSoundEngine.PostEvent(sound_click, gameObject);
                     AkSoundEngine.PostEvent(sound_continuous, gameObject);
-                    tutorial.ClickLinkable_Valid();
+                    helper.ClickLinkable_Valid();
 
                     // Effect
                     if (effect_endLink != null)
@@ -416,6 +410,15 @@ namespace CeuxQuiRestent.Gameplay
                     AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
                 }
             }
+        }
+
+        /// <summary>
+        /// Return if the linker is currently holding a link
+        /// </summary>
+        /// <returns></returns>
+        public bool IsLinking()
+        {
+            return isLinking;
         }
         #endregion
     }
