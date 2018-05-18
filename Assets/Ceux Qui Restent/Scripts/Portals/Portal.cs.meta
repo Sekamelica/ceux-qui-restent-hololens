@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 8e7631496bf37674e8ac7b4d3e5989ce
-timeCreated: 1525793621
+timeCreated: 1526637871
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - portalRenderer: {instanceID: 0}
+  - portalTeleporter: {instanceID: 0}
+  - portalParameters: {fileID: 11400000, guid: ab955dc013464b843bbfa9185242ab28, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

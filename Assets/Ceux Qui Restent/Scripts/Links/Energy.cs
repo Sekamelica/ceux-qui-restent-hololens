@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace CeuxQuiRestent.Gameplay
+namespace CeuxQuiRestent.Links
 {
     [CreateAssetMenu(fileName = "New Energy", menuName = "CeuxQuiRestent/Energy")]
     public class Energy : ScriptableObject

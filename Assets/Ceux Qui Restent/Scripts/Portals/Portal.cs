@@ -1,54 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace CeuxQuiRestent
+namespace CeuxQuiRestent.Portals
 {
-    public enum PortalDestination
-    {
-        NextRoom,
-        PreviousRoom
-    }
-
-    [RequireComponent(typeof(Collider))]
     public class Portal : MonoBehaviour
     {
         #region Attributes
-        public PortalDestination destination = PortalDestination.NextRoom;
-
-        private RoomManager roomManager;
+        public PortalDestination destination = PortalDestination.Future;
+        [Space]
+        public MeshRenderer portalRenderer;
+        public PortalTeleporter portalTeleporter;
+        [Space]
+        public PortalParameters portalParameters;
         #endregion
 
-        #region MonoBehaviour Methods
-        // Use this for initialization
-        void Start()
+        #region Methods
+        public void UpdateTeleporterAndRenderer()
         {
-            roomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.tag == "Player")
+            if (portalTeleporter != null)
+                portalTeleporter.SetDestination(destination);
+            if (portalParameters != null)
             {
-                roomManager.portalValue++;
-                if (roomManager.portalValue % 3 == 0)
+                if (portalRenderer != null)
                 {
-                    if (destination == PortalDestination.NextRoom)
-                        roomManager.NextRoom();
-                    else if (destination == PortalDestination.PreviousRoom)
-                        roomManager.PreviousRoom();
+                    if (destination == PortalDestination.Future)
+                        if (portalParameters.futureMaterial != null)
+                            portalRenderer.material = portalParameters.futureMaterial;
+                    if (destination == PortalDestination.Past)
+                        if (portalParameters.pastMaterial != null)
+                            portalRenderer.material = portalParameters.pastMaterial;
                 }
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        public void GenerateDestinationPortal()
         {
-            if (other.gameObject.tag == "Player")
-            {
-                roomManager.portalValue++;
-            }
+            GameObject destinationPortalGameObject = GameObject.Instantiate(gameObject);
+            destinationPortalGameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 500 * ((destination == PortalDestination.Future) ? 1 : -1), transform.position.z);
+            destinationPortalGameObject.transform.Rotate(Vector3.up, 180);
+
+            Portal destinationPortal = destinationPortalGameObject.GetComponent<Portal>();
+            destinationPortal.destination = ((destination == PortalDestination.Future) ? PortalDestination.Past : PortalDestination.Future);
+            destinationPortal.UpdateTeleporterAndRenderer();
         }
         #endregion
+
+#if UNITY_EDITOR
+        void OnDrawGizmosSelected()
+        {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.cyan;
+            style.fontSize = 16;
+            UnityEditor.Handles.Label(transform.position + (Vector3.up * 1.5f), ((destination == PortalDestination.Future) ? "To Future" : "To Past"), style);
+        }
+#endif
     }
 
 }

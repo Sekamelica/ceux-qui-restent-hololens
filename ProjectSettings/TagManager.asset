@@ -8,6 +8,8 @@ TagManager:
   - Cursor
   - RoomManager
   - SpatialMappingManager
+  - LevelRoom
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - UI - Holographic
   - UI - Billboard
   - UI - HUD
-  - 
+  - Portal Border
   - 
   - 
   - 

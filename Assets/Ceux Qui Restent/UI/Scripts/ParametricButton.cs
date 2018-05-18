@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using CeuxQuiRestent.Gameplay;
+using CeuxQuiRestent.Interactables;
 
 namespace CeuxQuiRestent.UI
 {

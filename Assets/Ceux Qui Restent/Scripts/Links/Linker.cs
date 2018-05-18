@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using BezierUtility;
-using PCG;
 using CeuxQuiRestent.UI;
+using CeuxQuiRestent.Interactables;
+using CeuxQuiRestent.Tutorial;
 
-namespace CeuxQuiRestent.Gameplay
+namespace CeuxQuiRestent.Links
 {
     [RequireComponent(typeof(Help))]
     public class Linker : MonoBehaviour
@@ -77,6 +77,8 @@ namespace CeuxQuiRestent.Gameplay
 
         void Update()
         {
+            transform.rotation = Quaternion.identity;
+
             // IsLinking and has moved
             if (isLinking && (transform.position != positionLastFrame))
             {

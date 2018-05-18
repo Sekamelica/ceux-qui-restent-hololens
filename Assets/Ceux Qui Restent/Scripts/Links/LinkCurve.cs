@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using BezierUtility;
-using PCG;
 
-namespace CeuxQuiRestent.Gameplay
+namespace CeuxQuiRestent.Links
 {
     public class LinkCurve : MonoBehaviour
     {
+        #region Attributes
         public Vector3[] points;
         public Vector3[] modifiers;
+        #endregion
 
+        #region Methods
         public Vector3 GetPoint(int curve, float t)
         {
             return transform.TransformPoint(Bezier.GetPoint(points[(2 * curve) + 0], modifiers[(2 * curve) + 0], modifiers[(2 * curve) + 1], points[(2 * curve) + 1], t));
@@ -57,5 +57,6 @@ namespace CeuxQuiRestent.Gameplay
             points = curvesPoints;
             modifiers = curveModifiers;
         }
+        #endregion
     }
 }

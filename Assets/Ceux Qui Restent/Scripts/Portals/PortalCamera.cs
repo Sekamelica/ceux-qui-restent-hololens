@@ -2,24 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CeuxQuiRestent
+namespace CeuxQuiRestent.Portals
 {
-    public enum PortalCameraTime
-    {
-        Future,
-        Past
-    }
-
     public class PortalCamera : MonoBehaviour
     {
         #region Attributes
-        public PortalCameraTime time;
+        public PortalDestination time;
         public Material renderTextureMaterial;
         private Transform mainCamera;
         private Camera cam;
         #endregion
 
-        // Use this for initialization
+        #region MonoBehaviour Methods
         void Start()
         {
             mainCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
@@ -31,13 +25,13 @@ namespace CeuxQuiRestent
             cam.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
             renderTextureMaterial.mainTexture = cam.targetTexture;
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
-            transform.position = new Vector3(mainCamera.position.x, mainCamera.position.y + ((time == PortalCameraTime.Future) ? 500 : -500), mainCamera.position.z);
+            transform.position = new Vector3(mainCamera.position.x, mainCamera.position.y + ((time == PortalDestination.Future) ? 500 : -500), mainCamera.position.z);
             transform.rotation = mainCamera.rotation;
         }
+        #endregion
     }
 
 }

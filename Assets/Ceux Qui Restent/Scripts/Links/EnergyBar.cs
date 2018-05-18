@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using CeuxQuiRestent.Gameplay;
 
-namespace CeuxQuiRestent.UI
+namespace CeuxQuiRestent.Links
 {
     [RequireComponent(typeof(Image))]
     public class EnergyBar : MonoBehaviour

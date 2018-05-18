@@ -1,10 +1,9 @@
 ﻿using BezierUtility;
 using PCG;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CeuxQuiRestent.Gameplay
+namespace CeuxQuiRestent.Links
 {
     [ExecuteInEditMode]
     public class LinkMesh : MonoBehaviour
@@ -32,8 +31,11 @@ namespace CeuxQuiRestent.Gameplay
         {
             if (regenerate)
             {
+                Vector3 oldPosition = transform.position;
+                transform.position = Vector3.zero;
                 regenerate = false;
                 Regenerate();
+                transform.position = oldPosition;
             }
         }
 
