@@ -2,9 +2,6 @@
 {
     public enum AudioType
     {
-        Voiceline_Narrator,
-        Voiceline,
-        BGM,
-        BGE,
+        Voiceline_Narrator
     }
 }

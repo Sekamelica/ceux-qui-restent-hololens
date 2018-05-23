@@ -11,3 +11,203 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b830ca23df8532d4ab5490a0f8834814, type: 3}
   m_Name: Audio Repository
   m_EditorClassIdentifier: 
+  audioCategories:
+  - categoryName: Generic/UI
+    audioAssets: []
+    editorDisplayEvents: 0
+    editorDisplayAssets: 1
+  - categoryName: Generic/Gameplay
+    audioAssets: []
+    editorDisplayEvents: 1
+    editorDisplayAssets: 1
+  - categoryName: Narrator/Help
+    audioAssets:
+    - uniqueID: 5B03D792-AE3356A
+      type: 0
+      wwiseEvent:
+        valueGuid: 7fce9859ee8be04387a65ab8b1de3905
+        ID: 1450671466
+      subtitle: "Explorez la salle pour trouver les fragments \xE0 relier."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: DontMove
+    - uniqueID: 5B03D7A9-42B9AC2
+      type: 0
+      wwiseEvent:
+        valueGuid: 6369461929c2974788da524d4a451a91
+        ID: 2138475376
+      subtitle: "Pour cr\xE9er un lien, visez la silhouette et cliquez."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: DontClick
+    - uniqueID: 5B03D7B3-549876F
+      type: 0
+      wwiseEvent:
+        valueGuid: 94ca56e9878e354ea8eac61646eb865d
+        ID: -760316208
+      subtitle: "Fragment m\xE9moriel d\xE9tect\xE9.\nRapprochez-vous et cliquez pour
+        le s\xE9lectionner."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: ClickTooFar
+    - uniqueID: 5B03DCE1-4EF4254
+      type: 0
+      wwiseEvent:
+        valueGuid: 5fd03221d25a674f81780b2352f28c14
+        ID: 1195339271
+      subtitle: "Si deux liens se croisent, le lien en cours de cr\xE9ation est d\xE9truit."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: LinkBroke
+    - uniqueID: 5B04BE09-F57EB6E
+      type: 0
+      wwiseEvent:
+        valueGuid: 33a2d9d3c3c4f4409b8f503f508b03e7
+        ID: -905587550
+      subtitle: "Le second fragment m\xE9moriel se trouve quelque part dans la pi\xE8ce,\nessayez
+        de vous d\xE9placer."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B04BEA0-1101BA14
+      type: 0
+      wwiseEvent:
+        valueGuid: fbcdc34d7c09e941ac4f86555e0d708c
+        ID: 783952308
+      subtitle: "Essayez d\u2019optimiser votre d\xE9placement ou de compl\xE9ter
+        un autre fragment m\xE9moriel."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    editorDisplayEvents: 1
+    editorDisplayAssets: 1
+  - categoryName: Narrator/Tutorial
+    audioAssets:
+    - uniqueID: 5B0121B7-BAA2924
+      type: 0
+      wwiseEvent:
+        valueGuid: 4d875ea2780c704886aa4b94ea7991ae
+        ID: 1834850122
+      subtitle: "Bienvenue nouvel Agent.\nNous vous remercions de vous charger de
+        \nla maintenance de la salle m\xE9morielle n\xB01E6.\nL\u2019anomalie s\u2019est
+        produite le 02/05/2048,\nveuillez proc\xE9der \xE0 la r\xE9organisation des
+        donn\xE9es."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B0122A2-409633A
+      type: 0
+      wwiseEvent:
+        valueGuid: a4fa82c96a66594d8d3d197a620300a9
+        ID: 781812845
+      subtitle: "Pour commencer, d\xE9placez vous dans l'environnement afin\nque le
+        dispositif scanne l'environnement.\n"
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B0122A3-AB6637A
+      type: 0
+      wwiseEvent:
+        valueGuid: 725f7becd2a5404cb9d41294beec9d4f
+        ID: 1530286288
+      subtitle: "D\xE9placez vous et regardez autour de vous afin de visualiser\nle
+        premier fragment m\xE9moriel."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B0122A3-3B07200
+      type: 0
+      wwiseEvent:
+        valueGuid: 94ca56e9878e354ea8eac61646eb865d
+        ID: -760316208
+      subtitle: "Fragment m\xE9moriel d\xE9tect\xE9. Rapprochez-vous et cliquez\npour
+        le s\xE9lectionner."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B0122DC-1FAD7CA9
+      type: 0
+      wwiseEvent:
+        valueGuid: 356d95e4aab58442bbf584e98cac0abd
+        ID: 2016698951
+      subtitle: "Lien actif. Reliez le fragment m\xE9moriel au fragment correspondant.\nIls
+        doivent avoir une caract\xE9ristique en commun."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B01232C-337E4B09
+      type: 0
+      wwiseEvent:
+        valueGuid: eef14859c7a43e42b942424b2b7818de
+        ID: 1326074304
+      subtitle: Pour relier les deux fragments, visez le second fragment puis cliquez.
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B01236D-48A6830
+      type: 0
+      wwiseEvent:
+        valueGuid: 394dc69acf069e4faa6301a559600304
+        ID: 296874062
+      subtitle: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations.\nContinuez
+        votre exploration, d\u2019autres fragments sont encore incomplets."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B0123B3-3136C0D8
+      type: 0
+      wwiseEvent:
+        valueGuid: b8e0b5c234686e4d81bf8f2bb1551fe3
+        ID: -1256684680
+      subtitle: "D\xE9blocage du flux m\xE9moriel."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B04C121-1A50B7C8
+      type: 0
+      wwiseEvent:
+        valueGuid: 31cfdae0fb6ac143bb62349326384c37
+        ID: 525151809
+      subtitle: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations. "
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B04C145-3325FFBA
+      type: 0
+      wwiseEvent:
+        valueGuid: f4bdf195276f0641a3fcd896315206be
+        ID: 1158054437
+      subtitle: "Les fragments m\xE9moriels correspondants ont toujours un aspect
+        en commun\nqui peut varier d'une paire \xE0 une autre."
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B04C441-1CA48FF2
+      type: 0
+      wwiseEvent:
+        valueGuid: f817e4429a4d3d438b88d21310505374
+        ID: 1438124155
+      subtitle: "Voici la jauge d'\xE9nergie m\xE9morielle : elle limite la longueur
+        des liens que vous pouvez cr\xE9er.\nCette jauge augmente lorsque vous compl\xE9tez
+        des fragments.\nSi vous n\"avez pas assez d'\xE9nergie, votre lien se d\xE9litera. "
+      subtitleDuration: 10
+      editorDisplay: 1
+      editorNotes: 
+    editorDisplayEvents: 1
+    editorDisplayAssets: 1
+  - categoryName: Autumn
+    audioAssets: []
+    editorDisplayEvents: 1
+    editorDisplayAssets: 1
+  - categoryName: Winter
+    audioAssets: []
+    editorDisplayEvents: 1
+    editorDisplayAssets: 1
+  - categoryName: Spring
+    audioAssets: []
+    editorDisplayEvents: 1
+    editorDisplayAssets: 1
+  - categoryName: Summer
+    audioAssets: []
+    editorDisplayEvents: 1
+    editorDisplayAssets: 1

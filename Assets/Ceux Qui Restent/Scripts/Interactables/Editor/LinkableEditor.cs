@@ -19,6 +19,8 @@ namespace CeuxQuiRestent.Tools
 
         public override void OnInspectorGUI()
         {
+            EditorGUILayout.LabelField("Logic fields", EditorStyles.boldLabel);
+
             // Set Actions
             ActionExecuter newActionsToDo = EditorGUILayout.ObjectField("Actions to do", linkable.actionsToDo, typeof(ActionExecuter), true) as ActionExecuter;
             if(newActionsToDo != linkable.actionsToDo)
@@ -27,10 +29,7 @@ namespace CeuxQuiRestent.Tools
                 if (linkable.pair != null)
                     linkable.pair.actionsToDo = newActionsToDo;
             }
-
-            EditorGUI.BeginDisabledGroup(true);
-            EditorGUILayout.TextField("Name", linkable.gameObject.name);
-            EditorGUI.EndDisabledGroup();
+            
             // Set New Pair
             Linkable newPair = EditorGUILayout.ObjectField("Pair", linkable.pair, typeof(Linkable), true) as Linkable;
             if (newPair != linkable.pair)
@@ -66,7 +65,15 @@ namespace CeuxQuiRestent.Tools
                     linkable.pair.pair = null;
                 linkable.pair.pair = linkable;
             }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Visual fields", EditorStyles.boldLabel);
             
+            linkable.ChangeModel(EditorGUILayout.ObjectField("Model", linkable.model, typeof(MeshRenderer), true) as MeshRenderer);
+            linkable.ChangeMaterial(EditorGUILayout.ObjectField("Material", linkable.material, typeof(Material), true) as Material);
+            linkable.appearDisappearAnimationTime = EditorGUILayout.FloatField("Animation time", linkable.appearDisappearAnimationTime);
+
             serializedObject.ApplyModifiedProperties(); 
             EditorUtility.SetDirty(target);
         }

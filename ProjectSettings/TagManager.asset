@@ -10,6 +10,7 @@ TagManager:
   - SpatialMappingManager
   - LevelRoom
   - Portal
+  - AudioManager
   layers:
   - Default
   - TransparentFX

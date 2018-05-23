@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Utility;
+using CeuxQuiRestent.Audio;
 
 namespace CeuxQuiRestent.Tutorial
 {
@@ -10,7 +10,8 @@ namespace CeuxQuiRestent.Tutorial
         [Header("Help - Don't move")]
         public float dontMoveTime = 20;
         public float dontMoveDistanceThreshold = 1f;
-        public ActionExecuter dontMoveAction;
+        public WwiseAudioSource dontMove;
+        public WwiseAudioSource dontMoveLinking;
 
         private float currentDontMoveTime = 0;
         private float dontMoveTotalDistance = 0;
@@ -18,7 +19,7 @@ namespace CeuxQuiRestent.Tutorial
 
         [Space]
         [Header("Help - Don't Click")]
-        public ActionExecuter dontClickAction;
+        public WwiseAudioSource dontClick;
         public float dontClickTime = 15;
 
         private float dontClickTime_current = 0;
@@ -26,14 +27,14 @@ namespace CeuxQuiRestent.Tutorial
 
         [Space]
         [Header("Help - Click")]
-        public ActionExecuter clickLinkable_ButTooFar;
-        public ActionExecuter clickLinkable_ButWrongPair;
-        public ActionExecuter clickLinkable_ButAlreadyLinked;
-        public ActionExecuter clickLinkable_Valid;
+        public WwiseAudioSource clickLinkable_ButTooFar;
+        public WwiseAudioSource clickLinkable_ButWrongPair;
+        public WwiseAudioSource clickLinkable_ButAlreadyLinked;
+        public WwiseAudioSource clickLinkable_Valid;
 
         [Space]
         [Header("Help - Links")]
-        public ActionExecuter linkBrokeAction;
+        public WwiseAudioSource linkBroke;
         public float linkBrokeMinimumWait = 20;
         public float linkBrokeMinimumHappens = 2;
 
@@ -42,7 +43,7 @@ namespace CeuxQuiRestent.Tutorial
 
         [Space]
         [Header("Help - Energy")]
-        public ActionExecuter energyEmpty;
+        public WwiseAudioSource energyEmpty;
         public float energyEmptyMinimumWait = 20;
         public float energyEmptyMinimumHappens = 2;
 
@@ -80,8 +81,8 @@ namespace CeuxQuiRestent.Tutorial
                     dontClickTime_current += Time.deltaTime;
                     if (dontClickTime_current >= dontClickTime)
                     {
-                        if (dontClickAction != null)
-                            dontClickAction.StartActions();
+                        if (dontClick != null)
+                            dontClick.Play();
                         dontClickTime_current = 0;
                     }
                 }
@@ -110,8 +111,16 @@ namespace CeuxQuiRestent.Tutorial
         // Move Helpers
         public void DontMove()
         {
-            if (dontMoveAction != null)
-                dontMoveAction.SetStarted(true);
+            if (isLinking)
+            {
+                if (dontMoveLinking != null)
+                    dontMoveLinking.Play();
+            }
+            else
+            {
+                if (dontMove != null)
+                    dontMove.Play();
+            }
             currentDontMoveTime = 0;
         }
 
@@ -119,25 +128,25 @@ namespace CeuxQuiRestent.Tutorial
         public void ClickLinkable_Valid()
         {
             if (clickLinkable_Valid != null)
-                clickLinkable_ButTooFar.SetStarted(true);
+                clickLinkable_Valid.Play();
         }
 
         public void ClickLinkable_TooFar()
         {
             if (clickLinkable_ButTooFar != null)
-                clickLinkable_ButTooFar.SetStarted(true);
+                clickLinkable_ButTooFar.Play();
         }
 
         public void ClickLinkable_WrongPair()
         {
             if (clickLinkable_ButWrongPair != null)
-                clickLinkable_ButTooFar.SetStarted(true);
+                clickLinkable_ButWrongPair.Play();
         }
 
         public void ClickLinkable_AlreadyLinked()
         {
             if (clickLinkable_ButAlreadyLinked != null)
-                clickLinkable_ButAlreadyLinked.SetStarted(true);
+                clickLinkable_ButAlreadyLinked.Play();
         }
 
         // Link Helpers
@@ -145,8 +154,8 @@ namespace CeuxQuiRestent.Tutorial
         {
             currentLinkBrokes++;
             if (currentLinkBrokes == 1 || ((currentLinkBrokes - 1) % linkBrokeMinimumHappens == 0 && linkBrokeMinimumWait_current == 0))
-                if (linkBrokeAction != null)
-                    linkBrokeAction.SetStarted(true);
+                if (linkBroke != null)
+                    linkBroke.Play();
         }
 
         // Energy Helpers
@@ -155,7 +164,7 @@ namespace CeuxQuiRestent.Tutorial
             currentEnergyEmptyAmount++;
             if (currentEnergyEmptyAmount == 1 || ((currentEnergyEmptyAmount - 1) % energyEmptyMinimumHappens == 0 && energyEmptyMinimumWait_current == 0))
                 if (energyEmpty != null)
-                    energyEmpty.SetStarted(true);
+                    energyEmpty.Play();
         }
         #endregion
 

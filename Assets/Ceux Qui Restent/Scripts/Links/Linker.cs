@@ -3,6 +3,7 @@ using UnityEngine;
 using CeuxQuiRestent.UI;
 using CeuxQuiRestent.Interactables;
 using CeuxQuiRestent.Tutorial;
+using CeuxQuiRestent.Audio;
 
 namespace CeuxQuiRestent.Links
 {
@@ -24,15 +25,20 @@ namespace CeuxQuiRestent.Links
         public GameObject effect_brokeLink_small;
 
         [Header("Sounds effects")]
-        public string sound_click;
-        public string sound_continuous;
+        public WwiseAudioSource[] audioSources;
         [Space]
-        public string sound_linkCompleted;
-        public string sound_memoryCompleted;
-        public string sound_energyIncrease;
+        public AK.Wwise.Event soundClick;
+        public AK.Wwise.Event soundClickWrongLinkable;
+        public AK.Wwise.Event soundClickAlreadyLinkedLinkable;
         [Space]
-        public string sound_linkCrossed;
-        public string sound_lackEnergy;
+        public AK.Wwise.Event soundLinkContinuous;
+        public AK.Wwise.Event soundLinkCorrectEnd;
+        public AK.Wwise.Event soundMemoryCompleted;
+        public AK.Wwise.Event soundEnergyIncrease;
+        [Space]
+        public AK.Wwise.Event soundLinkBroke;
+        public AK.Wwise.Event soundLinkCrossed;
+        public AK.Wwise.Event soundLackEnergy;
 
         [Header("Link optimization")]
         public float distanceBetweenTwoLinkPoints = 1;
@@ -63,6 +69,9 @@ namespace CeuxQuiRestent.Links
         private Quaternion rotationLastFrame;
         private float distanceInteraction;
         private RoomManager roomManager;
+
+        // Audio
+        private int audioSource = 0;
         #endregion
 
         #region MonoBehaviour Methods
@@ -73,6 +82,14 @@ namespace CeuxQuiRestent.Links
             helper = GetComponent<Help>();
             positionLastFrame = transform.position;
             distanceInteraction = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>().distanceInteraction;
+        }
+
+        public void PlaySound(AK.Wwise.Event _event)
+        {
+            audioSources[audioSource].PlayEvent(_event);
+            audioSource++;
+            if (audioSource >= audioSources.Length)
+                audioSource = 0;
         }
 
         void Update()
@@ -117,7 +134,7 @@ namespace CeuxQuiRestent.Links
             }
             else // You don't have enough energy, the link broke.
             {
-                AkSoundEngine.PostEvent(sound_lackEnergy, gameObject);
+                PlaySound(soundLackEnergy);
                 DestroyCurrentLink();
                 helper.EnergyEmpty();
                 return false;
@@ -162,7 +179,7 @@ namespace CeuxQuiRestent.Links
         /// </summary>
         public void DestroyCurrentLink()
         {
-            AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
+            PlaySound(soundLinkBroke);
 
             // Link destruction
             for (int lc = linkCurves.Count - 1; lc >= 0; lc--)
@@ -360,10 +377,11 @@ namespace CeuxQuiRestent.Links
                 {
                     if (StopLinking(linkablePos))
                     {
-                        AkSoundEngine.PostEvent(sound_click, gameObject);
-                        AkSoundEngine.PostEvent(sound_linkCompleted, gameObject);
-                        AkSoundEngine.PostEvent(sound_memoryCompleted, gameObject);
-                        AkSoundEngine.PostEvent(sound_energyIncrease, gameObject);
+                        PlaySound(soundClick);
+                        PlaySound(soundLinkCorrectEnd);
+                        PlaySound(soundMemoryCompleted);
+                        PlaySound(soundEnergyIncrease);
+
                         helper.ClickLinkable_Valid();
 
                         // Effect
@@ -381,7 +399,7 @@ namespace CeuxQuiRestent.Links
                 }
                 else // Try to end the link on a wrong Linkable.
                 {
-                    AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
+                    PlaySound(soundClickWrongLinkable);
                     helper.ClickLinkable_WrongPair();
                 }
             }
@@ -389,13 +407,13 @@ namespace CeuxQuiRestent.Links
             {
                 if (clicked.GetComponent<Linkable>().IsAlreadyLinked()) // Can't add a link, this linkable is already linked.
                 {
-                    AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
+                    PlaySound(soundClickAlreadyLinkedLinkable);
                     helper.ClickLinkable_AlreadyLinked();
                 }
                 else if (clicked.GetComponent<Linkable>().pair != null) // Add the link on this linkable.
                 {
-                    AkSoundEngine.PostEvent(sound_click, gameObject);
-                    AkSoundEngine.PostEvent(sound_continuous, gameObject);
+                    PlaySound(soundClick);
+                    PlaySound(soundLinkContinuous);
                     helper.ClickLinkable_Valid();
 
                     // Effect
@@ -409,7 +427,7 @@ namespace CeuxQuiRestent.Links
                 }
                 else // The linkable doesn't have a Pair Linkable
                 {
-                    AkSoundEngine.PostEvent(sound_linkCrossed, gameObject);
+                    PlaySound(soundClickWrongLinkable);
                 }
             }
         }

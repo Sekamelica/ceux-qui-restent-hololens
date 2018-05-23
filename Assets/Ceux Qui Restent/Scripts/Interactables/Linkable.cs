@@ -15,16 +15,43 @@ namespace CeuxQuiRestent.Interactables
         public Linkable pair;
         public ActionExecuter actionsToDo;
         public Energy energy;
+
+        public MeshRenderer model;
+        public Material material;
+        public float appearDisappearAnimationTime = 2;
+        public float changeModelAnimationTime = 3;
         
         // Private attributes        
         private bool alreadyLinked = false;
         private Linker linker;
+
+        private float currentAnimationTime = 0;
+        private bool animate = false;
+        private bool appear = true;
+        private float normalGradientTreshold = 2.9f;
+        private float previousModelNormalGradientThreshold = 2.9f;
         #endregion
 
         #region MonoBehaviour Methods
         void Start()
         {
+            StopHover();
+            normalGradientTreshold = model.material.GetFloat("_GradientThreshold");
+            AppearAnimation();
             linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
+        }
+
+        void Update()
+        {
+            if (animate)
+            {
+                currentAnimationTime += Time.deltaTime;
+                float ease = Mathf.Clamp01(currentAnimationTime / appearDisappearAnimationTime);
+                float gradientThresholdValue = (appear ? Mathf.Lerp(0, normalGradientTreshold, ease) : Mathf.Lerp(normalGradientTreshold, 0, ease));
+                model.material.SetFloat("_GradientThreshold", gradientThresholdValue);
+                if (currentAnimationTime >= appearDisappearAnimationTime)
+                    animate = false;
+            }
         }
 
 #if UNITY_EDITOR
@@ -69,6 +96,20 @@ namespace CeuxQuiRestent.Interactables
         #endregion
 
         #region Linkable Methods
+        public void AppearAnimation()
+        {
+            currentAnimationTime = 0;
+            appear = true;
+            animate = true;
+        }
+
+        public void DisappearAnimation()
+        {
+            currentAnimationTime = 0;
+            appear = false;
+            animate = true;
+        }
+
         /// <summary>
         /// Called when you try to interact with this Linkable.
         /// </summary>
@@ -89,6 +130,41 @@ namespace CeuxQuiRestent.Interactables
                 actionsToDo.ResetCounter();
                 actionsToDo.StartActions();
             }
+        }
+
+        public void ChangeModel(MeshRenderer _model)
+        {
+            model = _model;
+            if (model != null)
+                model.material = material;
+        }
+        public void ChangeMaterial(Material _material)
+        {
+            material = _material;
+            if (model != null)
+                model.material = material;
+        }
+
+        public void StartHover()
+        {
+            float shineValue = 1.8f;
+            model.material.SetFloat("_Shine_R", shineValue);
+            model.material.SetFloat("_Shine_G", shineValue);
+            model.material.SetFloat("_Shine_B", shineValue);
+            model.material.SetFloat("_Shine2_R", shineValue);
+            model.material.SetFloat("_Shine2_G", shineValue);
+            model.material.SetFloat("_Shine2_B", shineValue);
+        }
+
+        public void StopHover()
+        {
+            float shineValue = 0.4f;
+            model.material.SetFloat("_Shine_R", shineValue);
+            model.material.SetFloat("_Shine_G", shineValue);
+            model.material.SetFloat("_Shine_B", shineValue);
+            model.material.SetFloat("_Shine2_R", shineValue);
+            model.material.SetFloat("_Shine2_G", shineValue);
+            model.material.SetFloat("_Shine2_B", shineValue);
         }
         #endregion
 

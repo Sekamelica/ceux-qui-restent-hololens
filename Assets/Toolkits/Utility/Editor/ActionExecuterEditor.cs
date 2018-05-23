@@ -101,11 +101,12 @@ namespace Utility
             genericAction.SetSecondsToWait((float)EditorGUILayout.FloatField(_genericAction.GetSecondsToWait()));
             genericAction.SetActionKind((GenericActionKind)EditorGUILayout.EnumPopup(_genericAction.GetActionKind()));
             genericAction.SetTarget((GameObject)EditorGUILayout.ObjectField(_genericAction.GetTarget(), typeof(GameObject), true));
-            if (GUILayout.Button("^"))
-                _newActionID--;
-            if (GUILayout.Button("v"))
+            if (GUILayout.Button("▼"))
                 _newActionID++;
-            if (GUILayout.Button("X"))
+            if (GUILayout.Button("▲"))
+                _newActionID--;
+            GUI.backgroundColor = new Color(0.95f, 0.45f, 0.45f);
+            if (GUILayout.Button("✘"))
                 _newActionID = -99;
             EditorGUILayout.EndHorizontal();
             EditorGUI.indentLevel--;

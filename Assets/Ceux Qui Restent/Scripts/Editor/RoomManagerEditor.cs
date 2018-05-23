@@ -16,7 +16,6 @@ namespace CeuxQuiRestent.Tools
 
         public override void OnInspectorGUI()
         {
-
             DrawDefaultInspector();
 
             serializedObject.ApplyModifiedProperties();

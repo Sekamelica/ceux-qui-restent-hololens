@@ -12,10 +12,12 @@ namespace Utility
         EnableDisable,
         Destroy,
         PlayParticleSystem,
-        PlaySoundEffect,
+        PlayAudioSource,
         StartActionsExecuter,
-        DisplaySubtitle,
-        StartEventExecuter
+        PlayWWiseAudioSource,
+        StartEventExecuter,
+        AppearLinkable,
+        DisappearLinkable
     }
 
     [System.Serializable]
@@ -95,7 +97,7 @@ namespace Utility
                         if (target.gameObject.GetComponent<ParticleSystem>())
                             target.gameObject.GetComponent<ParticleSystem>().Play();
                         break;
-                    case GenericActionKind.PlaySoundEffect:
+                    case GenericActionKind.PlayAudioSource:
                         if (target.gameObject.GetComponent<AudioSource>())
                             target.gameObject.GetComponent<AudioSource>().Play();
                         break;
@@ -110,9 +112,17 @@ namespace Utility
                         if (target.gameObject.GetComponent<EventExecuter>())
                             target.gameObject.GetComponent<EventExecuter>().Execute();
                         break;
-                    case GenericActionKind.DisplaySubtitle:
-                        if (target.gameObject.GetComponent<CeuxQuiRestent.SubtitleHolder>())
-                            target.gameObject.GetComponent<CeuxQuiRestent.SubtitleHolder>().Play();
+                    case GenericActionKind.PlayWWiseAudioSource:
+                        if (target.gameObject.GetComponent<CeuxQuiRestent.Audio.WwiseAudioSource>())
+                            target.gameObject.GetComponent<CeuxQuiRestent.Audio.WwiseAudioSource>().Play();
+                        break;
+                    case GenericActionKind.AppearLinkable:
+                        if (target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>())
+                            target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().AppearAnimation();
+                        break;
+                    case GenericActionKind.DisappearLinkable:
+                        if (target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>())
+                            target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().AppearAnimation();
                         break;
                     default:
                         break;
