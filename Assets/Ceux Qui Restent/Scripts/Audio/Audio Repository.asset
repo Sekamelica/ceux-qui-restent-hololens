@@ -200,7 +200,18 @@ MonoBehaviour:
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Winter
-    audioAssets: []
+    audioAssets:
+    - uniqueID: 5B052236-272F1556
+      type: 0
+      wwiseEvent:
+        valueGuid: 6369461929c2974788da524d4a451a91
+        ID: 2138475376
+      subtitle: 'hgchgchgvhgvghvhgvgj
+
+        hjbhjvjhvhjvhjvjhv'
+      subtitleDuration: 8.8
+      editorDisplay: 1
+      editorNotes: gvhgvhgvhgvhgvhg
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Spring

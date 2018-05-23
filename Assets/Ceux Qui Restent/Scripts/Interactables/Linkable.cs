@@ -29,15 +29,13 @@ namespace CeuxQuiRestent.Interactables
         private bool animate = false;
         private bool appear = true;
         private float normalGradientTreshold = 2.9f;
-        private float previousModelNormalGradientThreshold = 2.9f;
         #endregion
 
         #region MonoBehaviour Methods
         void Start()
         {
+            normalGradientTreshold = material.GetFloat("_GradientThreshold");
             StopHover();
-            normalGradientTreshold = model.material.GetFloat("_GradientThreshold");
-            AppearAnimation();
             linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
         }
 
@@ -50,7 +48,11 @@ namespace CeuxQuiRestent.Interactables
                 float gradientThresholdValue = (appear ? Mathf.Lerp(0, normalGradientTreshold, ease) : Mathf.Lerp(normalGradientTreshold, 0, ease));
                 model.material.SetFloat("_GradientThreshold", gradientThresholdValue);
                 if (currentAnimationTime >= appearDisappearAnimationTime)
+                {
                     animate = false;
+                    if (!appear)
+                        gameObject.SetActive(false);
+                }
             }
         }
 
@@ -98,6 +100,9 @@ namespace CeuxQuiRestent.Interactables
         #region Linkable Methods
         public void AppearAnimation()
         {
+            float gradientThresholdValue = 0;
+            model.material.SetFloat("_GradientThreshold", gradientThresholdValue);
+            gameObject.SetActive(true);
             currentAnimationTime = 0;
             appear = true;
             animate = true;

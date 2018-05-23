@@ -69,9 +69,17 @@ namespace CeuxQuiRestent.Tools
             EditorGUILayout.Space();
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Visual fields", EditorStyles.boldLabel);
-            
-            linkable.ChangeModel(EditorGUILayout.ObjectField("Model", linkable.model, typeof(MeshRenderer), true) as MeshRenderer);
-            linkable.ChangeMaterial(EditorGUILayout.ObjectField("Material", linkable.material, typeof(Material), true) as Material);
+
+            MeshRenderer newMeshRenderer = EditorGUILayout.ObjectField("Model", linkable.model, typeof(MeshRenderer), true) as MeshRenderer;
+            if (linkable.model != newMeshRenderer)
+            {
+                linkable.ChangeModel(newMeshRenderer);
+            }
+            Material newMaterial = EditorGUILayout.ObjectField("Material", linkable.material, typeof(Material), true) as Material;
+            if (newMaterial != linkable.material)
+            {
+                linkable.ChangeMaterial(newMaterial);
+            }
             linkable.appearDisappearAnimationTime = EditorGUILayout.FloatField("Animation time", linkable.appearDisappearAnimationTime);
 
             serializedObject.ApplyModifiedProperties(); 

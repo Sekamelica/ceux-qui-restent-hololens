@@ -122,7 +122,7 @@ namespace Utility
                         break;
                     case GenericActionKind.DisappearLinkable:
                         if (target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>())
-                            target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().AppearAnimation();
+                            target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().DisappearAnimation();
                         break;
                     default:
                         break;
