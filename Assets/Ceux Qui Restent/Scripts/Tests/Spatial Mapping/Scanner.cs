@@ -42,7 +42,7 @@ namespace CeuxQuiRestent
         public void ActiveScan()
         {
             scan_active = true;
-            scannerObject.gameObject.SetActive(true);
+            //scannerObject.gameObject.SetActive(true);
             for (int c = 0; c < meshesWrapper.childCount; c++)
             {
                 GameObject child = meshesWrapper.GetChild(c).gameObject;
@@ -122,6 +122,7 @@ namespace CeuxQuiRestent
 
         public void PlaceRoom()
         {
+            /*
             Vector3 centerLargestRoomBounds = new Vector3(0, 0, 0);
             Vector3 mappedRoomMin = new Vector3();
             float largestRoomArea = 0;
@@ -147,10 +148,9 @@ namespace CeuxQuiRestent
 
                 Vector3 a = mappedRoomMin - new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z);
                 Vector3 b = (roomBoundsMin.position - differentielRealRoom_VirtualRoom) - (new Vector3(roomCenter.position.x, 0, roomCenter.position.z) - differentielRealRoom_VirtualRoom);
-
-                /*
-                Debug.DrawLine(mappedRoomMin, new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z), Color.yellow, 3);
-                Debug.DrawLine(tutorialRoomMin.position - differentielRealRoom_VirtualRoom, new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom, Color.green, 3);*/
+                
+                //Debug.DrawLine(mappedRoomMin, new Vector3(centerLargestRoomBounds.x, 0, centerLargestRoomBounds.z), Color.yellow, 3);
+                //Debug.DrawLine(tutorialRoomMin.position - differentielRealRoom_VirtualRoom, new Vector3(tutorialRoomCenter.position.x, 0, tutorialRoomCenter.position.z) - differentielRealRoom_VirtualRoom, Color.green, 3);
 
                 angle = Vector3.Angle(a, b);
                 roomManager.Rotate(Vector3.up, -angle);
@@ -158,6 +158,7 @@ namespace CeuxQuiRestent
                 Vector3 differentielRoomPositionCenterRoom = roomCenter.position - roomManager.position;
                 roomManager.position = centerLargestRoomBounds - differentielRoomPositionCenterRoom;
             } while ((angle >= 1 || angle <= -1) && loop < 20);
+            */
 
             FinishScan();
         }
