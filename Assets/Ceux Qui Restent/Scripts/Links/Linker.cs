@@ -19,10 +19,10 @@ namespace CeuxQuiRestent.Links
         public Transform target;
 
         [Header("Particle Effects")]
-        public GameObject effect_startLink;
-        public GameObject effect_endLink;
-        public GameObject effect_brokeLink;
-        public GameObject effect_brokeLink_small;
+        public GameObject effectStartLink;
+        public GameObject effectEndLink;
+        public GameObject effectBrokeLink;
+        public GameObject effectBrokeLinkSmall;
 
         [Header("Sounds effects")]
         public WwiseAudioSource[] audioSources;
@@ -52,7 +52,7 @@ namespace CeuxQuiRestent.Links
 
         // - - - Private attributes - - - //
         private Help helper;
-        private List<Link> allLinks = new List<Link>(); // Remember all links created.
+        private List<List<Link>> allLinks = new List<List<Link>>(); // Remember all links created for each room
 
         // Current Links
         private float totalDistance = 0;
@@ -60,6 +60,7 @@ namespace CeuxQuiRestent.Links
         private List<Vector3> linkPoints = new List<Vector3>();
         private List<LinkCurve> linkCurves = new List<LinkCurve>();
         private List<LinkMesh> linkMeshes = new List<LinkMesh>();
+        private List<Link> previousLinks = new List<Link>(); // Used for link parts created before a room changing
         private GameObject origin;
         private GameObject destination;
 
@@ -69,6 +70,8 @@ namespace CeuxQuiRestent.Links
         private Quaternion rotationLastFrame;
         private float distanceInteraction;
         private RoomManager roomManager;
+        private bool hasTakePortal = false;
+        private Vector3 previousPortalPoint;
 
         // Audio
         private int audioSource = 0;
@@ -82,6 +85,8 @@ namespace CeuxQuiRestent.Links
             helper = GetComponent<Help>();
             positionLastFrame = transform.position;
             distanceInteraction = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>().distanceInteraction;
+            for (int r = 0; r < roomManager.rooms.Length; r++)
+                allLinks.Add(new List<Link>());
         }
 
         public void PlaySound(AK.Wwise.Event _event)
@@ -96,18 +101,26 @@ namespace CeuxQuiRestent.Links
         {
             transform.rotation = Quaternion.identity;
 
-            // IsLinking and has moved
-            if (isLinking && (transform.position != positionLastFrame))
+            if (isLinking && !hasTakePortal)
             {
-                // When the technician is creating a link, add a point to the list everytime he or she move a defined distance.
-                if (transform.position != positionLastFrame || transform.rotation != rotationLastFrame)
+                if (transform.position != positionLastFrame)
                 {
-                    //distanceWalk += Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(positionLastFrame.x, positionLastFrame.z));
-                    distanceWalk = Vector3.Distance(linkPoints[linkPoints.Count - 1], target.position);
+                    // When the technician is creating a link, add a point to the list everytime he or she move a defined distance.
+                    if (transform.position != positionLastFrame || transform.rotation != rotationLastFrame)
+                    {
+                        Vector3 targetPoint = target.position;
 
-                    // We have moved enough, we try to increase the link length according to the new position.
-                    if (distanceWalk >= distanceBetweenTwoLinkPoints)
-                        IncreaseLinkLength(distanceWalk, target.position);
+                        Ray rayPortal = new Ray(transform.position, targetPoint - transform.position);
+                        RaycastHit rayhitPortal = new RaycastHit();
+                        if (Physics.Raycast(rayPortal, out rayhitPortal, 0.6f, LayerMask.GetMask(new string[] { "PortalRenderer" })))
+                            targetPoint = rayhitPortal.point;
+
+                        distanceWalk = Vector3.Distance(linkPoints[linkPoints.Count - 1], targetPoint);
+
+                        // We have moved enough, we try to increase the link length according to the new position.
+                        if (distanceWalk >= distanceBetweenTwoLinkPoints)
+                            IncreaseLinkLength(distanceWalk, targetPoint);
+                    }
                 }
             }
 
@@ -116,8 +129,78 @@ namespace CeuxQuiRestent.Links
             positionLastFrame = transform.position;
         }
         #endregion
-        
+
         #region Linker Methods
+
+        public void EnterPortal(GameObject portalRenderer)
+        {
+            hasTakePortal = true;
+            if (isLinking)
+            {
+                //Vector3 endPoint = ProjectOnPortal(target.position, portalRenderer.transform.position, -portalRenderer.transform.forward);
+                //Vector3 endPoint = LineLineIntersect(transform.position, transform.position + portalRenderer.transform.forward, portalRenderer.transform.position, portalRenderer.transform.position + portalRenderer.transform.right);
+                Vector3 endPoint = target.position;
+
+                Ray rayPortal = new Ray(transform.position, endPoint - transform.position);
+                RaycastHit rayhitPortal = new RaycastHit();
+                if (Physics.Raycast(rayPortal, out rayhitPortal, 0.6f, LayerMask.GetMask(new string[] { "PortalRenderer" })))
+                    endPoint = rayhitPortal.point;
+
+                previousPortalPoint = endPoint;
+                
+                if (IncreaseLinkLength(Vector3.Distance(linkPoints[linkPoints.Count - 1], endPoint), endPoint))
+                {
+                    // GameObjects of links created
+                    List<GameObject> linksGO = new List<GameObject>();
+                    foreach (LinkCurve linkCurve in linkCurves)
+                        linksGO.Add(linkCurve.gameObject);
+
+                    // Collider defined by the lines of the link created
+                    List<Vector2> linkCollider = new List<Vector2>();
+                    for (int p = 0; p < linkPoints.Count; p += linkCurveLength)
+                    {
+                        linkCollider.Add(new Vector2(linkPoints[p].x, linkPoints[p].z));
+                        if (p + linkCurveLength >= linkPoints.Count)
+                            linkCollider.Add(new Vector2(linkPoints[linkPoints.Count - 1].x, linkPoints[linkPoints.Count - 1].z));
+                    }
+
+                    // Remember them
+                    previousLinks.Add(new Link(roomManager.GetCurrentRoomID(), linksGO, linkCollider));
+                }
+            }
+        }
+
+        public void ExitPortal(GameObject portalRenderer)
+        {
+            if (isLinking)
+            {
+                //Vector3 startPoint = ProjectOnPortal(target.position, portalRenderer.transform.position, -portalRenderer.transform.forward);
+                //Vector3 startPoint = LineLineIntersect(transform.position, transform.position - portalRenderer.transform.forward, portalRenderer.transform.position + (Vector3.up * 500), portalRenderer.transform.position + (Vector3.up * 500) + portalRenderer.transform.right);
+                Vector3 startPoint2 = target.position;
+
+                Ray rayPortal = new Ray(transform.position, startPoint2 - transform.position);
+                RaycastHit rayhitPortal = new RaycastHit();
+                if (Physics.Raycast(rayPortal, out rayhitPortal, 0.6f, LayerMask.GetMask(new string[] { "PortalRenderer" })))
+                    startPoint2 = rayhitPortal.point;
+
+                int nbLinks = linkCurves.Count;
+                linkPoints.Clear();
+                linkMeshes.Clear();
+                linkCurves.Clear();
+                
+                for (int i = 0; i < nbLinks; i++)
+                {
+                    GameObject linkGameObject = GameObject.Instantiate(linkPrefab, roomManager.currentRoom.GetLinksRepository());
+                    linkCurves.Add(linkGameObject.GetComponent<LinkCurve>());
+                    linkMeshes.Add(linkGameObject.GetComponent<LinkMesh>());
+                }
+
+                linkPoints.Add(previousPortalPoint);
+                IncreaseLinkLength(0, startPoint2);
+            }
+            hasTakePortal = false;
+        }
+
         /// <summary>
         /// Consume energy and increase the link length, broke if it collides another link or if there is not enough energy.
         /// Return false if the link has been destroyed in the process, return true otherwise.
@@ -161,9 +244,10 @@ namespace CeuxQuiRestent.Links
                 }
 
                 // If the current link intersect another created link, destroy the current link.
-                for (int l = 0; l < allLinks.Count; l++)
+                List<Link> roomLinks = allLinks[roomManager.GetCurrentRoomID()];
+                for (int l = 0; l < roomLinks.Count; l++)
                 {
-                    if (allLinks[l].Intersect(currentLinkLines))
+                    if (roomLinks[l].Intersect(currentLinkLines))
                     {
                         DestroyCurrentLink();
                         helper.LinkIntersectAndBroke();
@@ -186,21 +270,40 @@ namespace CeuxQuiRestent.Links
             {
                 LinkCurve linkCurve = linkCurves[lc];
                 // Effects
-                if (effect_brokeLink_small != null)
+                if (effectBrokeLinkSmall != null)
                 {
-
                     int c = 0;
                     for (int pointID = 0; pointID < linkCurve.points.Length; pointID += 2)
                     {
                         for (int i = 0; i < 6; i++)
-                            GameObject.Instantiate(effect_brokeLink_small, linkCurve.GetPoint(c, ((float)i) / 5.0f), Quaternion.identity);
+                            GameObject.Instantiate(effectBrokeLinkSmall, linkCurve.GetPoint(c, ((float)i) / 5.0f), Quaternion.identity);
                         c++;
                     }
-                    if (effect_brokeLink != null)
-                        GameObject.Instantiate(effect_brokeLink, linkPoints[linkPoints.Count - 1], Quaternion.identity);
+                    if (effectBrokeLink != null)
+                        GameObject.Instantiate(effectBrokeLink, linkPoints[linkPoints.Count - 1], Quaternion.identity);
                 }
                 // Destroy link
                 GameObject.Destroy(linkCurve.gameObject);
+            }
+            for (int pl = 0; pl < previousLinks.Count; pl++)
+            {
+                for (int lc = previousLinks[pl].linkGameObjects.Count - 1; lc >= 0; lc--)
+                {
+                    LinkCurve linkCurve = previousLinks[pl].linkGameObjects[lc].GetComponent<LinkCurve>();
+                    // Effects
+                    if (effectBrokeLinkSmall != null)
+                    {
+                        int c = 0;
+                        for (int pointID = 0; pointID < linkCurve.points.Length; pointID += 2)
+                        {
+                            for (int i = 0; i < 6; i++)
+                                GameObject.Instantiate(effectBrokeLinkSmall, linkCurve.GetPoint(c, ((float)i) / 5.0f), Quaternion.identity);
+                            c++;
+                        }
+                    }
+                    // Destroy link
+                    GameObject.Destroy(linkCurve.gameObject);
+                }
             }
             
             // Refill energy
@@ -331,7 +434,10 @@ namespace CeuxQuiRestent.Links
                 }
 
                 // Remember them
-                allLinks.Add(new Link(totalDistance, linksGO, linkCollider));
+                allLinks[roomManager.GetCurrentRoomID()].Add(new Link(roomManager.GetCurrentRoomID(), linksGO, linkCollider));
+                for (int l = 0; l < previousLinks.Count; l++)
+                    allLinks[previousLinks[l].roomID].Add(previousLinks[l]);
+
                 ClearVariables();
                 return true;
             }
@@ -352,6 +458,7 @@ namespace CeuxQuiRestent.Links
             linkPoints.Clear();
             linkCurves.Clear();
             linkMeshes.Clear();
+            previousLinks.Clear();
             distanceWalk = 0;
             totalDistance = 0;
         }
@@ -364,12 +471,23 @@ namespace CeuxQuiRestent.Links
         /// <param name="clickedPair"></param>
         public void LinkableClick(Vector3 linkablePos, GameObject clicked, GameObject clickedPair)
         {
+            bool canInteract = false;
+            Ray ray = new Ray(transform.position, linkablePos - transform.position);
+            RaycastHit rayHit = new RaycastHit();
+            if (Physics.Raycast(ray, out rayHit, 30, LayerMask.GetMask(new string[] { LayerMask.LayerToName(clicked.layer) })))
+            {
+                if (rayHit.distance <= distanceInteraction)
+                    canInteract = true;
+            }
+
             // Too Far
-            if (Vector3.Distance(transform.position, linkablePos) > distanceInteraction)
+            if (!canInteract)
             {
                 helper.ClickLinkable_TooFar();
                 return; // Too far away to interact with
             }
+
+            linkablePos = rayHit.point;
 
             if (isLinking)
             {
@@ -385,8 +503,8 @@ namespace CeuxQuiRestent.Links
                         helper.ClickLinkable_Valid();
 
                         // Effect
-                        if (effect_startLink != null)
-                            GameObject.Instantiate(effect_startLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
+                        if (effectStartLink != null)
+                            GameObject.Instantiate(effectStartLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
 
                         // Energy (Increase max energy and refill energy)
                         energy.IncreaseEnergyLevel();
@@ -417,8 +535,8 @@ namespace CeuxQuiRestent.Links
                     helper.ClickLinkable_Valid();
 
                     // Effect
-                    if (effect_endLink != null)
-                        GameObject.Instantiate(effect_endLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
+                    if (effectEndLink != null)
+                        GameObject.Instantiate(effectEndLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
 
                     // Register the Linkable origin and the Linkable that should be the destination and start the link.
                     origin = clicked;
@@ -439,6 +557,11 @@ namespace CeuxQuiRestent.Links
         public bool IsLinking()
         {
             return isLinking;
+        }
+
+        public bool HasTakePortal()
+        {
+            return hasTakePortal;
         }
         #endregion
     }

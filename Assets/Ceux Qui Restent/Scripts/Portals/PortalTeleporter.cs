@@ -9,6 +9,7 @@ namespace CeuxQuiRestent.Portals
         private RoomManager roomManager;
         [SerializeField]
         private PortalDestination destination = PortalDestination.Future;
+        private GameObject portalRenderer;
         #endregion
 
         #region MonoBehaviour Methods
@@ -21,14 +22,20 @@ namespace CeuxQuiRestent.Portals
         {
             if (other.gameObject.tag == "Player")
             {
-                Vector3 portalToPlayer = (other.gameObject.transform.position - transform.position);
-                float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
-                if (dotProduct > 0)
+                Links.Linker linker = other.gameObject.GetComponent<Links.Linker>();
+                if (!linker.HasTakePortal())
                 {
-                    if (destination == PortalDestination.Future)
-                        roomManager.NextRoom();
-                    else if (destination == PortalDestination.Past)
-                        roomManager.PreviousRoom();
+                    Vector3 portalToPlayer = (other.gameObject.transform.position - transform.position);
+                    float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
+                    if (dotProduct > 0)
+                    {
+                        linker.EnterPortal(portalRenderer);
+                        if (destination == PortalDestination.Future)
+                            roomManager.NextRoom();
+                        else if (destination == PortalDestination.Past)
+                            roomManager.PreviousRoom();
+                        linker.ExitPortal(portalRenderer);
+                    }
                 }
             }
         }
@@ -38,6 +45,11 @@ namespace CeuxQuiRestent.Portals
         public void SetDestination(PortalDestination _destination)
         {
             destination = _destination;
+        }
+
+        public void SetRenderer(GameObject _renderer)
+        {
+            portalRenderer = _renderer;
         }
         #endregion
     }
