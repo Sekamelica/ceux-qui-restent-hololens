@@ -46,7 +46,7 @@ namespace CeuxQuiRestent.Links
             if (curve == null)
                 return;
             if (meshGameObject != null)
-                Destroy(meshGameObject);
+                DestroyImmediate(meshGameObject);
 
             if (transform.position != Vector3.zero)
             {
