@@ -78,6 +78,11 @@ namespace CeuxQuiRestent
             }
             currentRoom = rooms[currentRoomID];
         }
+
+        public int GetCurrentRoomID()
+        {
+            return currentRoomID;
+        }
         #endregion
     }
 

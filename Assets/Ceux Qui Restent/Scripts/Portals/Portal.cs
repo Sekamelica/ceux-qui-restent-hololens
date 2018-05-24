@@ -13,11 +13,22 @@ namespace CeuxQuiRestent.Portals
         public PortalParameters portalParameters;
         #endregion
 
+        #region MonoBehaviour Methods
+        void Start()
+        {
+            UpdateTeleporterAndRenderer();
+        }
+        #endregion
+
         #region Methods
         public void UpdateTeleporterAndRenderer()
         {
             if (portalTeleporter != null)
+            {
                 portalTeleporter.SetDestination(destination);
+                if (portalRenderer != null)
+                    portalTeleporter.SetRenderer(portalRenderer.gameObject);
+            }
             if (portalParameters != null)
             {
                 if (portalRenderer != null)

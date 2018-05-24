@@ -6,15 +6,15 @@ namespace CeuxQuiRestent.Links
     public class Link
     {
         #region Attributes
-        public float length;
+        public int roomID;
         public List<GameObject> linkGameObjects = new List<GameObject>();
         public List<Vector2> lines = new List<Vector2>();
         #endregion
 
         #region Constructor(s)
-        public Link(float _length, List<GameObject> _linkGameObjects, List<Vector2> _lines)
+        public Link(int _roomID, List<GameObject> _linkGameObjects, List<Vector2> _lines)
         {
-            this.length = _length;
+            this.roomID = _roomID;
             this.linkGameObjects = _linkGameObjects;
             this.lines = _lines;
         }
