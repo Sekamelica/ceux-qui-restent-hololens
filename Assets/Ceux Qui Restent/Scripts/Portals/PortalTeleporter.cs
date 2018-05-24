@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utility;
 
 namespace CeuxQuiRestent.Portals
 {
@@ -8,8 +9,13 @@ namespace CeuxQuiRestent.Portals
         #region Attributes
         private RoomManager roomManager;
         [SerializeField]
+        private ActionExecuter actionsToDo;
+        [SerializeField]
+        private bool repeatableActions = false;
+        [SerializeField]
         private PortalDestination destination = PortalDestination.Future;
         private GameObject portalRenderer;
+        private bool actionsDone = true;
         #endregion
 
         #region MonoBehaviour Methods
@@ -35,6 +41,14 @@ namespace CeuxQuiRestent.Portals
                         else if (destination == PortalDestination.Past)
                             roomManager.PreviousRoom();
                         linker.ExitPortal(portalRenderer);
+                        if (actionsToDo != null)
+                        {
+                            if (!actionsDone || repeatableActions)
+                            {
+                                actionsToDo.StartActions();
+                                actionsDone = true;
+                            }
+                        }
                     }
                 }
             }
