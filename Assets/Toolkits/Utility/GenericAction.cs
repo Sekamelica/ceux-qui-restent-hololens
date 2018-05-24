@@ -79,50 +79,64 @@ namespace Utility
                 switch (actionKind)
                 {
                     case GenericActionKind.Instantiate:
-                        GameObject.Instantiate(target, master.position, Quaternion.identity, master);
+                        if (target != null)
+                            GameObject.Instantiate(target, master.position, Quaternion.identity, master);
                         break;
                     case GenericActionKind.Enable:
-                        target.SetActive(true);
+                        if (target != null)
+                            target.SetActive(true);
                         break;
                     case GenericActionKind.Disable:
-                        target.SetActive(false);
+                        if (target != null)
+                            target.SetActive(false);
                         break;
                     case GenericActionKind.EnableDisable:
-                        target.SetActive(!target.activeSelf);
+                        if (target != null)
+                            target.SetActive(!target.activeSelf);
                         break;
                     case GenericActionKind.Destroy:
-                        GameObject.Destroy(target);
+                        if (target != null)
+                            GameObject.Destroy(target);
                         break;
                     case GenericActionKind.PlayParticleSystem:
-                        if (target.gameObject.GetComponent<ParticleSystem>())
-                            target.gameObject.GetComponent<ParticleSystem>().Play();
+                        if (target != null)
+                            if (target.gameObject.GetComponent<ParticleSystem>())
+                                target.gameObject.GetComponent<ParticleSystem>().Play();
                         break;
                     case GenericActionKind.PlayAudioSource:
-                        if (target.gameObject.GetComponent<AudioSource>())
-                            target.gameObject.GetComponent<AudioSource>().Play();
+                        if (target != null)
+                            if (target.gameObject.GetComponent<AudioSource>())
+                                target.gameObject.GetComponent<AudioSource>().Play();
                         break;
                     case GenericActionKind.StartActionsExecuter:
-                        if (target.gameObject.GetComponent<ActionExecuter>())
+                        if (target != null)
                         {
-                            target.gameObject.GetComponent<ActionExecuter>().ResetCounter();
-                            target.gameObject.GetComponent<ActionExecuter>().StartActions();
+                            if (target.gameObject.GetComponent<ActionExecuter>())
+                            {
+                                target.gameObject.GetComponent<ActionExecuter>().ResetCounter();
+                                target.gameObject.GetComponent<ActionExecuter>().StartActions();
+                            }
                         }
                         break;
                     case GenericActionKind.StartEventExecuter:
-                        if (target.gameObject.GetComponent<EventExecuter>())
-                            target.gameObject.GetComponent<EventExecuter>().Execute();
+                        if (target != null)
+                            if (target.gameObject.GetComponent<EventExecuter>())
+                                target.gameObject.GetComponent<EventExecuter>().Execute();
                         break;
                     case GenericActionKind.PlayWWiseAudioSource:
-                        if (target.gameObject.GetComponent<CeuxQuiRestent.Audio.WwiseAudioSource>())
-                            target.gameObject.GetComponent<CeuxQuiRestent.Audio.WwiseAudioSource>().Play();
+                        if (target != null)
+                            if (target.gameObject.GetComponent<CeuxQuiRestent.Audio.WwiseAudioSource>())
+                                target.gameObject.GetComponent<CeuxQuiRestent.Audio.WwiseAudioSource>().Play();
                         break;
                     case GenericActionKind.AppearLinkable:
-                        if (target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>())
-                            target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().AppearAnimation();
+                        if (target != null)
+                            if (target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>())
+                                target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().AppearAnimation();
                         break;
                     case GenericActionKind.DisappearLinkable:
-                        if (target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>())
-                            target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().DisappearAnimation();
+                        if (target != null)
+                            if (target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>())
+                                target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().DisappearAnimation();
                         break;
                     default:
                         break;
