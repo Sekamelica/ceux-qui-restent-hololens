@@ -79,6 +79,7 @@ namespace CeuxQuiRestent
             if (!scan_done)
             {
                 //ScanV1();
+                /*
                 scan_currentWaitTime += Time.deltaTime;
                 if (scan_currentWaitTime >= scan_waitTime)
                 {
@@ -115,7 +116,7 @@ namespace CeuxQuiRestent
                     for (int ec = 0; ec < ecartCenter.Count; ec++)
                         sumEcarts += ecartCenter[ec];
                     lastPositionCenter = scannerObject.position;
-                }
+                }*/
             }
         }
 

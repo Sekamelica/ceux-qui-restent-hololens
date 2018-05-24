@@ -17,7 +17,9 @@ namespace Utility
         PlayWWiseAudioSource,
         StartEventExecuter,
         AppearLinkable,
-        DisappearLinkable
+        DisappearLinkable,
+        StartCinematicMode,
+        EndCinematicMode
     }
 
     [System.Serializable]
@@ -137,6 +139,14 @@ namespace Utility
                         if (target != null)
                             if (target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>())
                                 target.gameObject.GetComponent<CeuxQuiRestent.Interactables.Linkable>().DisappearAnimation();
+                        break;
+                    case GenericActionKind.StartCinematicMode:
+                        if (GameObject.FindGameObjectWithTag("Player") != null)
+                            GameObject.FindGameObjectWithTag("Player").GetComponent<CeuxQuiRestent.Tutorial.Help>().StartCinematicMode();
+                        break;
+                    case GenericActionKind.EndCinematicMode:
+                        if (GameObject.FindGameObjectWithTag("Player") != null)
+                            GameObject.FindGameObjectWithTag("Player").GetComponent<CeuxQuiRestent.Tutorial.Help>().EndCinematicMode();
                         break;
                     default:
                         break;
