@@ -2,6 +2,7 @@
 
 namespace CeuxQuiRestent.Portals
 {
+    [ExecuteInEditMode]
     public class Portal : MonoBehaviour
     {
         #region Attributes
@@ -11,6 +12,7 @@ namespace CeuxQuiRestent.Portals
         public PortalTeleporter portalTeleporter;
         [Space]
         public PortalParameters portalParameters;
+        public Portal portalDestination;
         #endregion
 
         #region MonoBehaviour Methods

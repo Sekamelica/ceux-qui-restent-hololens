@@ -4337,6 +4337,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 0}
 --- !u!114 &114017418063863242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4365,6 +4366,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1842181802948858, guid: f38d3733fd8118e4bba1d67ff243463c,
+    type: 2}
 --- !u!114 &114026541414564042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4393,6 +4396,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1042573805148318, guid: 42291750f36d4514faefed3656e48b3b,
+    type: 2}
 --- !u!114 &114041609621443422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4436,6 +4441,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114086601122656360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4491,6 +4497,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114117269455444294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4534,6 +4541,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114129713487853990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4573,6 +4581,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1710954513880208, guid: 5f83d71b558706047a807977c6050367,
+    type: 2}
 --- !u!114 &114136600786028458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4587,7 +4597,7 @@ MonoBehaviour:
   onFocusEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114731827640644686}
+      - m_Target: {fileID: 114086601122656360}
         m_MethodName: OnFocusEnter
         m_Mode: 1
         m_Arguments:
@@ -4616,6 +4626,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114161647964173748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4633,6 +4644,17 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_MethodName: StartActions
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4718,6 +4740,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1042573805148318, guid: 42291750f36d4514faefed3656e48b3b,
+    type: 2}
 --- !u!114 &114252039426754668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4773,6 +4797,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 0}
 --- !u!114 &114263196714201928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4847,6 +4872,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1842181802948858, guid: f38d3733fd8118e4bba1d67ff243463c,
+    type: 2}
 --- !u!114 &114304229937535158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4890,6 +4917,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 0}
 --- !u!114 &114315608368020060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4918,6 +4946,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1042573805148318, guid: 42291750f36d4514faefed3656e48b3b,
+    type: 2}
 --- !u!114 &114316973755092278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4932,7 +4962,7 @@ MonoBehaviour:
   onFocusEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114389002870634554}
+      - m_Target: {fileID: 114086601122656360}
         m_MethodName: OnFocusEnter
         m_Mode: 1
         m_Arguments:
@@ -4961,6 +4991,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114341377772622266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5024,6 +5055,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1842181802948858, guid: f38d3733fd8118e4bba1d67ff243463c,
+    type: 2}
 --- !u!114 &114347462191182304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5067,6 +5100,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114350875780744154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5177,6 +5211,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1842181802948858, guid: f38d3733fd8118e4bba1d67ff243463c,
+    type: 2}
 --- !u!114 &114439412211204902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5191,7 +5227,7 @@ MonoBehaviour:
   onFocusEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114252039426754668}
+      - m_Target: {fileID: 114086601122656360}
         m_MethodName: OnFocusEnter
         m_Mode: 1
         m_Arguments:
@@ -5220,6 +5256,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114466715632485282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5248,6 +5285,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1042573805148318, guid: 42291750f36d4514faefed3656e48b3b,
+    type: 2}
 --- !u!114 &114469778990500108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5287,6 +5326,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1042573805148318, guid: 42291750f36d4514faefed3656e48b3b,
+    type: 2}
 --- !u!114 &114479766431346368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5342,6 +5383,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114529870965958096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5440,6 +5482,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1842181802948858, guid: f38d3733fd8118e4bba1d67ff243463c,
+    type: 2}
 --- !u!114 &114557341889869348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5507,6 +5551,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114584485882663592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5586,6 +5631,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114614045664450514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5639,6 +5685,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d,
+    type: 2}
 --- !u!114 &114722040415901574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5682,6 +5730,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 0}
 --- !u!114 &114725924156699908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5699,6 +5748,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d,
+    type: 2}
 --- !u!114 &114731827640644686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5752,6 +5803,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d,
+    type: 2}
 --- !u!114 &114780864567028430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5807,6 +5860,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 0}
 --- !u!114 &114817288484038114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5848,6 +5902,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d,
+    type: 2}
 --- !u!114 &114889466301305680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5877,6 +5933,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d,
+    type: 2}
 --- !u!114 &114940961658203454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5916,6 +5974,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1842181802948858, guid: f38d3733fd8118e4bba1d67ff243463c,
+    type: 2}
 --- !u!114 &114965161401149820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5959,6 +6019,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114969270070036138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6026,6 +6087,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!212 &212052859464013676
 SpriteRenderer:
   m_ObjectHideFlags: 1

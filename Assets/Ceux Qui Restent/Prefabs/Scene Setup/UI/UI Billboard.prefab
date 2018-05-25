@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4456964466534032}
   - component: {fileID: 23132392010328482}
   - component: {fileID: 102515574118441510}
-  - component: {fileID: 114556626283557690}
   m_Layer: 12
   m_Name: SubtitleDisplayer
   m_TagString: SubtitleDisplayer
@@ -67,7 +66,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1623362938255980}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -153,17 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PivotAxis: 1
   TargetTransform: {fileID: 0}
---- !u!114 &114556626283557690
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1215813355858484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 606bce475f98eb54095757e10465781c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114752068897201754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,15 +169,15 @@ MonoBehaviour:
   SmoothMotion: 1
   SmoothingFactor: 1
   MinimumHorizontalOverlap: 0.4
-  TargetHorizontalOverlap: 1
-  MinimumVerticalOverlap: 0.5
-  TargetVerticalOverlap: 0.4
-  HorizontalRayCount: 9
-  VerticalRayCount: 9
+  TargetHorizontalOverlap: 0.6
+  MinimumVerticalOverlap: 0.4
+  TargetVerticalOverlap: 0.5
+  HorizontalRayCount: 4
+  VerticalRayCount: 5
   MinimumTagalongDistance: 1.5
   MaintainFixedSize: 0
   DepthUpdateSpeed: 3
-  DebugDrawLines: 1
+  DebugDrawLines: 0
   DebugPointLight: {fileID: 0}
 --- !u!114 &114822329399868640
 MonoBehaviour:
