@@ -181,6 +181,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 0}
 --- !u!136 &136845015484134778
 CapsuleCollider:
   m_ObjectHideFlags: 1

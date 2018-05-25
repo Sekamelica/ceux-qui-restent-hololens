@@ -55,8 +55,8 @@ MonoBehaviour:
   playAtStart: 1
   playAudioAsset: 0
   wwiseEvent:
-    valueGuid: 00000000000000000000000000000000
-    ID: 0
+    valueGuid: 0d6c035eb92a034a95e15c879d9be7f8
+    ID: 823617801
   categoryID: 0
   audioAssetID: 
   autoRename: 0
@@ -71,4 +71,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb808abc14bc76e4aabc209973c698cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBeforeDestruction: 20
+  secondsBeforeDestruction: 10

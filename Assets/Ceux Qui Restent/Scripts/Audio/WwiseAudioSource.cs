@@ -33,14 +33,24 @@ namespace CeuxQuiRestent.Audio
         #endregion
 
         #region Methods
-        public void Play()
+        public uint Play()
         {
             if (audioManager == null)
                 audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
             if (playAudioAsset)
-                audioManager.PlayAudioAsset(gameObject, categoryID, audioAssetID);
+                return audioManager.PlayAudioAsset(gameObject, categoryID, audioAssetID);
             else
-                audioManager.PlayWwiseEvent(gameObject, wwiseEvent);
+                return audioManager.PlayWwiseEvent(gameObject, wwiseEvent);
+        }
+
+        public void PlayDelegate()
+        {
+            Play();
+        }
+
+        public void Stop(uint _postedEventID)
+        {
+            audioManager.StopEventID(_postedEventID);
         }
 
         public void PlayEvent(AK.Wwise.Event _newEvent)

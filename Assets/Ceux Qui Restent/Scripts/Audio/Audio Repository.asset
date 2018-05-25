@@ -196,8 +196,8 @@ MonoBehaviour:
     - uniqueID: 5B070BDB-306F15C0
       type: 0
       wwiseEvent:
-        valueGuid: 00000000000000000000000000000000
-        ID: 0
+        valueGuid: b45300418b7e4b4e9731be792c828868
+        ID: 145059539
       subtitle: "Segment temporel compl\xE9t\xE9, Bravo !\nPassez le portail pour
         acc\xE9der au segment temporel suivant."
       subtitleDuration: 9
@@ -206,7 +206,25 @@ MonoBehaviour:
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Autumn
-    audioAssets: []
+    audioAssets:
+    - uniqueID: 5B075F89-1F7B8472
+      type: 1
+      wwiseEvent:
+        valueGuid: c52c22a0dde5ea43a4049801b70ba6f1
+        ID: 1109362563
+      subtitle: 
+      subtitleDuration: 0
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B075F92-F0DDF9A
+      type: 1
+      wwiseEvent:
+        valueGuid: 68857ab832a7b5459bd168a2c44795b1
+        ID: -622896327
+      subtitle: 
+      subtitleDuration: 0
+      editorDisplay: 1
+      editorNotes: 
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Winter

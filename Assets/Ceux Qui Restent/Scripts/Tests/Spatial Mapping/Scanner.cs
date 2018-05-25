@@ -25,9 +25,11 @@ namespace CeuxQuiRestent
 
         [Header("Scan")]
         public float scan_waitTime = 6;
+        public GameObject scanningSoundEffect;
         private float scan_currentWaitTime = 0;
         private bool scan_done = false;
         private bool scan_active = false;
+        
 
         private Transform technician;
         private Vector3 lastPositionCenter = Vector3.zero;
@@ -64,7 +66,7 @@ namespace CeuxQuiRestent
 
         void FixedUpdate()
         {
-            int scanningLoop = Mathf.FloorToInt((Time.timeSinceLevelLoad) / (5 / scanningMaterial.GetFloat("_Speed")));
+            int scanningLoop = Mathf.FloorToInt((Time.timeSinceLevelLoad) / (5.0f / scanningMaterial.GetFloat("_Speed")));
             if (!scan_active)
                 return;
             Ray ray = new Ray(technician.position, technician.forward);
@@ -73,7 +75,11 @@ namespace CeuxQuiRestent
             {
                 //Shader.SetGlobalVector("_Center", rayHit.point);
                 if (lastScanningLoop != scanningLoop)
+                {
                     scanningMaterial.SetVector("_Center", rayHit.point);
+                    if (scanningSoundEffect != null)
+                        GameObject.Instantiate(scanningSoundEffect);
+                }
                 lastScanningLoop = scanningLoop;
             }
             if (!scan_done)

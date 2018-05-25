@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 4255930348236804}
   - component: {fileID: 114792200152525850}
   m_Layer: 0
-  m_Name: WAudioSource - (10s) - H_DetectedFragment
+  m_Name: WAudioSource - (7s) - H_DetectedFragment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 4717921557580354}
   - component: {fileID: 114540983989245838}
   m_Layer: 0
-  m_Name: WAudioSource - (10s) - H_TwoLinkCrossed
+  m_Name: WAudioSource - (6s) - H_TwoLinkCrossed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 4461510503341690}
   - component: {fileID: 114045830943334698}
   m_Layer: 0
-  m_Name: WAudioSource - (10s) - H_TargetAndClick
+  m_Name: WAudioSource - (6s) - H_TargetAndClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 4752246740840346}
   - component: {fileID: 114314181774411812}
   m_Layer: 0
-  m_Name: WAudioSource - (10s) - H_OptimizeMove
+  m_Name: WAudioSource - (7s) - H_OptimizeMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 4166875003405712}
   - component: {fileID: 114403280894077060}
   m_Layer: 0
-  m_Name: WAudioSource - (10s) - T_SecondFragment
+  m_Name: WAudioSource - (7s) - T_SecondFragment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 4973169809010740}
   - component: {fileID: 114526140933272384}
   m_Layer: 0
-  m_Name: WAudioSource - (10s) - H_ExploreRoom
+  m_Name: WAudioSource - (6s) - H_ExploreRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,7 +585,7 @@ Transform:
   - {fileID: 4717921557580354}
   - {fileID: 4752246740840346}
   m_Father: {fileID: 4553287640258168}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4420758348452454
 Transform:
@@ -665,8 +665,8 @@ Transform:
   - {fileID: 4950585893800366}
   - {fileID: 4008435478435434}
   - {fileID: 4993831920752718}
-  - {fileID: 4264643698134536}
   - {fileID: 4658661757427566}
+  - {fileID: 4264643698134536}
   - {fileID: 4243112142696374}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -682,7 +682,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4553287640258168}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4709993745420440
 Transform:
@@ -959,6 +959,7 @@ MonoBehaviour:
     ID: 2138475376
   categoryID: 2
   audioAssetID: 5B03D7A9-42B9AC2
+  autoRename: 1
 --- !u!114 &114095357634364424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -977,6 +978,7 @@ MonoBehaviour:
     ID: 0
   categoryID: 0
   audioAssetID: 
+  autoRename: 1
 --- !u!114 &114097968742360694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -995,6 +997,7 @@ MonoBehaviour:
     ID: 0
   categoryID: 0
   audioAssetID: 
+  autoRename: 1
 --- !u!114 &114119704333559830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1006,7 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 50c281f83bf3dfd40914b70313051fc7, type: 2}
+  profile: {fileID: 11400000, guid: 8fec47c6f459d0843affb25940775ee7, type: 2}
 --- !u!114 &114136751999665468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1061,6 +1064,7 @@ MonoBehaviour:
     ID: 783952308
   categoryID: 2
   audioAssetID: 5B04BEA0-1101BA14
+  autoRename: 1
 --- !u!114 &114382483119338794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1099,6 +1103,7 @@ MonoBehaviour:
     ID: 2138475376
   categoryID: 2
   audioAssetID: 5B04BE09-F57EB6E
+  autoRename: 1
 --- !u!114 &114515321884474718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1180,6 +1185,7 @@ MonoBehaviour:
     ID: 1450671466
   categoryID: 2
   audioAssetID: 5B03D792-AE3356A
+  autoRename: 1
 --- !u!114 &114539078239471030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1218,6 +1224,7 @@ MonoBehaviour:
     ID: 1195339271
   categoryID: 2
   audioAssetID: 5B03DCE1-4EF4254
+  autoRename: 1
 --- !u!114 &114591012076178722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1260,6 +1267,7 @@ MonoBehaviour:
     ID: 0
   categoryID: 0
   audioAssetID: 
+  autoRename: 1
 --- !u!114 &114735384455458758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1338,6 +1346,7 @@ MonoBehaviour:
     ID: -760316208
   categoryID: 2
   audioAssetID: 5B03D7B3-549876F
+  autoRename: 1
 --- !u!114 &114808757294237686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1376,6 +1385,7 @@ MonoBehaviour:
     ID: 0
   categoryID: 0
   audioAssetID: 
+  autoRename: 1
 --- !u!114 &114826418109753536
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2,6 +2,7 @@
 using Utility;
 using CeuxQuiRestent.Interactables;
 using CeuxQuiRestent.Links;
+using CeuxQuiRestent.Audio;
 #if UNITY_EDITOR
 using UnityEditor;
 

@@ -56,7 +56,7 @@ namespace CeuxQuiRestent.Portals
             destinationPortal.UpdateTeleporterAndRenderer();
         }
         #endregion
-
+        
 #if UNITY_EDITOR
         void OnDrawGizmosSelected()
         {

@@ -2,6 +2,7 @@
 using HoloToolkit.Unity.InputModule;
 using Utility;
 using CeuxQuiRestent.Links;
+using CeuxQuiRestent.Audio;
 
 namespace CeuxQuiRestent.Interactables
 {
