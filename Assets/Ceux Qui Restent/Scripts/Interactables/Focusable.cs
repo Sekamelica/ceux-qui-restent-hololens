@@ -10,6 +10,7 @@ namespace CeuxQuiRestent.Interactables
         #region Attributes
         [System.NonSerialized]
         public bool interactableFromAnyDistance = false;
+        public AK.Wwise.Event focusSound = null;
         public UnityEvent onFocusEnterEvent;
         public UnityEvent onFocusExitEvent;
 
@@ -31,6 +32,11 @@ namespace CeuxQuiRestent.Interactables
         #region Focusable Methods
         public void OnFocusEnter()
         {
+            if (interactSound != null)
+            {
+                Audio.AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<Audio.AudioManager>();
+                audioManager.PlayWwiseEvent(gameObject, focusSound);
+            }
             onFocusEnterEvent.Invoke();
             cursor.FocusObject(transform, interactableFromAnyDistance);
         }

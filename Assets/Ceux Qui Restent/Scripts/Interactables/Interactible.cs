@@ -12,6 +12,7 @@ namespace CeuxQuiRestent.Interactables
         // Public attributes
         public bool interactableFromAnyDistance = false;
         public UnityEvent onInteractEvent;
+        public AK.Wwise.Event interactSound = null;
 
         // Private attributes
         private float distanceInteraction;
@@ -44,12 +45,22 @@ namespace CeuxQuiRestent.Interactables
                     if (Physics.Raycast(ray, out rayHit, 30, LayerMask.GetMask(new string[] { LayerMask.LayerToName(transform.gameObject.layer) })))
                     {
                         if (rayHit.distance <= distanceInteraction)
-                            onInteractEvent.Invoke();
+                            Interact();
                     }
                 }
                 else
-                    onInteractEvent.Invoke();
+                    Interact();
             }
+        }
+
+        private void Interact()
+        {
+            if (interactSound != null)
+            {
+                Audio.AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<Audio.AudioManager>();
+                audioManager.PlayWwiseEvent(gameObject, interactSound);
+            }
+            onInteractEvent.Invoke();
         }
         #endregion
     }
