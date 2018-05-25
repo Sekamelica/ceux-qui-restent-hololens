@@ -12,7 +12,7 @@ namespace CeuxQuiRestent.Interactables
         // Public attributes
         public bool interactableFromAnyDistance = false;
         public UnityEvent onInteractEvent;
-        public AK.Wwise.Event interactSound = null;
+        public GameObject interactSound;
 
         // Private attributes
         private float distanceInteraction;
@@ -56,10 +56,7 @@ namespace CeuxQuiRestent.Interactables
         private void Interact()
         {
             if (interactSound != null)
-            {
-                Audio.AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<Audio.AudioManager>();
-                audioManager.PlayWwiseEvent(gameObject, interactSound);
-            }
+                GameObject.Instantiate(interactSound, transform.position, Quaternion.identity, null);
             onInteractEvent.Invoke();
         }
         #endregion

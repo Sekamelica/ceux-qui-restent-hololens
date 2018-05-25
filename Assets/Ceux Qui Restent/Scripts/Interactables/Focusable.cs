@@ -12,7 +12,7 @@ namespace CeuxQuiRestent.Interactables
         public bool interactableFromAnyDistance = false;
         public UnityEvent onFocusEnterEvent;
         public UnityEvent onFocusExitEvent;
-        public AK.Wwise.Event focusSound = null;
+        public GameObject focusSound;
 
         private TechicianCursor cursor;
         #endregion
@@ -33,10 +33,7 @@ namespace CeuxQuiRestent.Interactables
         public void OnFocusEnter()
         {
             if (focusSound != null)
-            {
-                Audio.AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<Audio.AudioManager>();
-                audioManager.PlayWwiseEvent(gameObject, focusSound);
-            }
+                GameObject.Instantiate(focusSound, transform.position, Quaternion.identity, null);
             onFocusEnterEvent.Invoke();
             cursor.FocusObject(transform, interactableFromAnyDistance);
         }
