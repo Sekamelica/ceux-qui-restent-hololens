@@ -10,9 +10,9 @@ namespace CeuxQuiRestent.Interactables
         #region Attributes
         [System.NonSerialized]
         public bool interactableFromAnyDistance = false;
-        public AK.Wwise.Event focusSound = null;
         public UnityEvent onFocusEnterEvent;
         public UnityEvent onFocusExitEvent;
+        public AK.Wwise.Event focusSound = null;
 
         private TechicianCursor cursor;
         #endregion
