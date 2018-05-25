@@ -28,7 +28,7 @@ MonoBehaviour:
         valueGuid: 7fce9859ee8be04387a65ab8b1de3905
         ID: 1450671466
       subtitle: "Explorez la salle pour trouver les fragments \xE0 relier."
-      subtitleDuration: 10
+      subtitleDuration: 6
       editorDisplay: 1
       editorNotes: DontMove
     - uniqueID: 5B03D7A9-42B9AC2
@@ -37,7 +37,7 @@ MonoBehaviour:
         valueGuid: 6369461929c2974788da524d4a451a91
         ID: 2138475376
       subtitle: "Pour cr\xE9er un lien, visez la silhouette et cliquez."
-      subtitleDuration: 10
+      subtitleDuration: 6
       editorDisplay: 1
       editorNotes: DontClick
     - uniqueID: 5B03D7B3-549876F
@@ -47,7 +47,7 @@ MonoBehaviour:
         ID: -760316208
       subtitle: "Fragment m\xE9moriel d\xE9tect\xE9.\nRapprochez-vous et cliquez pour
         le s\xE9lectionner."
-      subtitleDuration: 10
+      subtitleDuration: 7
       editorDisplay: 1
       editorNotes: ClickTooFar
     - uniqueID: 5B03DCE1-4EF4254
@@ -56,7 +56,7 @@ MonoBehaviour:
         valueGuid: 5fd03221d25a674f81780b2352f28c14
         ID: 1195339271
       subtitle: "Si deux liens se croisent, le lien en cours de cr\xE9ation est d\xE9truit."
-      subtitleDuration: 10
+      subtitleDuration: 6
       editorDisplay: 1
       editorNotes: LinkBroke
     - uniqueID: 5B04BE09-F57EB6E
@@ -66,7 +66,7 @@ MonoBehaviour:
         ID: -905587550
       subtitle: "Le second fragment m\xE9moriel se trouve quelque part dans la pi\xE8ce,\nessayez
         de vous d\xE9placer."
-      subtitleDuration: 10
+      subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B04BEA0-1101BA14
@@ -76,7 +76,7 @@ MonoBehaviour:
         ID: 783952308
       subtitle: "Essayez d\u2019optimiser votre d\xE9placement ou de compl\xE9ter
         un autre fragment m\xE9moriel."
-      subtitleDuration: 10
+      subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
     editorDisplayEvents: 1
@@ -92,7 +92,7 @@ MonoBehaviour:
         \nla maintenance de la salle m\xE9morielle n\xB01E6.\nL\u2019anomalie s\u2019est
         produite le 02/05/2048,\nveuillez proc\xE9der \xE0 la r\xE9organisation des
         donn\xE9es."
-      subtitleDuration: 10
+      subtitleDuration: 20
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B0122A2-409633A
@@ -102,7 +102,7 @@ MonoBehaviour:
         ID: 781812845
       subtitle: "Pour commencer, d\xE9placez vous dans l'environnement afin\nque le
         dispositif scanne l'environnement.\n"
-      subtitleDuration: 10
+      subtitleDuration: 9
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B0122A3-AB6637A
@@ -112,7 +112,7 @@ MonoBehaviour:
         ID: 1530286288
       subtitle: "D\xE9placez vous et regardez autour de vous afin de visualiser\nle
         premier fragment m\xE9moriel."
-      subtitleDuration: 10
+      subtitleDuration: 8
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B0122A3-3B07200
@@ -122,7 +122,7 @@ MonoBehaviour:
         ID: -760316208
       subtitle: "Fragment m\xE9moriel d\xE9tect\xE9. Rapprochez-vous et cliquez\npour
         le s\xE9lectionner."
-      subtitleDuration: 10
+      subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B0122DC-1FAD7CA9
@@ -141,7 +141,7 @@ MonoBehaviour:
         valueGuid: eef14859c7a43e42b942424b2b7818de
         ID: 1326074304
       subtitle: Pour relier les deux fragments, visez le second fragment puis cliquez.
-      subtitleDuration: 10
+      subtitleDuration: 6
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B01236D-48A6830
@@ -151,7 +151,7 @@ MonoBehaviour:
         ID: 296874062
       subtitle: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations.\nContinuez
         votre exploration, d\u2019autres fragments sont encore incomplets."
-      subtitleDuration: 10
+      subtitleDuration: 12
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B0123B3-3136C0D8
@@ -160,7 +160,7 @@ MonoBehaviour:
         valueGuid: b8e0b5c234686e4d81bf8f2bb1551fe3
         ID: -1256684680
       subtitle: "D\xE9blocage du flux m\xE9moriel."
-      subtitleDuration: 10
+      subtitleDuration: 3
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B04C121-1A50B7C8
@@ -169,7 +169,7 @@ MonoBehaviour:
         valueGuid: 31cfdae0fb6ac143bb62349326384c37
         ID: 525151809
       subtitle: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations. "
-      subtitleDuration: 10
+      subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B04C145-3325FFBA
@@ -179,7 +179,7 @@ MonoBehaviour:
         ID: 1158054437
       subtitle: "Les fragments m\xE9moriels correspondants ont toujours un aspect
         en commun\nqui peut varier d'une paire \xE0 une autre."
-      subtitleDuration: 10
+      subtitleDuration: 8
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B04C441-1CA48FF2
@@ -190,7 +190,17 @@ MonoBehaviour:
       subtitle: "Voici la jauge d'\xE9nergie m\xE9morielle : elle limite la longueur
         des liens que vous pouvez cr\xE9er.\nCette jauge augmente lorsque vous compl\xE9tez
         des fragments.\nSi vous n\"avez pas assez d'\xE9nergie, votre lien se d\xE9litera. "
-      subtitleDuration: 10
+      subtitleDuration: 18
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B070BDB-306F15C0
+      type: 0
+      wwiseEvent:
+        valueGuid: 00000000000000000000000000000000
+        ID: 0
+      subtitle: "Segment temporel compl\xE9t\xE9, Bravo !\nPassez le portail pour
+        acc\xE9der au segment temporel suivant."
+      subtitleDuration: 9
       editorDisplay: 1
       editorNotes: 
     editorDisplayEvents: 1

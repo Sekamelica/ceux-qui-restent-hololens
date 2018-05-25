@@ -80,6 +80,7 @@ namespace CeuxQuiRestent.Links
                 curveID++;
             }
             meshGameObject = MeshUtility.GenerateMeshGameObject(transform, "LinkMesh", false, material, ExtrudeShape.GetShape(shape, scale, pointsAmount).Extrude(pathList.ToArray()));
+            meshGameObject.layer = gameObject.layer;
             pathList.Clear();
             return;
         }

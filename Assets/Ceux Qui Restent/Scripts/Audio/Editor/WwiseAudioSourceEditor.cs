@@ -20,6 +20,7 @@ namespace CeuxQuiRestent.Audio
         {
             Color defaultGUIBackgroundColor = GUI.backgroundColor;
 
+            audioSource.autoRename = EditorGUILayout.Toggle(new GUIContent("Auto Rename"), audioSource.autoRename);
             audioSource.playAtStart = EditorGUILayout.Toggle(new GUIContent("Play at start"), audioSource.playAtStart);
 
             EditorGUILayout.Space();
@@ -50,13 +51,15 @@ namespace CeuxQuiRestent.Audio
                         audioSource.audioAssetID = audioAssetIDs[newAudioAssetIndex];
                         AudioAsset audioAsset = audioManager.audioRepository.FindAudioAsset(audioSource.categoryID, audioSource.audioAssetID);
                         EditorGUILayout.HelpBox("Type: " + audioAsset.type.ToString() + "\nSubtitle: (" + audioAsset.subtitleDuration + "s)\n" + audioAsset.subtitle + "\nDev notes: " + audioAsset.editorNotes, MessageType.Info, true);
-                        audioSource.gameObject.name = "WAudioSource - (" + audioAsset.subtitleDuration + "s) - " + audioAssetNames[newAudioAssetIndex];
+                        if (audioSource.autoRename)
+                            audioSource.gameObject.name = "WAudioSource - (" + audioAsset.subtitleDuration + "s) - " + audioAssetNames[newAudioAssetIndex];
                     }
                     else
                     {
                         EditorGUI.BeginDisabledGroup(true);
                         EditorGUILayout.LabelField("No audio assets found in this category.");
-                        audioSource.gameObject.name = "WAudioSource - ";
+                        if (audioSource.autoRename)
+                            audioSource.gameObject.name = "WAudioSource - ";
                         EditorGUI.EndDisabledGroup();
                     }
                 }
@@ -64,7 +67,8 @@ namespace CeuxQuiRestent.Audio
                 {
                     EditorGUI.BeginDisabledGroup(true);
                     EditorGUILayout.LabelField("No audio categories in this repository.");
-                    audioSource.gameObject.name = "WAudioSource - ";
+                    if (audioSource.autoRename)
+                        audioSource.gameObject.name = "WAudioSource - ";
                     EditorGUI.EndDisabledGroup();
                 }
 
@@ -84,7 +88,8 @@ namespace CeuxQuiRestent.Audio
                 string eventName = "";
                 audioSource.wwiseEvent = WwiseEventDrawer.WwiseEventField(ref eventName, audioSource.wwiseEvent, GUILayoutUtility.GetLastRect());
                 EditorGUILayout.EndHorizontal();
-                audioSource.gameObject.name = "WAudioSource - " + eventName;
+                if (audioSource.autoRename)
+                    audioSource.gameObject.name = "WAudioSource - " + eventName;
             }
             EditorGUILayout.Space();
 

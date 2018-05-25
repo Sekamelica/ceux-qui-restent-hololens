@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007a78bcd54ed64c940acff1fec91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableFromAnyDistance: 1
   onFocusEnterEvent:
     m_PersistentCalls:
       m_Calls:
@@ -209,6 +208,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114923129706228640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +226,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1842181802948858, guid: f38d3733fd8118e4bba1d67ff243463c,
+    type: 2}
 --- !u!212 &212416900169205088
 SpriteRenderer:
   m_ObjectHideFlags: 1

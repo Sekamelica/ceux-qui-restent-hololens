@@ -11,6 +11,7 @@ namespace CeuxQuiRestent.Audio
         public AK.Wwise.Event wwiseEvent = null;
         public int categoryID = 0;
         public string audioAssetID = "";
+        public bool autoRename = true;
 
         private AudioManager audioManager;
         #endregion

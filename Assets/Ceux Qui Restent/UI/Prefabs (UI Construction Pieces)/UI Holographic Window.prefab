@@ -426,6 +426,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  focusSound: {fileID: 1635793550241536, guid: 7c1c8d25d88a3174283b69ee174cb04d, type: 2}
 --- !u!114 &114790922088141090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -454,6 +455,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  interactSound: {fileID: 1042573805148318, guid: 42291750f36d4514faefed3656e48b3b,
+    type: 2}
 --- !u!114 &114899977815006998
 MonoBehaviour:
   m_ObjectHideFlags: 1

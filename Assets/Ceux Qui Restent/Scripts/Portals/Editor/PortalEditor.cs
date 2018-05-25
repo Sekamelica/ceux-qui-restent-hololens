@@ -36,9 +36,6 @@ namespace CeuxQuiRestent.Tools
                 newPortalDestination.UpdateTeleporterAndRenderer();
             }
             portal.portalDestination = newPortalDestination;
-            /*
-            if (GUILayout.Button("Generate destination portal"))
-                portal.GenerateDestinationPortal();*/
             portal.UpdateTeleporterAndRenderer();
             serializedObject.ApplyModifiedProperties();
             EditorUtility.SetDirty(target);
