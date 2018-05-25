@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.PostProcessing;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,6 +13,8 @@ namespace CeuxQuiRestent
         private Transform linkablesLayouts;
         [SerializeField]
         private Transform linksRepository;
+        [SerializeField]
+        private PostProcessingProfile postProcessingProfile;
         #endregion
 
         #region MonoBehaviour Methods
@@ -29,6 +32,11 @@ namespace CeuxQuiRestent
                 return linksRepository;
             else
                 return transform;
+        }
+
+        public void UseRoomPostProcessing()
+        {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessingBehaviour>().profile = postProcessingProfile;
         }
         #endregion
 

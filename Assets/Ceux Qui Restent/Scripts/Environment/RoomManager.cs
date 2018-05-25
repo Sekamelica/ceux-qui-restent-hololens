@@ -66,6 +66,7 @@ namespace CeuxQuiRestent
                     rooms[r].transform.position = new Vector3(rooms[r].transform.position.x, rooms[r].transform.position.y - 500, rooms[r].transform.position.z);
             }
             currentRoom = rooms[currentRoomID];
+            currentRoom.UseRoomPostProcessing();
         }
 
         public void PreviousRoom()
@@ -77,6 +78,7 @@ namespace CeuxQuiRestent
                     rooms[r].transform.position = new Vector3(rooms[r].transform.position.x, rooms[r].transform.position.y + 500, rooms[r].transform.position.z);
             }
             currentRoom = rooms[currentRoomID];
+            currentRoom.UseRoomPostProcessing();
         }
 
         public int GetCurrentRoomID()

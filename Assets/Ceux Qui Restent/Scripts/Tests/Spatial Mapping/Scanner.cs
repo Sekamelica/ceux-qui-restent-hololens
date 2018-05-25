@@ -42,7 +42,7 @@ namespace CeuxQuiRestent
         public void ActiveScan()
         {
             scan_active = true;
-            //scannerObject.gameObject.SetActive(true);
+            scannerObject.gameObject.SetActive(true);
             for (int c = 0; c < meshesWrapper.childCount; c++)
             {
                 GameObject child = meshesWrapper.GetChild(c).gameObject;
