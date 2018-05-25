@@ -32,7 +32,7 @@ namespace CeuxQuiRestent.Interactables
         #region Focusable Methods
         public void OnFocusEnter()
         {
-            if (interactSound != null)
+            if (focusSound != null)
             {
                 Audio.AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<Audio.AudioManager>();
                 audioManager.PlayWwiseEvent(gameObject, focusSound);
