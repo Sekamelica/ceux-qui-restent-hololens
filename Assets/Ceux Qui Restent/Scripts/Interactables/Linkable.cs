@@ -7,7 +7,6 @@ using CeuxQuiRestent.Audio;
 namespace CeuxQuiRestent.Interactables
 {
     [System.Serializable]
-    [RequireComponent(typeof(Focusable))]
     [RequireComponent(typeof(Collider))]
     public class Linkable : MonoBehaviour, IInputClickHandler
     {
