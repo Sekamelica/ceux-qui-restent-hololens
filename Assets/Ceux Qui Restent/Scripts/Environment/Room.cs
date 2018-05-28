@@ -18,9 +18,14 @@ namespace CeuxQuiRestent
         #endregion
 
         #region MonoBehaviour Methods
+        void Start()
+        {
+            for (int c = linkablesLayouts.childCount - 1; c >= 0; c--)
+                linkablesLayouts.GetChild(c).gameObject.SetActive(true);
+        }
         #endregion
 
-        #region Getters & Setters
+            #region Getters & Setters
         public Transform GetLinkablesLayouts()
         {
             return linkablesLayouts;

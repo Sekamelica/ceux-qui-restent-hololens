@@ -61,7 +61,6 @@ namespace CeuxQuiRestent.Links
         private List<LinkCurve> linkCurves = new List<LinkCurve>();
         private List<LinkMesh> linkMeshes = new List<LinkMesh>();
         private List<Link> previousLinks = new List<Link>(); // Used for link parts created before a room changing
-        private GameObject origin;
         private GameObject destination;
 
         // Linker
@@ -537,7 +536,6 @@ namespace CeuxQuiRestent.Links
                         GameObject.Instantiate(effectEndLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
 
                     // Register the Linkable origin and the Linkable that should be the destination and start the link.
-                    origin = clicked;
                     destination = clickedPair;
                     StartLinking(linkablePos);
                 }

@@ -22,8 +22,8 @@ namespace CeuxQuiRestent.Audio
     {
         #region Attributes
         public AudioRepository audioRepository;
-        public TextMesh subtitleDisplayer;
 
+        private TextMesh subtitleDisplayer;
         private float textDuration;
         private GameObject lastStoredVoiceline_object;
         private GameObject player;
@@ -34,6 +34,7 @@ namespace CeuxQuiRestent.Audio
         private void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
+            subtitleDisplayer = GameObject.FindGameObjectWithTag("SubtitleDisplayer").GetComponent<TextMesh>();
         }
 
         private void Update()

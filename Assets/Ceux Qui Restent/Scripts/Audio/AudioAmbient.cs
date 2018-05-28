@@ -3,11 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
-public class TriggerAmbientAudio : MonoBehaviour {
+public class AudioAmbient : MonoBehaviour
+{
+    #region Attributes
+    public float farthestDistance = 4;
+    public float closestDistance = 1;
     public WwiseAudioSource sound;
     private uint postedEventID;
+    #endregion
 
+    #region MonoBehaviour Methods
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -25,4 +30,5 @@ public class TriggerAmbientAudio : MonoBehaviour {
                 sound.Stop(postedEventID);
         }
     }
+    #endregion
 }

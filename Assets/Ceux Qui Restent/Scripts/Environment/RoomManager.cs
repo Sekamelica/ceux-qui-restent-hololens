@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace CeuxQuiRestent
 {
@@ -10,10 +9,12 @@ namespace CeuxQuiRestent
         public int startingRoomID = 0;
         public Transform roomHolder;
         public Room[] rooms;
+        public GameObject levelDesignMeshPrefab;
         
         private int currentRoomID = 0;
         [System.NonSerialized]
         public Room currentRoom;
+        private List<GameObject> levelDesignMeshes = new List<GameObject>();
         #endregion
 
         #region MonoBehaviour Methods
@@ -84,6 +85,37 @@ namespace CeuxQuiRestent
         public int GetCurrentRoomID()
         {
             return currentRoomID;
+        }
+
+        public void SetLevelDesignMode()
+        {
+            levelDesignMeshes = new List<GameObject>();
+            levelDesignMeshes.Add(GameObject.Instantiate(levelDesignMeshPrefab));
+            levelDesignMeshes.Add(GameObject.Instantiate(levelDesignMeshPrefab));
+            levelDesignMeshes.Add(GameObject.Instantiate(levelDesignMeshPrefab));
+            for (int ldm = 0; ldm < levelDesignMeshes.Count; ldm++)
+            {
+                levelDesignMeshes[ldm].transform.parent = roomHolder;
+                levelDesignMeshes[ldm].transform.SetPositionAndRotation(roomHolder.position - (Vector3.up * 500) + (ldm * (Vector3.up * 500)), roomHolder.rotation);
+            }
+            GameObject spatialMappingManager = GameObject.FindGameObjectWithTag("SpatialMappingManager");
+            if (spatialMappingManager != null)
+                spatialMappingManager.SetActive(false);
+        }
+
+        public void SetBuildMode()
+        {
+            for (int ldm = levelDesignMeshes.Count - 1; ldm >= 0; ldm--)
+            {
+                if (Application.isPlaying)
+                    Destroy(levelDesignMeshes[ldm]);
+                else
+                    DestroyImmediate(levelDesignMeshes[ldm]);
+            }
+            levelDesignMeshes.Clear();
+            GameObject spatialMappingManager = GameObject.FindGameObjectWithTag("SpatialMappingManager");
+            if (spatialMappingManager != null)
+                spatialMappingManager.SetActive(true);
         }
         #endregion
     }

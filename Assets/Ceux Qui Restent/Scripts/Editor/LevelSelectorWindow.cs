@@ -14,7 +14,7 @@ namespace CeuxQuiRestent.Tools
         #endregion
 
         #region Methods
-        [MenuItem("Window/Level Selector")]
+        [MenuItem("Window/Ceux Qui Restent/Level Selector")]
         static void Init()
         {
             // Get existing open window or if none, make a new one:
@@ -29,6 +29,16 @@ namespace CeuxQuiRestent.Tools
 
             if (Initialize())
             {
+                EditorGUILayout.LabelField("Select Room:");
+                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("Level Design Mode"))
+                    roomManager.SetLevelDesignMode();
+                if (GUILayout.Button("Build Mode"))
+                    roomManager.SetBuildMode();
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.Space();
+
                 if (roomManager.rooms.Length > 0)
                 {
                     EditorGUILayout.LabelField("Select Room:");
@@ -92,9 +102,10 @@ namespace CeuxQuiRestent.Tools
                     if (currentRoom.GetLinkablesLayouts() != null)
                     {
                         Transform linkablesRepository = currentRoom.GetLinkablesLayouts();
-                        if (linkablesRepository.childCount > 0)
-                            for (int c = 0; c < linkablesRepository.childCount; c++)
-                                linkablesRepository.GetChild(c).gameObject.SetActive(c == 0);
+                        if (!Application.isPlaying)
+                            if (linkablesRepository.childCount > 0)
+                                for (int c = 0; c < linkablesRepository.childCount; c++)
+                                    linkablesRepository.GetChild(c).gameObject.SetActive(c == 0);
                     }
                 }
             }
