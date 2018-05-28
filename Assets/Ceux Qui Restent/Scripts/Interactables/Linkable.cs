@@ -15,9 +15,12 @@ namespace CeuxQuiRestent.Interactables
         public Linkable pair;
         public ActionExecuter actionsToDo;
         public Energy energy;
+        public Vector3 linkStartOffset = Vector3.zero;
+        public Vector3 linkStartPosition = Vector3.zero;
 
         public MeshRenderer model;
-        public Material material;
+        public Material materialNormal;
+        public Material materialHover;
         public float appearDisappearAnimationTime = 2;
         public float changeModelAnimationTime = 3;
         
@@ -34,7 +37,7 @@ namespace CeuxQuiRestent.Interactables
         #region MonoBehaviour Methods
         void Start()
         {
-            normalGradientTreshold = material.GetFloat("_GradientThreshold");
+            normalGradientTreshold = materialNormal.GetFloat("_GradientThreshold");
             StopHover();
             linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
         }
@@ -59,6 +62,11 @@ namespace CeuxQuiRestent.Interactables
 #if UNITY_EDITOR
         void OnDrawGizmosSelected()
         {
+            Color gizmosBaseColor = Gizmos.color;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position + linkStartOffset, 0.02f);
+            Gizmos.color = gizmosBaseColor;
+
             if (pair != null)
             {
                 // Draw Link
@@ -120,8 +128,9 @@ namespace CeuxQuiRestent.Interactables
         /// </summary>
         public void Interact()
         {
+            linkStartPosition = transform.position + linkStartOffset;
             if (!alreadyLinked && pair != null)
-                linker.LinkableClick(transform.position, gameObject, pair.gameObject);
+                linker.LinkableClick(this, gameObject, pair.gameObject);
         }
 
         /// <summary>
@@ -141,35 +150,23 @@ namespace CeuxQuiRestent.Interactables
         {
             model = _model;
             if (model != null)
-                model.material = material;
+                model.material = materialNormal;
         }
         public void ChangeMaterial(Material _material)
         {
-            material = _material;
+            materialNormal = _material;
             if (model != null)
-                model.material = material;
+                model.material = materialNormal;
         }
 
         public void StartHover()
         {
-            float shineValue = 1.8f;
-            model.material.SetFloat("_Shine_R", shineValue);
-            model.material.SetFloat("_Shine_G", shineValue);
-            model.material.SetFloat("_Shine_B", shineValue);
-            model.material.SetFloat("_Shine2_R", shineValue);
-            model.material.SetFloat("_Shine2_G", shineValue);
-            model.material.SetFloat("_Shine2_B", shineValue);
+            model.material = materialHover;
         }
 
         public void StopHover()
         {
-            float shineValue = 0.4f;
-            model.material.SetFloat("_Shine_R", shineValue);
-            model.material.SetFloat("_Shine_G", shineValue);
-            model.material.SetFloat("_Shine_B", shineValue);
-            model.material.SetFloat("_Shine2_R", shineValue);
-            model.material.SetFloat("_Shine2_G", shineValue);
-            model.material.SetFloat("_Shine2_B", shineValue);
+            model.material = materialNormal;
         }
         #endregion
 

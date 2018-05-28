@@ -468,10 +468,10 @@ namespace CeuxQuiRestent.Links
         /// <param name="linkablePos"></param>
         /// <param name="clicked"></param>
         /// <param name="clickedPair"></param>
-        public void LinkableClick(Vector3 linkablePos, GameObject clicked, GameObject clickedPair)
+        public void LinkableClick(Linkable linkable, GameObject clicked, GameObject clickedPair)
         {
             bool canInteract = false;
-            Ray ray = new Ray(transform.position, linkablePos - transform.position);
+            Ray ray = new Ray(transform.position, linkable.linkStartPosition - transform.position);
             RaycastHit rayHit = new RaycastHit();
             if (Physics.Raycast(ray, out rayHit, 30, LayerMask.GetMask(new string[] { LayerMask.LayerToName(clicked.layer) })))
             {
@@ -490,7 +490,7 @@ namespace CeuxQuiRestent.Links
             {
                 if (destination == clicked) // End the link on the good Linkable.
                 {
-                    if (StopLinking(linkablePos))
+                    if (StopLinking(linkable.linkStartPosition))
                     {
                         PlaySound(soundClick);
                         PlaySound(soundLinkCorrectEnd);
@@ -501,7 +501,7 @@ namespace CeuxQuiRestent.Links
 
                         // Effect
                         if (effectStartLink != null)
-                            GameObject.Instantiate(effectStartLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
+                            GameObject.Instantiate(effectStartLink, linkable.linkStartPosition, Quaternion.Euler(-90, 0, 0), null);
 
                         // Energy (Increase max energy and refill energy)
                         energy.IncreaseEnergyLevel();
@@ -533,11 +533,11 @@ namespace CeuxQuiRestent.Links
 
                     // Effect
                     if (effectEndLink != null)
-                        GameObject.Instantiate(effectEndLink, linkablePos, Quaternion.Euler(-90, 0, 0), null);
+                        GameObject.Instantiate(effectEndLink, linkable.linkStartPosition, Quaternion.Euler(-90, 0, 0), null);
 
                     // Register the Linkable origin and the Linkable that should be the destination and start the link.
                     destination = clickedPair;
-                    StartLinking(linkablePos);
+                    StartLinking(linkable.linkStartPosition);
                 }
                 else // The linkable doesn't have a Pair Linkable
                 {

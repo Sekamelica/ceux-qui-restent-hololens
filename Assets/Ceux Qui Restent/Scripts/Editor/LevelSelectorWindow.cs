@@ -29,7 +29,7 @@ namespace CeuxQuiRestent.Tools
 
             if (Initialize())
             {
-                EditorGUILayout.LabelField("Select Room:");
+                EditorGUILayout.LabelField("Mode:");
                 EditorGUILayout.BeginHorizontal();
                 if (GUILayout.Button("Level Design Mode"))
                     roomManager.SetLevelDesignMode();

@@ -12,15 +12,52 @@ namespace CeuxQuiRestent.Tools
     public class LinkableEditor : Editor
     {
         Linkable linkable;
+        private Transform handleTransform;
+        private Quaternion handleRotation;
 
         void OnEnable()
         {
             linkable = target as Linkable;
         }
 
+        private void OnSceneGUI()
+        {
+            handleTransform = linkable.transform;
+            handleRotation = UnityEditor.Tools.pivotRotation == PivotRotation.Local ? handleTransform.rotation : Quaternion.identity;
+            ShowPoint();
+        }
+
+        private void ShowPoint()
+        {
+            Vector3 point = handleTransform.TransformPoint(linkable.linkStartOffset);
+            EditorGUI.BeginChangeCheck();
+            point = Handles.DoPositionHandle(point, handleRotation);
+            if (EditorGUI.EndChangeCheck())
+            {
+                point -= linkable.transform.position;
+                Undo.RecordObject(linkable, "Move LinkStartPoint");
+                EditorUtility.SetDirty(linkable);
+                linkable.linkStartOffset = point;//handleTransform.InverseTransformPoint(point) - linkable.transform.position;
+                //linkable.linkStartOffset = point - linkable.transform.position;
+            }
+        }
+
         public override void OnInspectorGUI()
         {
             EditorGUILayout.LabelField("Logic fields", EditorStyles.boldLabel);
+
+            // Set Link Start Point
+            //linkable.linkStartPosition = EditorGUILayout.Vector3Field("Link Start Point", linkable.linkStartPosition);
+            
+            linkable.linkStartOffset = EditorGUILayout.Vector3Field("Link Start Offset", linkable.linkStartOffset);
+            linkable.linkStartPosition = linkable.transform.position + linkable.linkStartOffset;
+            //linkable.linkStartPosition = EditorGUILayout.Vector3Field("Link Start Position", linkable.linkStartPosition);
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Reset offset"))
+                linkable.linkStartOffset = Vector3.zero;
+            if (GUILayout.Button(""))
+                linkable.linkStartOffset = Vector3.zero;
+            EditorGUILayout.EndHorizontal();            
 
             // Set Actions
             ActionExecuter newActionsToDo = EditorGUILayout.ObjectField("Actions to do", linkable.actionsToDo, typeof(ActionExecuter), true) as ActionExecuter;
@@ -76,11 +113,12 @@ namespace CeuxQuiRestent.Tools
             {
                 linkable.ChangeModel(newMeshRenderer);
             }
-            Material newMaterial = EditorGUILayout.ObjectField("Material", linkable.material, typeof(Material), true) as Material;
-            if (newMaterial != linkable.material)
-            {
+            Material newMaterial = EditorGUILayout.ObjectField("Material Normal", linkable.materialNormal, typeof(Material), true) as Material;
+            if (newMaterial != linkable.materialNormal)
                 linkable.ChangeMaterial(newMaterial);
-            }
+
+            linkable.materialHover = EditorGUILayout.ObjectField("Material Hover", linkable.materialHover, typeof(Material), true) as Material;
+
             linkable.appearDisappearAnimationTime = EditorGUILayout.FloatField("Animation time", linkable.appearDisappearAnimationTime);
 
             serializedObject.ApplyModifiedProperties(); 

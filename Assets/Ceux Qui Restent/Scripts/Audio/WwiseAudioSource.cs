@@ -43,6 +43,15 @@ namespace CeuxQuiRestent.Audio
                 return audioManager.PlayWwiseEvent(gameObject, wwiseEvent);
         }
 
+        public uint PlayRTPC(float closest, float farthest)
+        {
+            if (audioManager == null)
+                audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+            if (playAudioAsset)
+                return audioManager.PlayRTPCAudioAsset(gameObject, categoryID, audioAssetID, closest, farthest);
+            return 0;
+        }
+
         public void PlayDelegate()
         {
             Play();

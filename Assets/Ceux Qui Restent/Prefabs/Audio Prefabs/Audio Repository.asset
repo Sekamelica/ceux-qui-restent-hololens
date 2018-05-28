@@ -23,7 +23,7 @@ MonoBehaviour:
   - categoryName: Narrator/Help
     audioAssets:
     - uniqueID: 5B03D792-AE3356A
-      type: 0
+      type: 2
       wwiseEvent:
         valueGuid: 7fce9859ee8be04387a65ab8b1de3905
         ID: 1450671466
@@ -32,7 +32,7 @@ MonoBehaviour:
       editorDisplay: 1
       editorNotes: DontMove
     - uniqueID: 5B03D7A9-42B9AC2
-      type: 0
+      type: 2
       wwiseEvent:
         valueGuid: 6369461929c2974788da524d4a451a91
         ID: 2138475376
@@ -41,7 +41,7 @@ MonoBehaviour:
       editorDisplay: 1
       editorNotes: DontClick
     - uniqueID: 5B03D7B3-549876F
-      type: 0
+      type: 2
       wwiseEvent:
         valueGuid: 94ca56e9878e354ea8eac61646eb865d
         ID: -760316208
@@ -51,7 +51,7 @@ MonoBehaviour:
       editorDisplay: 1
       editorNotes: ClickTooFar
     - uniqueID: 5B03DCE1-4EF4254
-      type: 0
+      type: 2
       wwiseEvent:
         valueGuid: 5fd03221d25a674f81780b2352f28c14
         ID: 1195339271
@@ -60,7 +60,7 @@ MonoBehaviour:
       editorDisplay: 1
       editorNotes: LinkBroke
     - uniqueID: 5B04BE09-F57EB6E
-      type: 0
+      type: 2
       wwiseEvent:
         valueGuid: 33a2d9d3c3c4f4409b8f503f508b03e7
         ID: -905587550
@@ -70,7 +70,7 @@ MonoBehaviour:
       editorDisplay: 1
       editorNotes: 
     - uniqueID: 5B04BEA0-1101BA14
-      type: 0
+      type: 2
       wwiseEvent:
         valueGuid: fbcdc34d7c09e941ac4f86555e0d708c
         ID: 783952308
@@ -98,10 +98,10 @@ MonoBehaviour:
     - uniqueID: 5B0122A2-409633A
       type: 0
       wwiseEvent:
-        valueGuid: a4fa82c96a66594d8d3d197a620300a9
+        valueGuid: 86afb8010d3bdb42b8ce6c92d9815820
         ID: 781812845
-      subtitle: "Pour commencer, d\xE9placez vous dans l'environnement afin\nque le
-        dispositif scanne l'environnement.\n"
+      subtitle: "Pour commencer, d\xE9placez vous dans l'environnement afin qu'il
+        soit scann\xE9 par le dispotifi.\n"
       subtitleDuration: 9
       editorDisplay: 1
       editorNotes: 
@@ -215,7 +215,7 @@ MonoBehaviour:
       subtitle: 
       subtitleDuration: 0
       editorDisplay: 1
-      editorNotes: 
+      editorNotes: L1_S1
     - uniqueID: 5B075F92-F0DDF9A
       type: 1
       wwiseEvent:
@@ -224,7 +224,7 @@ MonoBehaviour:
       subtitle: 
       subtitleDuration: 0
       editorDisplay: 1
-      editorNotes: 
+      editorNotes: L1_S2
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Winter

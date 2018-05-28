@@ -3,6 +3,7 @@
     public enum AudioType
     {
         Voiceline_Narrator,
-        MemoryVoice
+        MemoryVoice,
+        Voiceline_Help
     }
 }

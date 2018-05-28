@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f7b9f6aff3a564d962f9f171881bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionsToDo: {fileID: 0}
+  actionsToDo: {fileID: 114937095962641528}
   limitedToOneTime: 1
 --- !u!114 &114432420368460884
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f7b9f6aff3a564d962f9f171881bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionsToDo: {fileID: 0}
+  actionsToDo: {fileID: 114872006821858896}
   limitedToOneTime: 1
 --- !u!114 &114467551087097620
 MonoBehaviour:
@@ -165,6 +165,7 @@ MonoBehaviour:
     ID: 0
   categoryID: 0
   audioAssetID: 
+  autoRename: 1
 --- !u!114 &114760457379643276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,6 +184,7 @@ MonoBehaviour:
     ID: 0
   categoryID: 0
   audioAssetID: 
+  autoRename: 1
 --- !u!114 &114872006821858896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +235,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 3
-  m_Height: 6
+  m_Height: 8
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136771607093253568

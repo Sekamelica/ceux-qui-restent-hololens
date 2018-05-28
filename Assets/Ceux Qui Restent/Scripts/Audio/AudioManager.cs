@@ -4,17 +4,23 @@ using UnityEngine;
 
 namespace CeuxQuiRestent.Audio
 {
-    public class PlayingRTCP
+    public class PlayingRTPC
     {
         public int wwiseEventID;
         public uint postedEventID;
+        public string rtpcName;
         public GameObject sender;
+        public float closest;
+        public float farthest;
 
-        public PlayingRTCP(int _wwiseEventID, uint _postedEventID, GameObject _sender)
+        public PlayingRTPC(int _wwiseEventID, uint _postedEventID, string _rtpcName, GameObject _sender, float _closest, float _farthest)
         {
             wwiseEventID = _wwiseEventID;
             postedEventID = _postedEventID;
+            rtpcName = _rtpcName;
             sender = _sender;
+            closest = _closest;
+            farthest = _farthest;
         }
     }
 
@@ -27,7 +33,7 @@ namespace CeuxQuiRestent.Audio
         private float textDuration;
         private GameObject lastStoredVoiceline_object;
         private GameObject player;
-        private List<PlayingRTCP> playingRTCPs = new List<PlayingRTCP>();
+        private List<PlayingRTPC> playingRTCPs = new List<PlayingRTPC>();
         #endregion
 
         #region MonoBehaviour Methods
@@ -48,7 +54,7 @@ namespace CeuxQuiRestent.Audio
             for (int pr = 0; pr < playingRTCPs.Count; pr++)
             {
                 float distance = Vector3.Distance(player.transform.position, playingRTCPs[pr].sender.transform.position);
-                AkSoundEngine.SetRTPCValue((uint)playingRTCPs[pr].wwiseEventID, DistanceToRTPCValue(distance));
+                AkSoundEngine.SetRTPCValue(playingRTCPs[pr].rtpcName, DistanceToRTPCValue(distance, playingRTCPs[pr].closest, playingRTCPs[pr].farthest));
             }
         }
         #endregion
@@ -74,12 +80,22 @@ namespace CeuxQuiRestent.Audio
                                 AkSoundEngine.StopAll(lastStoredVoiceline_object);
                             lastStoredVoiceline_object = sender;
                             return audioAsset.wwiseEvent.Post(sender);
+                        case AudioType.Voiceline_Help:
+                            if (lastStoredVoiceline_object != null || textDuration > -2f)
+                                return 0;
+                            else
+                            {
+                                if (audioAsset.subtitle != "" && audioAsset.subtitleDuration > 0)
+                                {
+                                    subtitleDisplayer.text = audioAsset.subtitle;
+                                    textDuration = audioAsset.subtitleDuration;
+                                }
+                                lastStoredVoiceline_object = sender;
+                                return audioAsset.wwiseEvent.Post(sender);
+                            }
                         case AudioType.MemoryVoice:
-                            float distance = Vector3.Distance(player.transform.position, sender.transform.position);
-                            uint postedEventID = audioAsset.wwiseEvent.Post(sender);
-                            playingRTCPs.Add(new PlayingRTCP(audioAsset.wwiseEvent.ID, postedEventID, sender));
-                            AkSoundEngine.SetRTPCValue((uint)audioAsset.wwiseEvent.ID, DistanceToRTPCValue(distance));
-                            return postedEventID;
+                            Debug.LogWarning("Use PlayRTPCAudioAsset() instead for play Memory Voices.");
+                            break;
                         default:
                             break;
                     }
@@ -87,6 +103,16 @@ namespace CeuxQuiRestent.Audio
             }
 
             return 0;
+        }
+
+        public uint PlayRTPCAudioAsset(GameObject sender, int _categoryID, string _audioAssetID, float closest, float farthest)
+        {
+            AudioAsset audioAsset = audioRepository.FindAudioAsset(_categoryID, _audioAssetID);
+            float distance = Vector3.Distance(player.transform.position, sender.transform.position);
+            uint postedEventID = audioAsset.wwiseEvent.Post(sender);
+            playingRTCPs.Add(new PlayingRTPC(audioAsset.wwiseEvent.ID, postedEventID, audioAsset.editorNotes, sender, closest, farthest));
+            AkSoundEngine.SetRTPCValue(audioAsset.editorNotes, DistanceToRTPCValue(distance, closest, farthest));
+            return postedEventID;
         }
 
         public void StopEventID(uint _postedEventID)
@@ -101,13 +127,10 @@ namespace CeuxQuiRestent.Audio
             }
         }
 
-        public float DistanceToRTPCValue(float _distance)
+        public float DistanceToRTPCValue(float _distance, float closest, float farthest)
         {
-            float near = 1.0f;
-            float far = 4.0f;
-            float rtpcValue = Remap(_distance, near, far, 100.0f, 0.0f);
+            float rtpcValue = Remap(_distance, closest, farthest, 100.0f, 0.0f);
             rtpcValue = Mathf.Clamp(rtpcValue, 0.0f, 100.0f);
-            Debug.Log("Distance: " + _distance + " | RTCP: " + rtpcValue);
             return rtpcValue;
         }
 
