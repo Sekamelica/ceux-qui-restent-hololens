@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyLevels:
   - 5.5
-  - 7
+  - 6
   - 10
   - 12
   - 4
