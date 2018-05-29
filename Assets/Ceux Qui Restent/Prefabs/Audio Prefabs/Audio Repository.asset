@@ -15,7 +15,7 @@ MonoBehaviour:
   - categoryName: Generic/UI
     audioAssets: []
     editorDisplayEvents: 0
-    editorDisplayAssets: 1
+    editorDisplayAssets: 0
   - categoryName: Generic/Gameplay
     audioAssets: []
     editorDisplayEvents: 1
@@ -225,28 +225,215 @@ MonoBehaviour:
       subtitleDuration: 0
       editorDisplay: 1
       editorNotes: L1_S2
+    - uniqueID: 5B0D03DB-22774A6A
+      type: 1
+      wwiseEvent:
+        valueGuid: bb6dae18c07c14499639f864b33885a9
+        ID: 1147430746
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L1_S3
+    - uniqueID: 5B0D040A-395BEEAA
+      type: 1
+      wwiseEvent:
+        valueGuid: e1c9071fa9b10a419a500eb46f07855e
+        ID: 1703812330
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L1_S3bis
+    - uniqueID: 5B0D040A-AEA58C1
+      type: 1
+      wwiseEvent:
+        valueGuid: 6b263e63b1764d44b2a2cf1ab2d8cae8
+        ID: 429551069
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L1_S4
+    - uniqueID: 5B0D043F-1C1BF3B0
+      type: 1
+      wwiseEvent:
+        valueGuid: b5429375104aa840b58bf2199ec56485
+        ID: 1922056350
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L1_S4bis
+    - uniqueID: 5B0D044F-2FF65719
+      type: 1
+      wwiseEvent:
+        valueGuid: 92a5dd475125df46b5602a5d291b6e04
+        ID: 2038306843
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L1_S5
+    - uniqueID: 5B0D0458-138B2668
+      type: 1
+      wwiseEvent:
+        valueGuid: e3194758abc6884f99d9e06373f820ec
+        ID: -270164033
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L1_S5bis
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Winter
     audioAssets:
     - uniqueID: 5B052236-272F1556
-      type: 0
+      type: 1
       wwiseEvent:
-        valueGuid: 6369461929c2974788da524d4a451a91
-        ID: 2138475376
-      subtitle: 'hgchgchgvhgvghvhgvgj
-
-        hjbhjvjhvhjvhjvjhv'
-      subtitleDuration: 8.8
+        valueGuid: 2c3c98204e934540856c2b4884c381d6
+        ID: -714023552
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L2_S1
+    - uniqueID: 5B0D04A7-27AFBA1A
+      type: 1
+      wwiseEvent:
+        valueGuid: 0f7bb74c2464aa49b7587c23369d4d11
+        ID: 2118163114
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L2_S1bis
+    - uniqueID: 5B0D04D3-2F5582EC
+      type: 1
+      wwiseEvent:
+        valueGuid: 2743d4bde344d84b9b5653473dfe2370
+        ID: -1316539653
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L2_S2
+    - uniqueID: 5B0D04E5-D4E90FC
+      type: 1
+      wwiseEvent:
+        valueGuid: f5646e962808344e9dbbd994ce8c513e
+        ID: 53289072
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L2_S4
+    - uniqueID: 5B0D04F7-328703AC
+      type: 1
+      wwiseEvent:
+        valueGuid: cdbbd5d0e576b244b1c41083c73127f8
+        ID: -2019760521
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L2_S4bis
+    - uniqueID: 5B0D0505-8372FF1
+      type: 1
+      wwiseEvent:
+        valueGuid: 88bc7b9f431647448f3ae0bd312c3c5c
+        ID: 1296166473
+      subtitle: 
+      subtitleDuration: 1
       editorDisplay: 1
-      editorNotes: gvhgvhgvhgvhgvhg
+      editorNotes: L2_S5
+    - uniqueID: 5B0D0516-1EC1D511
+      type: 1
+      wwiseEvent:
+        valueGuid: 09a5a3fd0d5b224eb7c8e51b360458d6
+        ID: -268359053
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L2_S5bis
+    - uniqueID: 5B0D0516-37E89500
+      type: 1
+      wwiseEvent:
+        valueGuid: a980a364ca3c7c43b72282775f4aecf5
+        ID: -2036116619
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L2_S6
+    - uniqueID: 5B0D052F-32CAC8A0
+      type: 1
+      wwiseEvent:
+        valueGuid: b135e5bddb468c45a9045cd1ad5d976a
+        ID: -1259210632
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L2_S7
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Spring
-    audioAssets: []
+    audioAssets:
+    - uniqueID: 5B0D05C7-331EB12
+      type: 1
+      wwiseEvent:
+        valueGuid: 803432cac56b614aadd6616c047cf5bb
+        ID: 161012643
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S
+    - uniqueID: 5B0D05C8-2D04D7D5
+      type: 1
+      wwiseEvent:
+        valueGuid: f849a0d0e2f9b442854dc964c8a61f54
+        ID: 488213145
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S1
+    - uniqueID: 5B0D05C8-1437091F
+      type: 1
+      wwiseEvent:
+        valueGuid: 79a26cb2a2a25f40bbe1936bf692978a
+        ID: -1374836446
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S1bis
+    - uniqueID: 5B0D06F8-A409DC0
+      type: 1
+      wwiseEvent:
+        valueGuid: 45f4fd99d75f5d4b8baa3c4f9f8a6a90
+        ID: -1582653779
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S6
+    - uniqueID: 5B0D0705-3907C55
+      type: 1
+      wwiseEvent:
+        valueGuid: ea0bc49a6533a647871c342e7351215c
+        ID: 1468715670
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S6bis
+    - uniqueID: 5B0D0711-DAD5C51
+      type: 1
+      wwiseEvent:
+        valueGuid: ebb39c5acec4cb4ebb524f3e8d0b28b6
+        ID: -3635062
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S8
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Summer
-    audioAssets: []
+    audioAssets:
+    - uniqueID: 5B0D0722-2B86EC4E
+      type: 1
+      wwiseEvent:
+        valueGuid: dad5395b3ef5ba4c9cc3388ced8363c4
+        ID: 1297441866
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 1
+      editorNotes: L4_S1
     editorDisplayEvents: 1
     editorDisplayAssets: 1

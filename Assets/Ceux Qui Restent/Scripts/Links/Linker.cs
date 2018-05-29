@@ -18,6 +18,8 @@ namespace CeuxQuiRestent.Links
         [Tooltip("Position at where the next link point will be instantiate.")]
         public Transform target;
 
+        private bool gaugeActive = false;
+
         [Header("Particle Effects")]
         public GameObject effectStartLink;
         public GameObject effectEndLink;
@@ -31,7 +33,8 @@ namespace CeuxQuiRestent.Links
         public AK.Wwise.Event soundClickWrongLinkable;
         public AK.Wwise.Event soundClickAlreadyLinkedLinkable;
         [Space]
-        public AK.Wwise.Event soundLinkContinuous;
+        public AK.Wwise.Event soundLinkStart;
+        public AK.Wwise.Event soundLinkEnd;
         public AK.Wwise.Event soundLinkCorrectEnd;
         public AK.Wwise.Event soundMemoryCompleted;
         public AK.Wwise.Event soundEnergyIncrease;
@@ -414,38 +417,32 @@ namespace CeuxQuiRestent.Links
         {
             helper.SetIsLinking(false);
             isLinking = false;
+
             Vector3 lastLinkPoint = linkPoints[linkPoints.Count - 1];
+            linkPoints.Add(lastLinkPoint);
+            UpdateLink();
+            
+            // GameObjects of links created
+            List<GameObject> linksGO = new List<GameObject>();
+            foreach (LinkCurve linkCurve in linkCurves)
+                linksGO.Add(linkCurve.gameObject);
 
-            if (IncreaseLinkLength(Vector3.Distance(lastLinkPoint, linkablePos), linkablePos))
+            // Collider defined by the lines of the link created
+            List<Vector2> linkCollider = new List<Vector2>();
+            for (int p = 0; p < linkPoints.Count; p += linkCurveLength)
             {
-                // GameObjects of links created
-                List<GameObject> linksGO = new List<GameObject>();
-                foreach (LinkCurve linkCurve in linkCurves)
-                    linksGO.Add(linkCurve.gameObject);
-
-                // Collider defined by the lines of the link created
-                List<Vector2> linkCollider = new List<Vector2>();
-                for (int p = 0; p < linkPoints.Count; p += linkCurveLength)
-                {
-                    linkCollider.Add(new Vector2(linkPoints[p].x, linkPoints[p].z));
-                    if (p + linkCurveLength >= linkPoints.Count)
-                        linkCollider.Add(new Vector2(linkPoints[linkPoints.Count - 1].x, linkPoints[linkPoints.Count - 1].z));
-                }
-
-                // Remember them
-                allLinks[roomManager.GetCurrentRoomID()].Add(new Link(roomManager.GetCurrentRoomID(), linksGO, linkCollider));
-                for (int l = 0; l < previousLinks.Count; l++)
-                    allLinks[previousLinks[l].roomID].Add(previousLinks[l]);
-
-                ClearVariables();
-                return true;
+                linkCollider.Add(new Vector2(linkPoints[p].x, linkPoints[p].z));
+                if (p + linkCurveLength >= linkPoints.Count)
+                    linkCollider.Add(new Vector2(linkPoints[linkPoints.Count - 1].x, linkPoints[linkPoints.Count - 1].z));
             }
-            else
-            {
-                // The link has broke
-                ClearVariables();
-                return false;
-            }
+
+            // Remember them
+            allLinks[roomManager.GetCurrentRoomID()].Add(new Link(roomManager.GetCurrentRoomID(), linksGO, linkCollider));
+            for (int l = 0; l < previousLinks.Count; l++)
+                allLinks[previousLinks[l].roomID].Add(previousLinks[l]);
+
+            ClearVariables();
+            return true;
         }
 
         /// <summary>
@@ -490,27 +487,27 @@ namespace CeuxQuiRestent.Links
             {
                 if (destination == clicked) // End the link on the good Linkable.
                 {
-                    if (StopLinking(linkable.linkStartPosition))
-                    {
-                        PlaySound(soundClick);
-                        PlaySound(soundLinkCorrectEnd);
-                        PlaySound(soundMemoryCompleted);
+                    StopLinking(linkable.linkStartPosition);
+                    PlaySound(soundLinkEnd);
+                    PlaySound(soundClick);
+                    PlaySound(soundLinkCorrectEnd);
+                    PlaySound(soundMemoryCompleted);
+                    if (gaugeActive)
                         PlaySound(soundEnergyIncrease);
 
-                        helper.ClickLinkable_Valid();
+                    helper.ClickLinkable_Valid();
 
-                        // Effect
-                        if (effectStartLink != null)
-                            GameObject.Instantiate(effectStartLink, linkable.linkStartPosition, Quaternion.Euler(-90, 0, 0), null);
+                    // Effect
+                    if (effectStartLink != null)
+                        GameObject.Instantiate(effectStartLink, linkable.linkStartPosition, Quaternion.Euler(-90, 0, 0), null);
 
-                        // Energy (Increase max energy and refill energy)
-                        energy.IncreaseEnergyLevel();
-                        energy.Fill();
+                    // Energy (Increase max energy and refill energy)
+                    energy.IncreaseEnergyLevel();
+                    energy.Fill();
 
-                        // Link the Linkables
-                        clicked.GetComponent<Linkable>().Linked();
-                        clickedPair.GetComponent<Linkable>().Linked();
-                    }
+                    // Link the Linkables
+                    clicked.GetComponent<Linkable>().Linked();
+                    clickedPair.GetComponent<Linkable>().Linked();
                 }
                 else // Try to end the link on a wrong Linkable.
                 {
@@ -528,12 +525,12 @@ namespace CeuxQuiRestent.Links
                 else if (clicked.GetComponent<Linkable>().pair != null) // Add the link on this linkable.
                 {
                     PlaySound(soundClick);
-                    PlaySound(soundLinkContinuous);
+                    PlaySound(soundLinkStart);
                     helper.ClickLinkable_Valid();
 
                     // Effect
                     if (effectEndLink != null)
-                        GameObject.Instantiate(effectEndLink, linkable.linkStartPosition, Quaternion.Euler(-90, 0, 0), null);
+                        GameObject.Instantiate(effectEndLink, linkable.linkStartPosition, Quaternion.identity, null);
 
                     // Register the Linkable origin and the Linkable that should be the destination and start the link.
                     destination = clickedPair;
@@ -558,6 +555,16 @@ namespace CeuxQuiRestent.Links
         public bool HasTakePortal()
         {
             return hasTakePortal;
+        }
+
+        public void ActiveGauge()
+        {
+            gaugeActive = true;
+        }
+
+        public void DeactiveGauge()
+        {
+            gaugeActive = false;
         }
         #endregion
     }

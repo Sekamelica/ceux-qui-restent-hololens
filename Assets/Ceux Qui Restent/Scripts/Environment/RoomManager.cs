@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using HoloToolkit.Unity.SpatialMapping;
 
 namespace CeuxQuiRestent
 {
@@ -14,6 +15,7 @@ namespace CeuxQuiRestent
         private int currentRoomID = 0;
         [System.NonSerialized]
         public Room currentRoom;
+        [SerializeField]
         private List<GameObject> levelDesignMeshes = new List<GameObject>();
         #endregion
 
@@ -91,20 +93,39 @@ namespace CeuxQuiRestent
             return currentRoomID;
         }
 
+#if UNITY_EDITOR
         public void SetLevelDesignMode()
         {
+            for (int ldm = levelDesignMeshes.Count - 1; ldm >= 0; ldm--)
+            {
+                if (Application.isPlaying)
+                    Destroy(levelDesignMeshes[ldm]);
+                else
+                    DestroyImmediate(levelDesignMeshes[ldm]);
+            }
+            levelDesignMeshes.Clear();
             levelDesignMeshes = new List<GameObject>();
-            levelDesignMeshes.Add(GameObject.Instantiate(levelDesignMeshPrefab));
-            levelDesignMeshes.Add(GameObject.Instantiate(levelDesignMeshPrefab));
-            levelDesignMeshes.Add(GameObject.Instantiate(levelDesignMeshPrefab));
+            for (int r = 0; r < rooms.Length + 1; r++)
+                levelDesignMeshes.Add(GameObject.Instantiate(levelDesignMeshPrefab));
             for (int ldm = 0; ldm < levelDesignMeshes.Count; ldm++)
             {
                 levelDesignMeshes[ldm].transform.parent = roomHolder;
                 levelDesignMeshes[ldm].transform.SetPositionAndRotation(roomHolder.position - (Vector3.up * 500) + (ldm * (Vector3.up * 500)), roomHolder.rotation);
             }
-            GameObject spatialMappingManager = GameObject.FindGameObjectWithTag("SpatialMappingManager");
+            SpatialMappingManager[] spatialMappingManagers = Resources.FindObjectsOfTypeAll<SpatialMappingManager>();
+            GameObject spatialMappingManager = null;
+            if (spatialMappingManagers.Length > 0)
+                spatialMappingManager = spatialMappingManagers[0].gameObject;
             if (spatialMappingManager != null)
                 spatialMappingManager.SetActive(false);
+        }
+
+        public GameObject GetLevelDesignMesh()
+        {
+            if (levelDesignMeshes.Count > 0)
+                return levelDesignMeshes[0];
+            else
+                return null;
         }
 
         public void SetBuildMode()
@@ -117,11 +138,15 @@ namespace CeuxQuiRestent
                     DestroyImmediate(levelDesignMeshes[ldm]);
             }
             levelDesignMeshes.Clear();
-            GameObject spatialMappingManager = GameObject.FindGameObjectWithTag("SpatialMappingManager");
+            SpatialMappingManager[] spatialMappingManagers = Resources.FindObjectsOfTypeAll<SpatialMappingManager>();
+            GameObject spatialMappingManager = null;
+            if (spatialMappingManagers.Length > 0)
+                spatialMappingManager = spatialMappingManagers[0].gameObject;
             if (spatialMappingManager != null)
                 spatialMappingManager.SetActive(true);
         }
-        #endregion
+#endif
+    #endregion
     }
 
 }

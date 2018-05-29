@@ -55,8 +55,14 @@ namespace CeuxQuiRestent.Tools
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Reset offset"))
                 linkable.linkStartOffset = Vector3.zero;
-            if (GUILayout.Button(""))
-                linkable.linkStartOffset = Vector3.zero;
+            if (GUILayout.Button("Set offset on Capsule center"))
+            {
+                CapsuleCollider capsCollider = linkable.gameObject.GetComponent<CapsuleCollider>();
+                if (capsCollider != null)
+                    linkable.linkStartOffset = capsCollider.center;
+                else
+                    Debug.Log("[Linkable Editor] - Capsule Collider not found !");
+            }
             EditorGUILayout.EndHorizontal();            
 
             // Set Actions

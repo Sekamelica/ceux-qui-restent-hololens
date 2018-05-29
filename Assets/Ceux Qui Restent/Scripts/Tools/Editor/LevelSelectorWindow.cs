@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using HoloToolkit.Unity.SpatialMapping;
 
 namespace CeuxQuiRestent.Tools
 {
@@ -31,10 +32,52 @@ namespace CeuxQuiRestent.Tools
             {
                 EditorGUILayout.LabelField("Mode:");
                 EditorGUILayout.BeginHorizontal();
+                GUI.backgroundColor = new Color(0.6f, 0.7f, 0.92f);
                 if (GUILayout.Button("Level Design Mode"))
+                {
+                    Camera[] cameras = FindObjectsOfType(typeof(Camera)) as Camera[];
+                    foreach (Camera cam in cameras)
+                        cam.fieldOfView = 70;
                     roomManager.SetLevelDesignMode();
+                }
+                GUI.backgroundColor = new Color(0.5f, 0.92f, 0.92f);
                 if (GUILayout.Button("Build Mode"))
+                {
+                    Camera[] cameras = FindObjectsOfType(typeof(Camera)) as Camera[];
+                    foreach (Camera cam in cameras)
+                        cam.fieldOfView = 16;
                     roomManager.SetBuildMode();
+                    SpatialMappingManager[] spatialMappingManagers = Resources.FindObjectsOfTypeAll<SpatialMappingManager>();
+                    GameObject spatialMappingManager = null;
+                    if (spatialMappingManagers.Length > 0)
+                        spatialMappingManager = spatialMappingManagers[0].gameObject;
+                    if (spatialMappingManager != null)
+                    {
+                        spatialMappingManager.SetActive(true);
+                        if (spatialMappingManager.GetComponent<ObjectSurfaceObserver>() != null)
+                        {
+                            if (Application.isPlaying)
+                                Destroy(spatialMappingManager.GetComponent<ObjectSurfaceObserver>());
+                            else
+                                DestroyImmediate(spatialMappingManager.GetComponent<ObjectSurfaceObserver>());
+
+                        }
+                    }
+                }
+                GUI.backgroundColor = new Color(0.92f, 0.9f, 0.55f);
+                if (GUILayout.Button(new GUIContent("Enable Object Observer", "Used in editor to create a obfuscation mesh of the room. This mesh is also used for the scanning effect."), GUILayout.MaxWidth(150)))
+                {
+                    SpatialMappingManager[] spatialMappingManagers = Resources.FindObjectsOfTypeAll<SpatialMappingManager>();
+                    GameObject spatialMappingManager = null;
+                    if (spatialMappingManagers.Length > 0)
+                        spatialMappingManager = spatialMappingManagers[0].gameObject;
+                    if (spatialMappingManager != null)
+                    {
+                        spatialMappingManager.SetActive(true);
+                        ObjectSurfaceObserver objectSurfaceObserver = (spatialMappingManager.GetComponent<ObjectSurfaceObserver>() != null) ? spatialMappingManager.GetComponent<ObjectSurfaceObserver>() : spatialMappingManager.AddComponent<ObjectSurfaceObserver>();
+                        objectSurfaceObserver.RoomModel = roomManager.GetLevelDesignMesh();
+                    }
+                }
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.Space();
