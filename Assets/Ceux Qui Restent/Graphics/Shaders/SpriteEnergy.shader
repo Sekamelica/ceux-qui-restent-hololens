@@ -13,14 +13,18 @@ Shader "Sprites/SpriteEnergy"
 		_VerticalSpeed("Vertical Speed", Float) = 1.0
 		_VerticalMultiplicator("Vertical Multiplicator", Float) = 1.0
 		_VerticalPeriod("Vertical Period", Float) = 1.0
+		_AlphaAnimationPeriod("Alpha Animation Period", Float) = 1.0
+		_AlphaAnimationSpeed("Alpha Animation Speed", Float) = 1.0
 		_AnimTex2("Animation Texture", 2D) = "white" {}
 		_AnimColor2("Animation Color", Color) = (0.2, 0.2, 1, 1)
 		_HorizontalSpeed2("Horizontal Speed", Float) = 1.0
 		_VerticalSpeed2("Vertical Speed", Float) = 1.0
 		_VerticalMultiplicator2("Vertical Multiplicator", Float) = 1.0
 		_VerticalPeriod2("Vertical Period", Float) = 1.0
-			_OffsetX("Offset X", Float) = 1.0
-			_OffsetY("Offset Y", Float) = 1.0
+		_AlphaAnimationPeriod2("Alpha Animation Period", Float) = 1.0
+		_AlphaAnimationSpeed2("Alpha Animation Speed", Float) = 1.0
+		_OffsetX("Offset X", Float) = 1.0
+		_OffsetY("Offset Y", Float) = 1.0
 	}
 
 		SubShader
@@ -72,6 +76,8 @@ Shader "Sprites/SpriteEnergy"
 	float _VerticalSpeed;
 	float _VerticalMultiplicator;
 	float _VerticalPeriod;
+	float _AlphaAnimationPeriod;
+	float _AlphaAnimationSpeed;
 
 	// Anim layer 2
 	fixed4 _AnimColor2;
@@ -81,6 +87,8 @@ Shader "Sprites/SpriteEnergy"
 	float _VerticalSpeed2;
 	float _VerticalMultiplicator2;
 	float _VerticalPeriod2;
+	float _AlphaAnimationPeriod2;
+	float _AlphaAnimationSpeed2;
 	float _OffsetX;
 	float _OffsetY;
 
@@ -89,7 +97,6 @@ Shader "Sprites/SpriteEnergy"
 		v2f OUT;
 		OUT.vertex = UnityObjectToClipPos(IN.vertex);
 		OUT.texcoord = IN.texcoord;
-
 
 		OUT.color = IN.color * _Color;
 #ifdef PIXELSNAP_ON
@@ -101,24 +108,53 @@ Shader "Sprites/SpriteEnergy"
 
 	sampler2D _MainTex;
 
+	fixed4 blendColorMask(fixed4 color1, fixed4 color2, fixed4 texColor)
+	{
+		fixed4 color;
+		float blendValue = 1 - (texColor.r * color2.a);
+		color.rgb = (blendValue * color1.rgb + (texColor.r * color2.a * color2.rgb)) * color1.a;
+		color.a = color1.a;
+		return color;
+	}
+
+	fixed4 blendColor(fixed4 color1, fixed4 color2, fixed4 texColor)
+	{
+		fixed4 color;
+		if (color1.a > 0)
+		{
+			float blendValue = 1 - (texColor.r * color2.a);
+			color.rgb = (blendValue * color1.rgb + (texColor.r * color2.a * color2.rgb)) * color1.a;
+			color.a = color1.a;
+		}
+		else
+		{
+			color.rgb = (texColor.r * color2.a * color2.rgb);
+			color.a = (texColor.r * color2.a);
+		}
+		return color;
+	}
+
 	fixed4 frag(v2f IN) : SV_Target
 	{
 		// Color Background
-		fixed4 cBg = tex2D(_MainTex, IN.texcoord) * IN.color;
+		half2 baseTexcoord = IN.texcoord;
+		fixed4 cBg = tex2D(_MainTex, baseTexcoord) * IN.color;
 		
 		// Anim 1
 		animTexcoord = IN.texcoord;
+		//animTexcoord.y = animTexcoord.y * 2 + 0.5;
 		animTexcoord.x += _Time.y * _HorizontalSpeed;
 		animTexcoord.y += _VerticalMultiplicator * sin((_VerticalSpeed * _Time.y) + (_VerticalPeriod * animTexcoord.x));
 
 		// Color Anim 1
 		fixed4 cAnim1 = tex2D(_AnimTex, animTexcoord);
+		cAnim1.r *= saturate(1 + sin(_AlphaAnimationPeriod * animTexcoord + _Time.y * _AlphaAnimationSpeed));
 
 		// Blend anim 1
-		fixed4 c;
-		float blend = 1 - (cAnim1.r * _AnimColor.a);
-		c.rgb = (blend * cBg.rgb + (cAnim1.r * _AnimColor.a * _AnimColor.rgb)) * cBg.a;
-		c.a = cBg.a;
+		fixed4 c = blendColorMask(cBg, _AnimColor, cAnim1);
+		//float blend = 1 - (cAnim1.r * _AnimColor.a);
+		//c.rgb = (blend * cBg.rgb + (cAnim1.r * _AnimColor.a * _AnimColor.rgb)) * cBg.a;
+		//c.a = cBg.a;
 
 		// Anim 2
 		animTexcoord2 = IN.texcoord;
@@ -127,11 +163,13 @@ Shader "Sprites/SpriteEnergy"
 
 		// Color Anim 2
 		fixed4 cAnim2 = tex2D(_AnimTex2, animTexcoord2);
+		cAnim2.r *= saturate(1 + sin(_AlphaAnimationPeriod2 * animTexcoord + _Time.y * _AlphaAnimationSpeed2));
 
 		// Blend anim 2
-		blend = 1 - (cAnim2.r * _AnimColor2.a);
-		c.rgb = (blend * c.rgb + (cAnim2.r * _AnimColor2.a * _AnimColor2.rgb)) * c.a;
-		c.a = c.a;
+		c = blendColorMask(c, _AnimColor2, cAnim2);
+		//blend = 1 - (cAnim2.r * _AnimColor2.a);
+		//c.rgb = (blend * c.rgb + (cAnim2.r * _AnimColor2.a * _AnimColor2.rgb)) * c.a;
+		//c.a = c.a;
 
 		return c;
 	}
