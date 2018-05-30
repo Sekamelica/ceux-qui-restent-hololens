@@ -39,11 +39,11 @@ Material:
     - _Shine2_B: 1
     - _Shine2_G: 1
     - _Shine2_R: 1
-    - _Shine_B: 1
+    - _Shine_B: 5.53
     - _Shine_G: 1
     - _Shine_R: 1
     - _Speed: 0.3
-    - _TimeOffset: 1
+    - _TimeOffset: 3.4
     - _Zoom: 1
     m_Colors:
     - _Color: {r: 0.21972317, g: 0.49058867, b: 0.9338235, a: 1}

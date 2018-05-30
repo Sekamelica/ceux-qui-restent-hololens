@@ -17,17 +17,18 @@ MonoBehaviour:
   - 10
   - 12
   - 4
-  - 5
-  - 6
+  - 4.5
+  - 6.5
   - 7
   - 7.5
   - 10
-  - 2
   - 3
+  - 3.5
   - 5
   - 6
   - 6.5
   - 12
   - 25
+  - 10
   startingEnergyLevelIndex: 0
-  value: 10.417429
+  value: 10
