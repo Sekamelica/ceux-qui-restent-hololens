@@ -129,6 +129,8 @@ namespace CeuxQuiRestent.Interactables
         public void Interact()
         {
             linkStartPosition = transform.position + linkStartOffset;
+            if (linker == null)
+                linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
             if (!alreadyLinked && pair != null)
                 linker.LinkableClick(this, gameObject, pair.gameObject);
         }
