@@ -1,14 +1,15 @@
 fileFormatVersion: 2
-guid: 176ad92c84f7b274a968f40e9b2fd7da
-timeCreated: 1527690026
+guid: f3c7e8beb3e07bc42bc2ad0979fd1184
+timeCreated: 1527690013
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Cursor_Anim2_0
-    21300002: Cursor_Anim2_1
-    21300004: Cursor_Anim2_2
-    21300006: Cursor_Anim2_3
-    21300008: Cursor_Anim2_4
+    21300000: Cursor_Anim3_0
+    21300002: Cursor_Anim3_1
+    21300004: Cursor_Anim3_2
+    21300006: Cursor_Anim3_3
+    21300008: Cursor_Anim3_4
+    21300010: Cursor_Anim3_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -88,13 +89,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cursor_Anim2_0
+      name: Cursor_Anim3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 120
-        height: 120
+        width: 132
+        height: 132
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,13 +103,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Cursor_Anim2_1
+      name: Cursor_Anim3_1
       rect:
         serializedVersion: 2
-        x: 120
+        x: 132
         y: 0
-        width: 120
-        height: 120
+        width: 132
+        height: 132
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -116,13 +117,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Cursor_Anim2_2
+      name: Cursor_Anim3_2
       rect:
         serializedVersion: 2
-        x: 240
+        x: 264
         y: 0
-        width: 120
-        height: 120
+        width: 132
+        height: 132
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,13 +131,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Cursor_Anim2_3
+      name: Cursor_Anim3_3
       rect:
         serializedVersion: 2
-        x: 360
+        x: 396
         y: 0
-        width: 120
-        height: 120
+        width: 132
+        height: 132
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,13 +145,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Cursor_Anim2_4
+      name: Cursor_Anim3_4
       rect:
         serializedVersion: 2
-        x: 480
+        x: 528
         y: 0
-        width: 120
-        height: 120
+        width: 132
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cursor_Anim3_5
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 132
+        height: 132
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -19,11 +19,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AnimTex:
-        m_Texture: {fileID: 2800000, guid: 545675435101f5144a1f4df8ecea86f8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5118119e0b6945145b5980ddcc5eaba3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AnimTex2:
-        m_Texture: {fileID: 2800000, guid: 545675435101f5144a1f4df8ecea86f8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5118119e0b6945145b5980ddcc5eaba3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -64,9 +64,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
-    - _AlphaAnimationPeriod: 0
+    - _AlphaAnimationPeriod: 5
     - _AlphaAnimationPeriod2: 3
-    - _AlphaAnimationSpeed: 0
+    - _AlphaAnimationSpeed: 1
     - _AlphaAnimationSpeed2: 1
     - _BlendAmount: 1
     - _BumpScale: 1
@@ -76,13 +76,13 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HorizontalSpeed: 0.02
+    - _HorizontalSpeed: 0.020000093
     - _HorizontalSpeed2: 0.05
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OffsetX: 0.5
-    - _OffsetY: -0.4
+    - _OffsetY: 0
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -92,7 +92,7 @@ Material:
     - _VerticalMultiplicator2: 0.2
     - _VerticalPeriod: 25
     - _VerticalPeriod2: 25
-    - _VerticalSpeed: 2
+    - _VerticalSpeed: 2.000012
     - _VerticalSpeed2: 2
     - _ZWrite: 1
     m_Colors:

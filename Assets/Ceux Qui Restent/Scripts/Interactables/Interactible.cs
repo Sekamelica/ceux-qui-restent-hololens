@@ -57,6 +57,9 @@ namespace CeuxQuiRestent.Interactables
         {
             if (interactSound != null)
                 GameObject.Instantiate(interactSound, transform.position, Quaternion.identity, null);
+            if (cursor == null)
+                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
+            cursor.CursorClickAnimation();
             onInteractEvent.Invoke();
         }
         #endregion

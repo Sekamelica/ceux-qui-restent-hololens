@@ -13,12 +13,27 @@ namespace CeuxQuiRestent.Links
         private Energy energy;
         private Image filler;
         private float startScaleX;
+        private float energyLastFrame = 0;
 
         [SerializeField]
         private float increaseTime = 3;
         private float currentIncreaseTime = 0;
         private bool increase = false;
         private float previousRatio;
+
+        [Space]
+        [SerializeField]
+        private float effect1_horizontalSpeedBase;
+        [SerializeField]
+        private float effect1_verticalSpeedBase;
+        [SerializeField]
+        private float effect1_horizontalSpeedMax;
+        [SerializeField]
+        private float effect1_verticalSpeedMax;
+        private bool increaseEffect = false;
+        [SerializeField]
+        private float increaseEffectTime = 2;
+        private float currentIncreaseEffectTime = 0;
         #endregion
 
         #region MonoBehaviour Methods
@@ -30,6 +45,31 @@ namespace CeuxQuiRestent.Links
 
         void Update()
         {
+            //filler.material.GetFloat("_HorizontalSpeed");
+            if (increaseEffect)
+            {
+                currentIncreaseEffectTime += Time.deltaTime;
+                filler.material.SetFloat("_HorizontalSpeed", Mathf.Lerp(filler.material.GetFloat("_HorizontalSpeed"), effect1_horizontalSpeedMax, 0.1f));
+                filler.material.SetFloat("_VerticalSpeed", Mathf.Lerp(filler.material.GetFloat("_VerticalSpeed"), effect1_verticalSpeedMax, 0.1f));
+                if (currentIncreaseEffectTime > increaseEffectTime)
+                {
+                    currentIncreaseTime = 0;
+                    increaseEffect = false;
+                }
+            }
+            else
+            {
+                filler.material.SetFloat("_HorizontalSpeed", Mathf.Lerp(filler.material.GetFloat("_HorizontalSpeed"), effect1_horizontalSpeedBase, 0.01f));
+                filler.material.SetFloat("_VerticalSpeed", Mathf.Lerp(filler.material.GetFloat("_VerticalSpeed"), effect1_verticalSpeedBase, 0.01f));
+            }
+            
+            if (energy.GetValue() < energyLastFrame)
+            {
+                increaseEffect = true;
+                currentIncreaseEffectTime = 0;
+            }
+
+
             float ratio = energy.GetEnergyLevel() / energy.GetStartingEnergyLevel();
 
             if (!increase)
@@ -60,6 +100,8 @@ namespace CeuxQuiRestent.Links
             filler.fillAmount = energy.GetValue() / energy.GetEnergyLevel();
             if (!increase)
                 previousRatio = ratio;
+
+            energyLastFrame = energy.GetValue();
         }
         #endregion
     }

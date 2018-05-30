@@ -478,6 +478,8 @@ namespace CeuxQuiRestent.Links
                 return; // Too far away to interact with
             }
 
+            cursor.CursorClickAnimation();
+
             if (isLinking)
             {
                 if (destination == clicked) // End the link on the good Linkable.

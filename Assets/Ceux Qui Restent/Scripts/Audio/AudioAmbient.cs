@@ -49,6 +49,38 @@ namespace CeuxQuiRestent.Audio
             Gizmos.DrawWireSphere(transform.position, farthestDistance);
         }
 #endif
+
+        #region Debug Methods
+        public void IncreaseClosestDistance()
+        {
+            closestDistance += 0.5f;
+        }
+
+        public void DecreaseClosestDistance()
+        {
+            closestDistance -= 0.5f;
+        }
+
+        public void IncreaseFarthestDistance()
+        {
+            farthestDistance += 0.5f;
+        }
+
+        public void DecreaseFarthestDistance()
+        {
+            farthestDistance -= 0.5f;
+        }
+
+        public float GetClosestDistance()
+        {
+            return closestDistance;
+        }
+
+        public float GetFarthestDistance()
+        {
+            return farthestDistance;
+        }
+        #endregion
     }
 
 }

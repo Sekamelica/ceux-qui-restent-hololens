@@ -422,6 +422,42 @@ MonoBehaviour:
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S8
+    - uniqueID: 5B0E637C-3378301E
+      type: 1
+      wwiseEvent:
+        valueGuid: 3ae48cf84618984dbafc9efc4374a738
+        ID: 699418120
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S4
+    - uniqueID: 5B0E6390-2A29C0C
+      type: 1
+      wwiseEvent:
+        valueGuid: c5b9d01070623e46aa2bba612849628b
+        ID: 2063429532
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S4bis
+    - uniqueID: 5B0E63C9-E212DA8
+      type: 1
+      wwiseEvent:
+        valueGuid: 29ba5b6f12e1a345b40390c798030687
+        ID: -1791739273
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S2
+    - uniqueID: 5B0E63E2-19AF8E1B
+      type: 1
+      wwiseEvent:
+        valueGuid: 754b63b38305f4449c49de27d1bfc85a
+        ID: -257525414
+      subtitle: 
+      subtitleDuration: 1
+      editorDisplay: 0
+      editorNotes: L3_S2bis
     editorDisplayEvents: 1
     editorDisplayAssets: 1
   - categoryName: Summer

@@ -77,6 +77,11 @@ namespace CeuxQuiRestent.UI
         #endregion
 
         #region Methods
+        public void CursorClickAnimation()
+        {
+            animator.SetTrigger("Click");
+        }
+
         public void FocusObject(Transform _focusedObject, bool _interactableFromAnyDistance)
         {
             interactableFromAnyDistance = _interactableFromAnyDistance;

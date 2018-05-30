@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 176ad92c84f7b274a968f40e9b2fd7da
-timeCreated: 1527690026
+guid: d48f4fc2573a9074f81934a712e017a2
+timeCreated: 1527689982
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Cursor_Anim2_0
-    21300002: Cursor_Anim2_1
-    21300004: Cursor_Anim2_2
-    21300006: Cursor_Anim2_3
-    21300008: Cursor_Anim2_4
+  fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -44,7 +39,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -86,77 +81,7 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Cursor_Anim2_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cursor_Anim2_1
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cursor_Anim2_2
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cursor_Anim2_3
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 0
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cursor_Anim2_4
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 

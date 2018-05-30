@@ -151,7 +151,7 @@ Shader "Sprites/SpriteEnergy"
 		cAnim1.r *= saturate(1 + sin(_AlphaAnimationPeriod * animTexcoord + _Time.y * _AlphaAnimationSpeed));
 
 		// Blend anim 1
-		fixed4 c = blendColorMask(cBg, _AnimColor, cAnim1);
+		fixed4 c = blendColorMask		(cBg, _AnimColor, cAnim1);
 		//float blend = 1 - (cAnim1.r * _AnimColor.a);
 		//c.rgb = (blend * cBg.rgb + (cAnim1.r * _AnimColor.a * _AnimColor.rgb)) * cBg.a;
 		//c.a = cBg.a;
