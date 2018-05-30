@@ -14,10 +14,12 @@ namespace CeuxQuiRestent.UI
 
         // Private attributes
         private bool focusing = false;
+        private bool readyToInteract = false;
         private Transform technician;
         private Image image;
         private Transform focusedObject;
         private bool interactableFromAnyDistance = false;
+        private Animator animator;
         #endregion
 
         #region MonoBehaviour Methods
@@ -26,15 +28,22 @@ namespace CeuxQuiRestent.UI
         {
             technician = GameObject.FindGameObjectWithTag("MainCamera").transform;
             image = GetComponent<Image>();
+            animator = GetComponent<Animator>();
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
+            animator.SetBool("ShouldFocus", focusing);
+            image.SetNativeSize();
             if (focusing)
             {
                 if (interactableFromAnyDistance)
-                    image.sprite = tracker_interact;
+                {
+                    animator.SetBool("EnhancedFocus", true);
+                    readyToInteract = true;
+                    animator.SetBool("Focus", false);
+                }
                 else
                 {
                     Ray ray = new Ray(technician.position, focusedObject.position - technician.position);
@@ -42,13 +51,27 @@ namespace CeuxQuiRestent.UI
                     if (Physics.Raycast(ray, out rayHit, 30, LayerMask.GetMask(new string[] { LayerMask.LayerToName(focusedObject.gameObject.layer) })))
                     {
                         if (rayHit.distance <= distanceInteraction)
-                            image.sprite = tracker_interact;
+                        {
+                            animator.SetBool("EnhancedFocus", true);
+                            readyToInteract = true;
+                            animator.SetBool("Focus", false);
+                        }
                         else
-                            image.sprite = tracker_interact_too_far;
+                        {
+                            animator.SetBool("EnhancedFocus", false);
+                            readyToInteract = false;
+                            animator.SetBool("Focus", true);
+                        }
                     }
                     else
                         StopFocus(focusedObject);
                 }
+            }
+            else
+            {
+                animator.SetBool("EnhancedFocus", false);
+                animator.SetBool("Focus", false);
+                readyToInteract = false;
             }
         }
         #endregion
@@ -90,6 +113,11 @@ namespace CeuxQuiRestent.UI
                     focusing = false;
                 }
             }
+        }
+
+        public bool GetReadyToInteract()
+        {
+            return readyToInteract;
         }
         #endregion
     }

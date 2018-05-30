@@ -74,6 +74,7 @@ namespace CeuxQuiRestent.Links
         private RoomManager roomManager;
         private bool hasTakePortal = false;
         private Vector3 previousPortalPoint;
+        private TechicianCursor cursor;
 
         // Audio
         private int audioSource = 0;
@@ -86,7 +87,8 @@ namespace CeuxQuiRestent.Links
             energy.Initialize();
             helper = GetComponent<Help>();
             positionLastFrame = transform.position;
-            distanceInteraction = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>().distanceInteraction;
+            cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
+            distanceInteraction = cursor.distanceInteraction;
             for (int r = 0; r < roomManager.rooms.Length; r++)
                 allLinks.Add(new List<Link>());
         }
@@ -467,14 +469,7 @@ namespace CeuxQuiRestent.Links
         /// <param name="clickedPair"></param>
         public void LinkableClick(Linkable linkable, GameObject clicked, GameObject clickedPair)
         {
-            bool canInteract = false;
-            Ray ray = new Ray(transform.position, linkable.linkStartPosition - transform.position);
-            RaycastHit rayHit = new RaycastHit();
-            if (Physics.Raycast(ray, out rayHit, 30, LayerMask.GetMask(new string[] { LayerMask.LayerToName(clicked.layer) })))
-            {
-                if (rayHit.distance <= distanceInteraction)
-                    canInteract = true;
-            }
+            bool canInteract = cursor.GetReadyToInteract();
 
             // Too Far
             if (!canInteract)

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 62fbed0b281170a40abba1243ca13ec8
-timeCreated: 1527606124
+timeCreated: 1527675347
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -91,10 +91,10 @@ TextureImporter:
       name: Cursor_Anim1_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 31
-        width: 34
-        height: 34
+        x: 0
+        y: 0
+        width: 66.6
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -105,10 +105,10 @@ TextureImporter:
       name: Cursor_Anim1_1
       rect:
         serializedVersion: 2
-        x: 71
-        y: 26
-        width: 43
-        height: 43
+        x: 66
+        y: 0
+        width: 66.6
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,10 +119,10 @@ TextureImporter:
       name: Cursor_Anim1_2
       rect:
         serializedVersion: 2
-        x: 136
-        y: 22
-        width: 51
-        height: 51
+        x: 132
+        y: 0
+        width: 66.6
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,10 +133,10 @@ TextureImporter:
       name: Cursor_Anim1_3
       rect:
         serializedVersion: 2
-        x: 201
-        y: 19
-        width: 60
-        height: 59
+        x: 198
+        y: 0
+        width: 66.6
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: Cursor_Anim1_4
       rect:
         serializedVersion: 2
-        x: 271
-        y: 19
-        width: 57
-        height: 57
+        x: 264
+        y: 0
+        width: 66.6
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
