@@ -184,8 +184,11 @@ MonoBehaviour:
   pair: {fileID: 0}
   actionsToDo: {fileID: 0}
   energy: {fileID: 11400000, guid: 1ef60bf54f898cf4e9684acac260898c, type: 2}
+  linkStartOffset: {x: 0, y: 0, z: 0}
+  linkStartPosition: {x: 4.51, y: -1.0200001, z: 2.41}
   model: {fileID: 23207258814720114}
-  material: {fileID: 2100000, guid: 331a04afe36a2b34c9871fc582a8b704, type: 2}
+  materialNormal: {fileID: 0}
+  materialHover: {fileID: 0}
   appearDisappearAnimationTime: 2
   changeModelAnimationTime: 3
 --- !u!114 &114710629159374696
@@ -244,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farthestDistance: 4
-  closestDistance: 1
+  closestDistance: 2
   sound: {fileID: 114066422599408052}
 --- !u!136 &136845015484134778
 CapsuleCollider:

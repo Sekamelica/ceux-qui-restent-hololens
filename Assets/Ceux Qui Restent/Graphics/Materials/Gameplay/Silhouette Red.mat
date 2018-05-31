@@ -42,7 +42,7 @@ Material:
     - _Shine_B: 1
     - _Shine_G: 11
     - _Shine_R: 1
-    - _Speed: 0.3
+    - _Speed: 0.1
     - _TimeOffset: 1
     - _Zoom: 1
     m_Colors:
