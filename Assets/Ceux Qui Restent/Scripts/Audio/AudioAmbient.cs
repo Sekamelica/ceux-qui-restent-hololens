@@ -14,6 +14,7 @@ namespace CeuxQuiRestent.Audio
         private uint postedEventID;
         private bool playing = false;
         private Transform player;
+        private bool stopped = false;
         #endregion
 
         #region MonoBehaviour Methods
@@ -24,6 +25,9 @@ namespace CeuxQuiRestent.Audio
 
         void FixedUpdate()
         {
+            if (stopped)
+                return;
+
             float distance = Vector3.Distance(player.position, transform.position);
             if (distance <= farthestDistance && !playing)
             {
@@ -37,6 +41,13 @@ namespace CeuxQuiRestent.Audio
                     sound.Stop(postedEventID);
                 playing = false;
             }
+        }
+
+        public void Stop()
+        {
+            if (sound != null && postedEventID != 0)
+                sound.Stop(postedEventID);
+            stopped = true;
         }
         #endregion
 

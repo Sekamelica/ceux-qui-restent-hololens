@@ -1140,9 +1140,12 @@ MonoBehaviour:
   soundClickAlreadyLinkedLinkable:
     valueGuid: e7f05ce25151384794e97bc39bc3fe81
     ID: 1170520947
-  soundLinkContinuous:
+  soundLinkStart:
     valueGuid: a6dbebd427b6da43943c88b2859b3324
     ID: -1727851619
+  soundLinkEnd:
+    valueGuid: 33c1393f64487d48ab4ba39fed78f6f4
+    ID: 8245926
   soundLinkCorrectEnd:
     valueGuid: ab6b0d601186e94ea490537c2ea47190
     ID: 1853066436
@@ -1397,12 +1400,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c32353ceb54302488abb02f29750bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontMoveTime: 10
+  dontMoveTime: 40
   dontMoveDistanceThreshold: 2.5
   dontMove: {fileID: 114526140933272384}
   dontMoveLinking: {fileID: 114403280894077060}
   dontClick: {fileID: 114045830943334698}
-  dontClickTime: 10
+  dontClickTime: 30
   clickLinkable_ButTooFar: {fileID: 114792200152525850}
   clickLinkable_ButWrongPair: {fileID: 0}
   clickLinkable_ButAlreadyLinked: {fileID: 0}

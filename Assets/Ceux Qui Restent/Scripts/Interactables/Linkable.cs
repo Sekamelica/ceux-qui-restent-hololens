@@ -118,6 +118,12 @@ namespace CeuxQuiRestent.Interactables
 
         public void DisappearAnimation()
         {
+            for (int c = gameObject.transform.childCount - 1; c >= 0; c--)
+            {
+                Transform child = gameObject.transform.GetChild(c);
+                if (child.GetComponent<AudioAmbient>() != null)
+                    child.GetComponent<AudioAmbient>().Stop();
+            }
             currentAnimationTime = 0;
             appear = false;
             animate = true;

@@ -473,3 +473,46 @@ MonoBehaviour:
       editorNotes: L4_S1
     editorDisplayEvents: 1
     editorDisplayAssets: 1
+  - categoryName: Narrator/Mini Tutorial
+    audioAssets:
+    - uniqueID: 5B0F419A-389F95BF
+      type: 0
+      wwiseEvent:
+        valueGuid: b6b0d7e438e2dd41a2b32626182fc9b9
+        ID: -2027097951
+      subtitle: "Certains fragments m\xE9moriaux sont la cons\xE9quence d\u2019autres,\neffectuez
+        tous les liens entre eux pour d\xE9bloquer cet \xE9v\xE9nement m\xE9moriel"
+      subtitleDuration: 9
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B0F419B-E0B5B5
+      type: 0
+      wwiseEvent:
+        valueGuid: 11e24bd9c8a72949a8112bba1733e7b5
+        ID: -1735946780
+      subtitle: "\xC9v\xE9nement m\xE9moriel compl\xE9t\xE9, f\xE9licitations !"
+      subtitleDuration: 5
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B0F419B-30D6E516
+      type: 0
+      wwiseEvent:
+        valueGuid: c2d5b68b03992a4f992742e69b6fe551
+        ID: 841373355
+      subtitle: "Vous vous trouvez maintenant sur le segment temporel suivant,\npartez
+        a la recherche des fragments m\xE9moriaux !"
+      subtitleDuration: 7
+      editorDisplay: 1
+      editorNotes: 
+    - uniqueID: 5B0F419C-D3732C6
+      type: 0
+      wwiseEvent:
+        valueGuid: 35550ddb75612e419b38bbe2a38326e5
+        ID: -1844370962
+      subtitle: "Les portails vous permettent de passer d\u2019un segment temporel
+        a un autre,\net de voyager dans le temps."
+      subtitleDuration: 7
+      editorDisplay: 1
+      editorNotes: 
+    editorDisplayEvents: 1
+    editorDisplayAssets: 1

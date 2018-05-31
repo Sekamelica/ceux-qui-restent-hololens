@@ -15,7 +15,7 @@ namespace CeuxQuiRestent.Portals
         [SerializeField]
         private PortalDestination destination = PortalDestination.Future;
         private GameObject portalRenderer;
-        private bool actionsDone = true;
+        private bool actionsDone = false;
         #endregion
 
         #region MonoBehaviour Methods

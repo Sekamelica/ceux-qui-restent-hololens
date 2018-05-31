@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 62fbed0b281170a40abba1243ca13ec8
-timeCreated: 1527682075
+timeCreated: 1527759692
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -94,8 +94,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 118.666664
-        height: 89
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,10 +106,10 @@ TextureImporter:
       name: Cursor_Anim1_1
       rect:
         serializedVersion: 2
-        x: 118
+        x: 120
         y: 0
-        width: 118.666664
-        height: 89
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,10 +120,10 @@ TextureImporter:
       name: Cursor_Anim1_2
       rect:
         serializedVersion: 2
-        x: 236
+        x: 240
         y: 0
-        width: 118.666664
-        height: 89
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: Cursor_Anim1_3
       rect:
         serializedVersion: 2
-        x: 354
+        x: 360
         y: 0
-        width: 118.666664
-        height: 89
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,10 +148,10 @@ TextureImporter:
       name: Cursor_Anim1_4
       rect:
         serializedVersion: 2
-        x: 472
+        x: 480
         y: 0
-        width: 118.666664
-        height: 89
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: Cursor_Anim1_5
       rect:
         serializedVersion: 2
-        x: 590
+        x: 600
         y: 0
-        width: 118.666664
-        height: 89
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
