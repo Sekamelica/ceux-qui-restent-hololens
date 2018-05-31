@@ -122,7 +122,7 @@ namespace CeuxQuiRestent.Interactables
             {
                 Transform child = gameObject.transform.GetChild(c);
                 if (child.GetComponent<AudioAmbient>() != null)
-                    child.GetComponent<AudioAmbient>().Stop();
+                    child.parent = transform.parent;
             }
             currentAnimationTime = 0;
             appear = false;
