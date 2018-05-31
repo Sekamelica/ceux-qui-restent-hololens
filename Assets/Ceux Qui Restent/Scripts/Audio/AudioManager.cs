@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CeuxQuiRestent.Audio
 {
@@ -29,7 +30,7 @@ namespace CeuxQuiRestent.Audio
         #region Attributes
         public AudioRepository audioRepository;
 
-        private TextMesh subtitleDisplayer;
+        private Text subtitleDisplayer;
         private float textDuration;
         private GameObject lastStoredVoiceline_object;
         private GameObject player;
@@ -40,7 +41,7 @@ namespace CeuxQuiRestent.Audio
         private void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
-            subtitleDisplayer = GameObject.FindGameObjectWithTag("SubtitleDisplayer").GetComponent<TextMesh>();
+            subtitleDisplayer = GameObject.FindGameObjectWithTag("SubtitleDisplayer").GetComponent<Text>();
         }
 
         private void Update()

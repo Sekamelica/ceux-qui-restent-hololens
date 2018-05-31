@@ -23,9 +23,11 @@ namespace CeuxQuiRestent.UI
         // Update is called once per frame
         void Update()
         {
-            Vector3 desiredPosition = Vector3.Lerp(transform.position, holoCamera.position, easePosition);
-            Quaternion desiredRotation = Quaternion.Lerp(transform.rotation, holoCamera.rotation, easeRotation);
-            transform.SetPositionAndRotation(desiredPosition, desiredRotation);
+            //Vector3 desiredPosition = Vector3.Lerp(transform.position, holoCamera.position, easePosition);
+            //Quaternion desiredRotation = Quaternion.Lerp(transform.rotation, holoCamera.rotation, easeRotation);
+            //transform.SetPositionAndRotation(desiredPosition, desiredRotation);
+            transform.position = holoCamera.position;
+            transform.rotation = holoCamera.rotation;
         }
         #endregion
     }
