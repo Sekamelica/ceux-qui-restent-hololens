@@ -57183,6 +57183,10 @@ MonoBehaviour:
     target: {fileID: 1824385541}
     secondsToWait: 0
     done: 0
+  - actionKind: 8
+    target: {fileID: 1467414188}
+    secondsToWait: 7
+    done: 0
   - actionKind: 10
     target: {fileID: 239828919}
     secondsToWait: 0
@@ -57193,7 +57197,7 @@ MonoBehaviour:
     done: 0
   - actionKind: 8
     target: {fileID: 1176777656}
-    secondsToWait: 7
+    secondsToWait: 3
     done: 0
   - actionKind: 13
     target: {fileID: 0}
