@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Silhouette Green
+  m_Name: Silhouette Black H
   m_Shader: {fileID: 4800000, guid: 8b90bd9c8a2734b4faccea898e1fc94f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -23,7 +23,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 1, y: 1}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 457780b3e5b664f4792e52bcf077e77f, type: 3}
+        m_Texture: {fileID: 2800000, guid: fc16fb2011d597841881fed458eaa417, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTex:
@@ -46,5 +46,5 @@ Material:
     - _TimeOffset: 1
     - _Zoom: 1
     m_Colors:
-    - _Color: {r: 0.1727941, g: 0.5, b: 0.33752543, a: 1}
+    - _Color: {r: 0.34923932, g: 0.1535467, b: 0.52205884, a: 1}
     - _UVOffset: {r: 1, g: 1, b: 1, a: 1}

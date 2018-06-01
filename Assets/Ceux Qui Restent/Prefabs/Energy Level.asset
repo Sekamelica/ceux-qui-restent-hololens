@@ -28,7 +28,8 @@ MonoBehaviour:
   - 6
   - 6.5
   - 12
-  - 25
+  - 30
+  - 10
   - 10
   startingEnergyLevelIndex: 0
-  value: 10
+  value: 5.5
