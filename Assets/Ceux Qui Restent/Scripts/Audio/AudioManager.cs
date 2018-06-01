@@ -82,7 +82,7 @@ namespace CeuxQuiRestent.Audio
                             lastStoredVoiceline_object = sender;
                             return audioAsset.wwiseEvent.Post(sender);
                         case AudioType.Voiceline_Help:
-                            if (lastStoredVoiceline_object != null || textDuration > -2f)
+                            if (textDuration > -0.8f)
                                 return 0;
                             else
                             {

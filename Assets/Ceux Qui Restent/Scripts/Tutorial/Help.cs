@@ -38,7 +38,7 @@ namespace CeuxQuiRestent.Tutorial
         public float linkBrokeMinimumWait = 20;
         public float linkBrokeMinimumHappens = 2;
 
-        private int currentLinkBrokes = 0;
+        private int currentLinkBrokes = 1;
         private float linkBrokeMinimumWait_current = 20;
 
         [Space]
@@ -47,7 +47,7 @@ namespace CeuxQuiRestent.Tutorial
         public float energyEmptyMinimumWait = 20;
         public float energyEmptyMinimumHappens = 2;
 
-        private int currentEnergyEmptyAmount = 0;
+        private int currentEnergyEmptyAmount = 1;
         private float energyEmptyMinimumWait_current = 0;
 
         private bool cinematicMode = true;
@@ -76,15 +76,22 @@ namespace CeuxQuiRestent.Tutorial
                 dontMovePositionLastFrame = transform.position;
 
                 // Don't Click
-                if (!isLinking)
+                dontClickTime_current += Time.deltaTime;
+                if (dontClickTime_current >= dontClickTime)
                 {
-                    dontClickTime_current += Time.deltaTime;
-                    if (dontClickTime_current >= dontClickTime)
+                    if (isLinking)
+                    {
+                        if (dontMoveLinking != null)
+                            dontMoveLinking.Play();
+                        currentDontMoveTime = 0;
+                    }
+                    else
                     {
                         if (dontClick != null)
                             dontClick.Play();
-                        dontClickTime_current = 0;
                     }
+                    
+                    dontClickTime_current = 0;
                 }
             }
             
@@ -172,7 +179,7 @@ namespace CeuxQuiRestent.Tutorial
         public void SetIsLinking(bool _isLinking)
         {
             isLinking = _isLinking;
-            dontClickTime = 0;
+            dontClickTime_current = 0;
         }
 
         public void StartCinematicMode()
