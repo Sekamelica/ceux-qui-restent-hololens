@@ -14,13 +14,13 @@ namespace CeuxQuiRestent.Interactables
         public UnityEvent onFocusExitEvent;
         public GameObject focusSound;
 
-        private TechicianCursor cursor;
+        private TechnicianCursor cursor;
         #endregion
 
         #region MonoBehaviour Methods
         private void Start()
         {
-            cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
+            cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechnicianCursor>();
         }
 
         private void OnDisable()

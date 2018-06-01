@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace CeuxQuiRestent.UI
 {
-    public class TechicianCursor : MonoBehaviour
+    public class TechnicianCursor : MonoBehaviour
     {
         #region Attributes
         // Public attributes

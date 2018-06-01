@@ -74,7 +74,7 @@ namespace CeuxQuiRestent.Links
         private RoomManager roomManager;
         private bool hasTakePortal = false;
         private Vector3 previousPortalPoint;
-        private TechicianCursor cursor;
+        private TechnicianCursor cursor;
 
         // Audio
         private int audioSource = 0;
@@ -87,7 +87,7 @@ namespace CeuxQuiRestent.Links
             energy.Initialize();
             helper = GetComponent<Help>();
             positionLastFrame = transform.position;
-            cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
+            cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechnicianCursor>();
             distanceInteraction = cursor.distanceInteraction;
             for (int r = 0; r < roomManager.rooms.Length; r++)
                 allLinks.Add(new List<Link>());

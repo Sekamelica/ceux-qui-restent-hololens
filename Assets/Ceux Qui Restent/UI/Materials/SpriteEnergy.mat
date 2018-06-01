@@ -76,7 +76,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HorizontalSpeed: 0.021199962
+    - _HorizontalSpeed: 0.020179559
     - _HorizontalSpeed2: 0.05
     - _Metallic: 0
     - _Mode: 0
@@ -92,7 +92,7 @@ Material:
     - _VerticalMultiplicator2: 0.2
     - _VerticalPeriod: 25
     - _VerticalPeriod2: 25
-    - _VerticalSpeed: 2.0599973
+    - _VerticalSpeed: 2.0089793
     - _VerticalSpeed2: 2
     - _ZWrite: 1
     m_Colors:

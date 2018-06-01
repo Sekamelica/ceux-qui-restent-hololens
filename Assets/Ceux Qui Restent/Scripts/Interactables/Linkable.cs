@@ -109,7 +109,7 @@ namespace CeuxQuiRestent.Interactables
         public void AppearAnimation()
         {
             float gradientThresholdValue = 0;
-            model.material.SetFloat("_GradientThreshold", gradientThresholdValue);
+            model.material.SetFloat("_GradientThreshold", 0);
             gameObject.SetActive(true);
             currentAnimationTime = 0;
             appear = true;
@@ -160,6 +160,7 @@ namespace CeuxQuiRestent.Interactables
             if (model != null)
                 model.material = materialNormal;
         }
+
         public void ChangeMaterial(Material _material)
         {
             materialNormal = _material;
@@ -170,11 +171,25 @@ namespace CeuxQuiRestent.Interactables
         public void StartHover()
         {
             model.material = materialHover;
+            if (animate)
+            {
+                currentAnimationTime += Time.deltaTime;
+                float ease = Mathf.Clamp01(currentAnimationTime / appearDisappearAnimationTime);
+                float gradientThresholdValue = (appear ? Mathf.Lerp(0, normalGradientTreshold, ease) : Mathf.Lerp(normalGradientTreshold, 0, ease));
+                model.material.SetFloat("_GradientThreshold", gradientThresholdValue);
+            }
         }
 
         public void StopHover()
         {
             model.material = materialNormal;
+            if (animate)
+            {
+                currentAnimationTime += Time.deltaTime;
+                float ease = Mathf.Clamp01(currentAnimationTime / appearDisappearAnimationTime);
+                float gradientThresholdValue = (appear ? Mathf.Lerp(0, normalGradientTreshold, ease) : Mathf.Lerp(normalGradientTreshold, 0, ease));
+                model.material.SetFloat("_GradientThreshold", gradientThresholdValue);
+            }
         }
         #endregion
 

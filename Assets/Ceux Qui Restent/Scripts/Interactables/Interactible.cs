@@ -17,7 +17,7 @@ namespace CeuxQuiRestent.Interactables
         // Private attributes
         private float distanceInteraction;
         private Transform technician;
-        private TechicianCursor cursor;
+        private TechnicianCursor cursor;
         #endregion
 
         #region MonoBehaviour Methods
@@ -26,7 +26,7 @@ namespace CeuxQuiRestent.Interactables
             if (!interactableFromAnyDistance)
             {
                 technician = GameObject.FindGameObjectWithTag("MainCamera").transform;
-                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
+                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechnicianCursor>();
                 distanceInteraction = cursor.distanceInteraction;
             }
             GetComponent<Focusable>().interactableFromAnyDistance = interactableFromAnyDistance;
@@ -58,7 +58,7 @@ namespace CeuxQuiRestent.Interactables
             if (interactSound != null)
                 GameObject.Instantiate(interactSound, transform.position, Quaternion.identity, null);
             if (cursor == null)
-                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechicianCursor>();
+                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechnicianCursor>();
             cursor.CursorClickAnimation();
             onInteractEvent.Invoke();
         }

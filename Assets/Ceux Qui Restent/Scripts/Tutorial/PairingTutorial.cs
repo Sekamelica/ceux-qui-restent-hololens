@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using CeuxQuiRestent.Links;
 using CeuxQuiRestent.Interactables;
+using CeuxQuiRestent.UI;
 
 namespace CeuxQuiRestent.Tutorial
 {
@@ -11,6 +12,8 @@ namespace CeuxQuiRestent.Tutorial
         [Header("Reproducable events")]
         public UnityEvent enterFocusFragment_event;
         public UnityEvent exitFocusFragment_event;
+
+        private bool focusing = false;
 
         [Space]
         [Header("Unique events")]
@@ -26,16 +29,24 @@ namespace CeuxQuiRestent.Tutorial
         private bool focusSecondFragment_eventDone = false;
         private Linkable lastFragmentYouInteractWith;
         private Linker linker;
+        private TechnicianCursor cursor;
+        private bool displayIcon = false;
         #endregion
 
         #region Methods
         private void Start()
         {
             linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
+            cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechnicianCursor>();
         }
 
         private void Update()
         {
+            if (linker == null)
+                linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
+            if (cursor == null)
+                cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<TechnicianCursor>();
+
             // Short delay before triggering the help voiceline when focusing the first linkable
             if (!focusFirstFragment_eventDone)
             {
@@ -50,13 +61,31 @@ namespace CeuxQuiRestent.Tutorial
                     }
                 }
             }
+
+            if (focusing && !displayIcon && cursor.GetReadyToInteract())
+            {
+                enterFocusFragment_event.Invoke();
+                displayIcon = true;
+            }
+
+            if (focusing && displayIcon && !cursor.GetReadyToInteract())
+            {
+                exitFocusFragment_event.Invoke();
+                displayIcon = false;
+            }
+
+            if (!focusing && displayIcon)
+            {
+                exitFocusFragment_event.Invoke();
+                displayIcon = false;
+            }
         }
 
         public void FocusFragment(Linkable fragment)
         {
             if (fragment.CanBeLinked())
             {
-                enterFocusFragment_event.Invoke();
+                focusing = true;
                 if (linker.IsLinking())
                 {
                     if (lastFragmentYouInteractWith != null)
@@ -81,7 +110,7 @@ namespace CeuxQuiRestent.Tutorial
 
         public void ExitFocusFragment()
         {
-            exitFocusFragment_event.Invoke();
+            focusing = false;
             focusFirstFragment_delayEnabled = false;
         }
 
@@ -89,7 +118,7 @@ namespace CeuxQuiRestent.Tutorial
         {
             if (fragment.CanBeLinked())
             {
-                exitFocusFragment_event.Invoke();
+                focusing = false;
                 lastFragmentYouInteractWith = fragment;
                 if (!interactWithFragment_eventDone)
                 {
