@@ -38,7 +38,7 @@ namespace CeuxQuiRestent.Tutorial
         public float linkBrokeMinimumWait = 20;
         public float linkBrokeMinimumHappens = 2;
 
-        private int currentLinkBrokes = 1;
+        private int currentLinkBrokes = 0;
         private float linkBrokeMinimumWait_current = 20;
 
         [Space]
@@ -47,7 +47,7 @@ namespace CeuxQuiRestent.Tutorial
         public float energyEmptyMinimumWait = 20;
         public float energyEmptyMinimumHappens = 2;
 
-        private int currentEnergyEmptyAmount = 1;
+        private int currentEnergyEmptyAmount = 0;
         private float energyEmptyMinimumWait_current = 0;
 
         private bool cinematicMode = true;

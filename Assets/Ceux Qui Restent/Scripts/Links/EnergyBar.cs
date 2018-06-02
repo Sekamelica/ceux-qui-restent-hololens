@@ -11,6 +11,10 @@ namespace CeuxQuiRestent.Links
         private RectTransform bar;
         [SerializeField]
         private Energy energy;
+        [SerializeField]
+        private Gradient gradient;
+        [SerializeField]
+        private float ease = 0.1f;
         private Image filler;
         private float startScaleX;
         private float energyLastFrame = 0;
@@ -45,6 +49,7 @@ namespace CeuxQuiRestent.Links
 
         void Update()
         {
+            
             //filler.material.GetFloat("_HorizontalSpeed");
             if (increaseEffect)
             {
@@ -71,7 +76,7 @@ namespace CeuxQuiRestent.Links
 
 
             float ratio = energy.GetEnergyLevel() / energy.GetStartingEnergyLevel();
-
+            filler.color = gradient.Evaluate(Mathf.Clamp01(filler.fillAmount));
             if (!increase)
             {
                 if (ratio != previousRatio)
@@ -97,7 +102,7 @@ namespace CeuxQuiRestent.Links
             }
 
 
-            filler.fillAmount = energy.GetValue() / energy.GetEnergyLevel();
+            filler.fillAmount = Mathf.Lerp(filler.fillAmount, energy.GetValue() / energy.GetEnergyLevel(), ease);
             if (!increase)
                 previousRatio = ratio;
 

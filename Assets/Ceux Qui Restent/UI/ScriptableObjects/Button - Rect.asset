@@ -15,4 +15,4 @@ MonoBehaviour:
   over: {fileID: 21300000, guid: 1e5fcc747bb3ce241883295a5d4a8639, type: 3}
   textModel: {fileID: 11400000, guid: dcf5877b85664ef4eb4a6ba06624c53a, type: 2}
   changeScale: 1
-  scale: {x: 0.2, y: 0.05, z: 1}
+  scale: {x: 0.1, y: 0.04, z: 1}

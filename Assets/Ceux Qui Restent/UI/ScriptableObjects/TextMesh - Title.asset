@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: TextMesh - Title
   m_EditorClassIdentifier: 
   fontSize: 100
-  characterSize: 0.015
+  characterSize: 0.012
   offsetZ: -0.01
   fontSettings: {fileID: 11400000, guid: 2ff10c1bbbbfed24895187bc869d2377, type: 2}
   changeAnchorAndAligment: 0
