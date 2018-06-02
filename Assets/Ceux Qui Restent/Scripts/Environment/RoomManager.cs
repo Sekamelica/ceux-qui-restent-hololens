@@ -18,6 +18,7 @@ namespace CeuxQuiRestent
         public Room currentRoom;
         [SerializeField]
         private List<GameObject> levelDesignMeshes = new List<GameObject>();
+        //private bool alreadyDoneVerticalPositionning = false;
         #endregion
 
         #region MonoBehaviour Methods
@@ -44,28 +45,37 @@ namespace CeuxQuiRestent
         #region RoomManager Methods
         public void InitializeRooms()
         {
-            float defaultDistance = 1.85f;
+            /*
+            float defaultDistance = 1.63f;
             float distanceYOffset = 0;
-            Linker linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
-            float higherDistance = 0;
-            for (int x = -5; x < 6; x++)
+            if (!alreadyDoneVerticalPositionning)
             {
-                for (int y = -5; y < 6; y++)
+                Transform linker = GameObject.FindGameObjectWithTag("Player").transform;
+                float higherDistance = 0;
+                for (float x = -5; x < 6; x += 0.5f)
                 {
-                    Vector3 origin = new Vector3(linker.target.position.x + x, linker.target.position.y, linker.target.position.z + y);
-                    Ray ray = new Ray(origin, (origin - Vector3.up) - origin);
-                    RaycastHit raycastHit = new RaycastHit();
-                    if (Physics.Raycast(ray, out raycastHit, 30, LayerMask.GetMask(new string[] { "Spatial Mapping Mesh" })))
-                        distanceYOffset = defaultDistance - raycastHit.distance;
+                    for (float y = -5; y < 6; y += 0.5f)
+                    {
+                        Vector3 origin = new Vector3(linker.position.x + x, linker.position.y, linker.position.z + y);
+                        Ray ray = new Ray(origin, (origin - Vector3.up) - origin);
+                        RaycastHit raycastHit = new RaycastHit();
+                        if (Physics.Raycast(ray, out raycastHit, 30, LayerMask.GetMask(new string[] { "Spatial Mapping Mesh" })))
+                            if (raycastHit.distance > higherDistance)
+                                higherDistance = raycastHit.distance;
+                    }
                 }
-            }
-            Debug.Log("Test ray");
-            Debug.DrawLine(linker.target.position, new Vector3(linker.target.position.x, linker.target.position.y - higherDistance, linker.target.position.z), Color.red, 50);
+                distanceYOffset = defaultDistance - higherDistance;
+                Debug.Log("Test ray " + linker.position.ToString() + " Dest: " + (new Vector3(linker.position.x, linker.position.y - higherDistance, linker.position.z)).ToString());
+                Debug.Log("Distance higher: " + higherDistance + "Distance offset: " + distanceYOffset);
+                Debug.DrawLine(linker.position, new Vector3(linker.position.x, linker.position.y - higherDistance, linker.position.z), Color.red, 50);
+            }*/
             for (int r = 0; r < rooms.Length; r++)
             {
-                rooms[r].gameObject.transform.position = new Vector3(rooms[r].gameObject.transform.position.x, rooms[r].gameObject.transform.position.y + distanceYOffset, rooms[r].gameObject.transform.position.z);
+                /*if (!alreadyDoneVerticalPositionning)
+                    rooms[r].gameObject.transform.position = new Vector3(rooms[r].gameObject.transform.position.x, rooms[r].gameObject.transform.position.y + distanceYOffset, rooms[r].gameObject.transform.position.z);*/
                 rooms[r].gameObject.SetActive(true);
             }
+            //alreadyDoneVerticalPositionning = true;
         }
 
         public Room JumpToRoom(int _roomID)

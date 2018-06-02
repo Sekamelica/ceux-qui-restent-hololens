@@ -217,9 +217,9 @@ MonoBehaviour:
         valueGuid: f817e4429a4d3d438b88d21310505374
         ID: 1438124155
       subtitleFR: "Voici la jauge d'\xE9nergie m\xE9morielle : elle limite la longueur
-        des liens que vous pouvez cr\xE9er. Cette jauge augmente lorsque vous compl\xE9tez
-        des fragments. Si vous n\"avez pas assez d'\xE9nergie, votre lien se d\xE9litera.
-        \r\nLa compatibilit\xE9 du lecteur d'\xE9cran est activ\xE9e.\r"
+        des liens que vous pouvez cr\xE9er.\nCette jauge augmente lorsque vous compl\xE9tez
+        des fragments.\nSi vous n\"avez pas assez d'\xE9nergie, votre lien se d\xE9litera.
+        \r"
       subtitleEN: 'This is the memory energy gauge : it limits the length of the created
         links.
 

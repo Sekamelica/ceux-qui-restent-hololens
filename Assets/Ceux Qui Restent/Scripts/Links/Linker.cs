@@ -422,6 +422,7 @@ namespace CeuxQuiRestent.Links
 
             Vector3 lastLinkPoint = linkPoints[linkPoints.Count - 1];
             linkPoints.Add(lastLinkPoint);
+            linkPoints.Add(linkablePos);
             UpdateLink();
             
             // GameObjects of links created

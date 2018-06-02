@@ -8,6 +8,13 @@ namespace CeuxQuiRestent.UI
         public Language language;
         #endregion
 
+        #region MonoBehaviour Methods
+        void Start()
+        {
+            SetLanguageFR();
+        }
+        #endregion
+
         #region Setters
         public void SetLanguageFR()
         {
