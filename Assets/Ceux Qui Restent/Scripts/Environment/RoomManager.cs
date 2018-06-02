@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using HoloToolkit.Unity.SpatialMapping;
+using CeuxQuiRestent.Links;
 
 namespace CeuxQuiRestent
 {
@@ -43,8 +44,26 @@ namespace CeuxQuiRestent
         #region RoomManager Methods
         public void InitializeRooms()
         {
+            float defaultDistance = 1.85f;
+            float distanceYOffset = 0;
+            Linker linker = GameObject.FindGameObjectWithTag("Player").GetComponent<Linker>();
+            float higherDistance = 0;
+            for (int x = -5; x < 6; x++)
+            {
+                for (int y = -5; y < 6; y++)
+                {
+                    Vector3 origin = new Vector3(linker.target.position.x + x, linker.target.position.y, linker.target.position.z + y);
+                    Ray ray = new Ray(origin, (origin - Vector3.up) - origin);
+                    RaycastHit raycastHit = new RaycastHit();
+                    if (Physics.Raycast(ray, out raycastHit, 30, LayerMask.GetMask(new string[] { "Spatial Mapping Mesh" })))
+                        distanceYOffset = defaultDistance - raycastHit.distance;
+                }
+            }
+            Debug.Log("Test ray");
+            Debug.DrawLine(linker.target.position, new Vector3(linker.target.position.x, linker.target.position.y - higherDistance, linker.target.position.z), Color.red, 50);
             for (int r = 0; r < rooms.Length; r++)
             {
+                rooms[r].gameObject.transform.position = new Vector3(rooms[r].gameObject.transform.position.x, rooms[r].gameObject.transform.position.y + distanceYOffset, rooms[r].gameObject.transform.position.z);
                 rooms[r].gameObject.SetActive(true);
             }
         }

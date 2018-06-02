@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using CeuxQuiRestent.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +29,7 @@ namespace CeuxQuiRestent.Audio
     {
         #region Attributes
         public AudioRepository audioRepository;
+        public Language language;
 
         private Text subtitleDisplayer;
         private float textDuration;
@@ -64,7 +65,7 @@ namespace CeuxQuiRestent.Audio
         public uint PlayAudioAsset(GameObject sender, int _categoryID, string _audioAssetID)
         {
             AudioAsset audioAsset = audioRepository.FindAudioAsset(_categoryID, _audioAssetID);
-
+            string subtitle = "";
             if (audioAsset != null)
             {
                 if (audioAsset.wwiseEvent != null)
@@ -72,9 +73,10 @@ namespace CeuxQuiRestent.Audio
                     switch (audioAsset.type)
                     {
                         case AudioType.Voiceline_Narrator:
-                            if (audioAsset.subtitle != "" && audioAsset.subtitleDuration > 0)
+                            subtitle = ((language.language == LanguageName.Francais) ? audioAsset.subtitleFR : audioAsset.subtitleEN);
+                            if (subtitle != "" && audioAsset.subtitleDuration > 0)
                             {
-                                subtitleDisplayer.text = audioAsset.subtitle;
+                                subtitleDisplayer.text = subtitle;
                                 textDuration = audioAsset.subtitleDuration;
                             }
                             if (lastStoredVoiceline_object != null)
@@ -86,9 +88,10 @@ namespace CeuxQuiRestent.Audio
                                 return 0;
                             else
                             {
-                                if (audioAsset.subtitle != "" && audioAsset.subtitleDuration > 0)
+                                subtitle = ((language.language == LanguageName.Francais) ? audioAsset.subtitleFR : audioAsset.subtitleEN);
+                                if (subtitle != "" && audioAsset.subtitleDuration > 0)
                                 {
-                                    subtitleDisplayer.text = audioAsset.subtitle;
+                                    subtitleDisplayer.text = subtitle;
                                     textDuration = audioAsset.subtitleDuration;
                                 }
                                 lastStoredVoiceline_object = sender;

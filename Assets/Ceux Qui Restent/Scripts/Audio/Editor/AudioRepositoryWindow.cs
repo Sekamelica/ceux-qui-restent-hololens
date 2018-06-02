@@ -206,14 +206,14 @@ namespace CeuxQuiRestent.Tools
                     audioAsset.type = (Audio.AudioType)EditorGUILayout.EnumPopup("Audio Type", audioAsset.type);
 
                     EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("Subtitle");
                     EditorGUILayout.LabelField("Subtitle Duration (s)", GUILayout.MaxWidth(200));
-                    EditorGUILayout.EndHorizontal();
-
-                    EditorGUILayout.BeginHorizontal();
-                    audioAsset.subtitle = EditorGUILayout.TextArea(audioAsset.subtitle, GUILayout.MinHeight(40));
                     audioAsset.subtitleDuration = EditorGUILayout.Slider(audioAsset.subtitleDuration, 0, 20, GUILayout.MaxWidth(200));
                     EditorGUILayout.EndHorizontal();
+                    
+                    EditorGUILayout.LabelField("Subtitle FR");
+                    audioAsset.subtitleFR = EditorGUILayout.TextArea(audioAsset.subtitleFR, GUILayout.MinHeight(40));
+                    EditorGUILayout.LabelField("Subtitle EN");
+                    audioAsset.subtitleEN = EditorGUILayout.TextArea(audioAsset.subtitleEN, GUILayout.MinHeight(40));
 
                     audioAsset.editorNotes = EditorGUILayout.TextField("Dev Notes", audioAsset.editorNotes, GUILayout.MinHeight(10));
                     EditorGUILayout.Space();

@@ -8,7 +8,8 @@
 
         public AudioType type = AudioType.Voiceline_Narrator;
         public AK.Wwise.Event wwiseEvent = null;
-        public string subtitle = "";
+        public string subtitleFR = "";
+        public string subtitleEN = "";
         public float subtitleDuration = 1;
 
         public bool editorDisplay = true;

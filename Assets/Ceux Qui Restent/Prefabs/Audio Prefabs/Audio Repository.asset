@@ -27,7 +27,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 7fce9859ee8be04387a65ab8b1de3905
         ID: 1450671466
-      subtitle: "Explorez la salle pour trouver les fragments \xE0 relier."
+      subtitleFR: "Explorez la salle pour trouver les fragments \xE0 relier."
+      subtitleEN: Explore the room to find the fragments to link.
       subtitleDuration: 6
       editorDisplay: 1
       editorNotes: DontMove
@@ -36,7 +37,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 6369461929c2974788da524d4a451a91
         ID: 2138475376
-      subtitle: "Pour cr\xE9er un lien, visez la silhouette et cliquez."
+      subtitleFR: "Pour cr\xE9er un lien, visez la silhouette et cliquez."
+      subtitleEN: For create a link, target the fragment and click.
       subtitleDuration: 6
       editorDisplay: 1
       editorNotes: DontClick
@@ -45,8 +47,9 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 94ca56e9878e354ea8eac61646eb865d
         ID: -760316208
-      subtitle: "Fragment m\xE9moriel d\xE9tect\xE9.\nRapprochez-vous et cliquez pour
-        le s\xE9lectionner."
+      subtitleFR: "Fragment m\xE9moriel d\xE9tect\xE9. Rapprochez vous et cliquez
+        pour le s\xE9lectionner."
+      subtitleEN: Memory fragment detected. Move closer and click to select it.
       subtitleDuration: 7
       editorDisplay: 1
       editorNotes: ClickTooFar
@@ -55,7 +58,9 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 5fd03221d25a674f81780b2352f28c14
         ID: 1195339271
-      subtitle: "Si deux liens se croisent, le lien en cours de cr\xE9ation est d\xE9truit."
+      subtitleFR: "Si deux liens se croisent, le lien en cours de cr\xE9ation est
+        d\xE9truit."
+      subtitleEN: If two links cross, the link that was being created will be destroyed.
       subtitleDuration: 6
       editorDisplay: 1
       editorNotes: LinkBroke
@@ -64,8 +69,10 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 33a2d9d3c3c4f4409b8f503f508b03e7
         ID: -905587550
-      subtitle: "Le second fragment m\xE9moriel se trouve quelque part dans la pi\xE8ce,\nessayez
-        de vous d\xE9placer."
+      subtitleFR: "Le second fragment m\xE9moriel se trouve quelque part dans la pi\xE8ce,
+        essayez de vous d\xE9placer."
+      subtitleEN: The second memory fragment is somewhere in the room, try to move
+        in order to find it.
       subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
@@ -74,8 +81,10 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: fbcdc34d7c09e941ac4f86555e0d708c
         ID: 783952308
-      subtitle: "Essayez d\u2019optimiser votre d\xE9placement ou de compl\xE9ter
+      subtitleFR: "Essayez d\u2019optimiser votre d\xE9placement ou de compl\xE9ter
         un autre fragment m\xE9moriel."
+      subtitleEN: You should try to optimize your path or complete another memory
+        fragment.
       subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
@@ -88,10 +97,13 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 4d875ea2780c704886aa4b94ea7991ae
         ID: 1834850122
-      subtitle: "Bienvenue nouvel Agent.\nNous vous remercions de vous charger de
-        \nla maintenance de la salle m\xE9morielle n\xB01E6.\nL\u2019anomalie s\u2019est
-        produite le 02/05/2048,\nveuillez proc\xE9der \xE0 la r\xE9organisation des
+      subtitleFR: "Bienvenue nouvel Agent.\nNous vous remercions de vous charger de
+        la maintenance de la salle m\xE9morielle n\xB01E6.\nL\u2019anomalie s\u2019est
+        produite le 02/05/2048, veuillez proc\xE9der \xE0 la r\xE9organisation des
         donn\xE9es."
+      subtitleEN: "Welcome on board, new agent !\nWe're glad you agreed to take care
+        of the n\xB01E6 memory room's maintenance.\nThe anomaly occurred on 02/05/2048,
+        please reorganize the data."
       subtitleDuration: 20
       editorDisplay: 1
       editorNotes: 
@@ -100,8 +112,10 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 86afb8010d3bdb42b8ce6c92d9815820
         ID: 781812845
-      subtitle: "Pour commencer, d\xE9placez vous dans l'environnement afin qu'il
-        soit scann\xE9 par le dispotifi.\n"
+      subtitleFR: "Pour commencer, d\xE9placez vous dans l'environnement\nafin qu'il
+        soit scann\xE9 par le dipositif."
+      subtitleEN: In order to get started, move around the room so it can be scanned
+        by the device.
       subtitleDuration: 9
       editorDisplay: 1
       editorNotes: 
@@ -110,8 +124,9 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 725f7becd2a5404cb9d41294beec9d4f
         ID: 1530286288
-      subtitle: "D\xE9placez vous et regardez autour de vous afin de visualiser\nle
-        premier fragment m\xE9moriel."
+      subtitleFR: "D\xE9placez vous et regardez autour de vous afin de visualiser
+        le premier fragment m\xE9moriel."
+      subtitleEN: Move and look around to see the first memory fragment.
       subtitleDuration: 8
       editorDisplay: 1
       editorNotes: 
@@ -120,8 +135,9 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 94ca56e9878e354ea8eac61646eb865d
         ID: -760316208
-      subtitle: "Fragment m\xE9moriel d\xE9tect\xE9. Rapprochez-vous et cliquez\npour
-        le s\xE9lectionner."
+      subtitleFR: "Fragment m\xE9moriel d\xE9tect\xE9. Rapprochez-vous et cliquez
+        pour le s\xE9lectionner."
+      subtitleEN: Memory fragment detected. Move closer and click to select it.
       subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
@@ -130,8 +146,12 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 356d95e4aab58442bbf584e98cac0abd
         ID: 2016698951
-      subtitle: "Lien actif. Reliez le fragment m\xE9moriel au fragment correspondant.\nIls
+      subtitleFR: "Lien actif. Reliez le fragment m\xE9moriel au fragment correspondant.\nIls
         doivent avoir une caract\xE9ristique en commun."
+      subtitleEN: 'Link activated. Please connect the memory fragment to the corresponding
+        fragment.
+
+        They must have one characteristic in common.'
       subtitleDuration: 10
       editorDisplay: 1
       editorNotes: 
@@ -140,7 +160,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: eef14859c7a43e42b942424b2b7818de
         ID: 1326074304
-      subtitle: Pour relier les deux fragments, visez le second fragment puis cliquez.
+      subtitleFR: Pour relier les deux fragments, visez le second fragment puis cliquez.
+      subtitleEN: "To connect the two fragments, aim for the second fragment and click.\r"
       subtitleDuration: 6
       editorDisplay: 1
       editorNotes: 
@@ -149,8 +170,11 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 394dc69acf069e4faa6301a559600304
         ID: 296874062
-      subtitle: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations.\nContinuez
+      subtitleFR: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations.\nContinuez
         votre exploration, d\u2019autres fragments sont encore incomplets."
+      subtitleEN: 'Memory fragments linked : data complete, congratulations !
+
+        Please continue exploring, other fragments are still incomplete.'
       subtitleDuration: 12
       editorDisplay: 1
       editorNotes: 
@@ -159,7 +183,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: b8e0b5c234686e4d81bf8f2bb1551fe3
         ID: -1256684680
-      subtitle: "D\xE9blocage du flux m\xE9moriel."
+      subtitleFR: "D\xE9blocage du flux m\xE9moriel..."
+      subtitleEN: Unlocking memory flow...
       subtitleDuration: 3
       editorDisplay: 1
       editorNotes: 
@@ -168,7 +193,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 31cfdae0fb6ac143bb62349326384c37
         ID: 525151809
-      subtitle: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations. "
+      subtitleFR: "Fragments m\xE9moriels reli\xE9s : donn\xE9es compl\xE8tes, f\xE9licitations."
+      subtitleEN: 'Memory fragments link : data complete, congratulations !'
       subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
@@ -177,8 +203,11 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: f4bdf195276f0641a3fcd896315206be
         ID: 1158054437
-      subtitle: "Les fragments m\xE9moriels correspondants ont toujours un aspect
-        en commun\nqui peut varier d'une paire \xE0 une autre."
+      subtitleFR: "Les fragments m\xE9moriels correspondants ont toujours\nun aspect
+        en commun qui peut varier d'une paire \xE0 une autre."
+      subtitleEN: 'Matching memory fragments always have a common feature
+
+        which can vary from one pair to another.'
       subtitleDuration: 8
       editorDisplay: 1
       editorNotes: 
@@ -187,9 +216,16 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: f817e4429a4d3d438b88d21310505374
         ID: 1438124155
-      subtitle: "Voici la jauge d'\xE9nergie m\xE9morielle : elle limite la longueur
-        des liens que vous pouvez cr\xE9er.\nCette jauge augmente lorsque vous compl\xE9tez
-        des fragments.\nSi vous n\"avez pas assez d'\xE9nergie, votre lien se d\xE9litera. "
+      subtitleFR: "Voici la jauge d'\xE9nergie m\xE9morielle : elle limite la longueur
+        des liens que vous pouvez cr\xE9er. Cette jauge augmente lorsque vous compl\xE9tez
+        des fragments. Si vous n\"avez pas assez d'\xE9nergie, votre lien se d\xE9litera.
+        \r\nLa compatibilit\xE9 du lecteur d'\xE9cran est activ\xE9e.\r"
+      subtitleEN: 'This is the memory energy gauge : it limits the length of the created
+        links.
+
+        This gauge increases as you complete fragments.
+
+        If you don''t have enough energy, your link will disintegrate.'
       subtitleDuration: 18
       editorDisplay: 1
       editorNotes: 
@@ -198,8 +234,11 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: b45300418b7e4b4e9731be792c828868
         ID: 145059539
-      subtitle: "Segment temporel compl\xE9t\xE9, Bravo !\nPassez le portail pour
+      subtitleFR: "Segment temporel compl\xE9t\xE9, Bravo !\nPassez le portail pour
         acc\xE9der au segment temporel suivant."
+      subtitleEN: 'Time segment fully complete, congratulations!
+
+        Go through the portal to access the next time segment.'
       subtitleDuration: 9
       editorDisplay: 1
       editorNotes: 
@@ -212,7 +251,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: c52c22a0dde5ea43a4049801b70ba6f1
         ID: 1109362563
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 0
       editorDisplay: 1
       editorNotes: L1_S1
@@ -221,7 +261,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 68857ab832a7b5459bd168a2c44795b1
         ID: -622896327
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 0
       editorDisplay: 1
       editorNotes: L1_S2
@@ -230,7 +271,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: bb6dae18c07c14499639f864b33885a9
         ID: 1147430746
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L1_S3
@@ -239,7 +281,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: e1c9071fa9b10a419a500eb46f07855e
         ID: 1703812330
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L1_S3bis
@@ -248,7 +291,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 6b263e63b1764d44b2a2cf1ab2d8cae8
         ID: 429551069
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L1_S4
@@ -257,7 +301,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: b5429375104aa840b58bf2199ec56485
         ID: 1922056350
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L1_S4bis
@@ -266,7 +311,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 92a5dd475125df46b5602a5d291b6e04
         ID: 2038306843
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L1_S5
@@ -275,7 +321,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: e3194758abc6884f99d9e06373f820ec
         ID: -270164033
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L1_S5bis
@@ -288,7 +335,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 2c3c98204e934540856c2b4884c381d6
         ID: -714023552
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L2_S1
@@ -297,7 +345,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 0f7bb74c2464aa49b7587c23369d4d11
         ID: 2118163114
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L2_S1bis
@@ -306,7 +355,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 2743d4bde344d84b9b5653473dfe2370
         ID: -1316539653
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L2_S2
@@ -315,7 +365,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: f5646e962808344e9dbbd994ce8c513e
         ID: 53289072
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L2_S4
@@ -324,7 +375,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: cdbbd5d0e576b244b1c41083c73127f8
         ID: -2019760521
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L2_S4bis
@@ -333,7 +385,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 88bc7b9f431647448f3ae0bd312c3c5c
         ID: 1296166473
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L2_S5
@@ -342,7 +395,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 09a5a3fd0d5b224eb7c8e51b360458d6
         ID: -268359053
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L2_S5bis
@@ -351,7 +405,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: a980a364ca3c7c43b72282775f4aecf5
         ID: -2036116619
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L2_S6
@@ -360,7 +415,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: b135e5bddb468c45a9045cd1ad5d976a
         ID: -1259210632
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L2_S7
@@ -373,7 +429,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 803432cac56b614aadd6616c047cf5bb
         ID: 161012643
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S
@@ -382,7 +439,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: f849a0d0e2f9b442854dc964c8a61f54
         ID: 488213145
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S1
@@ -391,7 +449,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 79a26cb2a2a25f40bbe1936bf692978a
         ID: -1374836446
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S1bis
@@ -400,7 +459,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 45f4fd99d75f5d4b8baa3c4f9f8a6a90
         ID: -1582653779
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S6
@@ -409,7 +469,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: ea0bc49a6533a647871c342e7351215c
         ID: 1468715670
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S6bis
@@ -418,7 +479,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: ebb39c5acec4cb4ebb524f3e8d0b28b6
         ID: -3635062
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S8
@@ -427,7 +489,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 3ae48cf84618984dbafc9efc4374a738
         ID: 699418120
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S4
@@ -436,7 +499,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: c5b9d01070623e46aa2bba612849628b
         ID: 2063429532
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S4bis
@@ -445,7 +509,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 29ba5b6f12e1a345b40390c798030687
         ID: -1791739273
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S2
@@ -454,7 +519,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 754b63b38305f4449c49de27d1bfc85a
         ID: -257525414
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 0
       editorNotes: L3_S2bis
@@ -467,7 +533,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: dad5395b3ef5ba4c9cc3388ced8363c4
         ID: 1297441866
-      subtitle: 
+      subtitleFR: 
+      subtitleEN: 
       subtitleDuration: 1
       editorDisplay: 1
       editorNotes: L4_S1
@@ -480,8 +547,10 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: b6b0d7e438e2dd41a2b32626182fc9b9
         ID: -2027097951
-      subtitle: "Certains fragments m\xE9moriaux sont la cons\xE9quence d\u2019autres,\neffectuez
-        tous les liens entre eux pour d\xE9bloquer cet \xE9v\xE9nement m\xE9moriel"
+      subtitleFR: "Certains fragments m\xE9moriaux sont la cons\xE9quence d\u2019autres,\neffectuez
+        tous les liens entre eux pour d\xE9bloquer cet \xE9v\xE9nement m\xE9moriel."
+      subtitleEN: Some memory fragments are the consequences of others, find the links
+        between them to unlock this memory event.
       subtitleDuration: 9
       editorDisplay: 1
       editorNotes: 
@@ -490,7 +559,8 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 11e24bd9c8a72949a8112bba1733e7b5
         ID: -1735946780
-      subtitle: "\xC9v\xE9nement m\xE9moriel compl\xE9t\xE9, f\xE9licitations !"
+      subtitleFR: "\xC9v\xE9nement m\xE9moriel compl\xE9t\xE9, f\xE9licitations !"
+      subtitleEN: Memory event completed, congratulations !
       subtitleDuration: 5
       editorDisplay: 1
       editorNotes: 
@@ -499,8 +569,10 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: c2d5b68b03992a4f992742e69b6fe551
         ID: 841373355
-      subtitle: "Vous vous trouvez maintenant sur le segment temporel suivant,\npartez
+      subtitleFR: "Vous vous trouvez maintenant sur le segment temporel suivant, partez
         a la recherche des fragments m\xE9moriaux !"
+      subtitleEN: You are now on the following segment, search for uncompleted memory
+        fragments !
       subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 
@@ -509,8 +581,10 @@ MonoBehaviour:
       wwiseEvent:
         valueGuid: 35550ddb75612e419b38bbe2a38326e5
         ID: -1844370962
-      subtitle: "Les portails vous permettent de passer d\u2019un segment temporel
-        a un autre,\net de voyager dans le temps."
+      subtitleFR: "Les portails vous permettent de passer d\u2019un segment temporel
+        \xE0 un autre,\net de voyager dans le temps."
+      subtitleEN: Portals allow you to move from one time segment to another and to
+        travel through time.
       subtitleDuration: 7
       editorDisplay: 1
       editorNotes: 

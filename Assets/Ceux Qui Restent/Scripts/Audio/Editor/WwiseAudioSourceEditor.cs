@@ -50,7 +50,7 @@ namespace CeuxQuiRestent.Audio
                         int newAudioAssetIndex = EditorGUILayout.Popup(audioAssetIndex, audioAssetNames.ToArray());
                         audioSource.audioAssetID = audioAssetIDs[newAudioAssetIndex];
                         AudioAsset audioAsset = audioManager.audioRepository.FindAudioAsset(audioSource.categoryID, audioSource.audioAssetID);
-                        EditorGUILayout.HelpBox("Type: " + audioAsset.type.ToString() + "\nSubtitle: (" + audioAsset.subtitleDuration + "s)\n" + audioAsset.subtitle + "\nDev notes: " + audioAsset.editorNotes, MessageType.Info, true);
+                        EditorGUILayout.HelpBox("Type: " + audioAsset.type.ToString() + "\nSubtitle: (" + audioAsset.subtitleDuration + "s)\n" + audioAsset.subtitleFR + "\nDev notes: " + audioAsset.editorNotes, MessageType.Info, true);
                         if (audioSource.autoRename)
                             audioSource.gameObject.name = "WAudioSource - (" + audioAsset.subtitleDuration + "s) - " + audioAssetNames[newAudioAssetIndex];
                     }

@@ -32,7 +32,6 @@ namespace CeuxQuiRestent.Interactables
         #region Focusable Methods
         public void OnFocusEnter()
         {
-            Debug.Log(cursor.gameObject);
             if (focusSound != null)
                 GameObject.Instantiate(focusSound, transform.position, Quaternion.identity, null);
             onFocusEnterEvent.Invoke();
