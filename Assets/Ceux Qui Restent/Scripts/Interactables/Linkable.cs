@@ -108,7 +108,6 @@ namespace CeuxQuiRestent.Interactables
         #region Linkable Methods
         public void AppearAnimation()
         {
-            float gradientThresholdValue = 0;
             model.material.SetFloat("_GradientThreshold", 0);
             gameObject.SetActive(true);
             currentAnimationTime = 0;
