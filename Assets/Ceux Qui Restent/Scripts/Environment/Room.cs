@@ -16,10 +16,6 @@ namespace CeuxQuiRestent
         private Transform linksRepository;
         [SerializeField]
         private PostProcessingProfile postProcessingProfile;
-        [SerializeField]
-        private WwiseAudioSource musicStart;
-        [SerializeField]
-        private WwiseAudioSource musicStop;
         #endregion
 
         #region MonoBehaviour Methods
@@ -42,18 +38,6 @@ namespace CeuxQuiRestent
                 return linksRepository;
             else
                 return transform;
-        }
-
-        public void StartRoomMusic()
-        {
-            if (musicStart != null)
-                musicStart.Play();
-        }
-
-        public void StopRoomMusic()
-        {
-            if (musicStop != null)
-                musicStop.Play();
         }
 
         public void UseRoomPostProcessing()

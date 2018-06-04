@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CeuxQuiRestent.Audio;
+using UnityEngine;
 using Utility;
 
 namespace CeuxQuiRestent.Portals
@@ -11,7 +12,7 @@ namespace CeuxQuiRestent.Portals
         [SerializeField]
         private ActionExecuter actionsToDo;
         [SerializeField]
-        private bool repeatableActions = false;
+        private WwiseAudioSource portalHelpSound;
         [SerializeField]
         private PortalDestination destination = PortalDestination.Future;
         private GameObject portalRenderer;
@@ -43,11 +44,10 @@ namespace CeuxQuiRestent.Portals
                         linker.ExitPortal(portalRenderer);
                         if (actionsToDo != null)
                         {
-                            if (!actionsDone || repeatableActions)
-                            {
-                                actionsToDo.StartActions();
-                                actionsDone = true;
-                            }
+                            actionsToDo.StartActions();
+                            actionsDone = true;
+                            if (!actionsDone)
+                                portalHelpSound.Play();
                         }
                     }
                 }

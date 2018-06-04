@@ -432,18 +432,8 @@ MonoBehaviour:
       subtitleFR: 
       subtitleEN: 
       subtitleDuration: 1
-      editorDisplay: 0
+      editorDisplay: 1
       editorNotes: L3_S
-    - uniqueID: 5B0D05C8-2D04D7D5
-      type: 1
-      wwiseEvent:
-        valueGuid: f849a0d0e2f9b442854dc964c8a61f54
-        ID: 488213145
-      subtitleFR: 
-      subtitleEN: 
-      subtitleDuration: 1
-      editorDisplay: 0
-      editorNotes: L3_S1
     - uniqueID: 5B0D05C8-1437091F
       type: 1
       wwiseEvent:

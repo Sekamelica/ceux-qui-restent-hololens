@@ -55,8 +55,8 @@ MonoBehaviour:
   playAtStart: 1
   playAudioAsset: 0
   wwiseEvent:
-    valueGuid: 00000000000000000000000000000000
-    ID: 0
+    valueGuid: d06f141cb2799246864cb0176a2c1f91
+    ID: -1841265552
   categoryID: 0
   audioAssetID: 
   autoRename: 0

@@ -91,7 +91,6 @@ namespace CeuxQuiRestent
 
         public void NextRoom()
         {
-            currentRoom.StopRoomMusic();
             if (currentRoomID + 1 < rooms.Length)
             {
                 currentRoomID++;
@@ -100,12 +99,10 @@ namespace CeuxQuiRestent
             }
             currentRoom = rooms[currentRoomID];
             currentRoom.UseRoomPostProcessing();
-            currentRoom.StartRoomMusic();
         }
 
         public void PreviousRoom()
         {
-            currentRoom.StopRoomMusic();
             if (currentRoomID - 1 >= 0)
             {
                 currentRoomID--;
@@ -114,7 +111,6 @@ namespace CeuxQuiRestent
             }
             currentRoom = rooms[currentRoomID];
             currentRoom.UseRoomPostProcessing();
-            currentRoom.StartRoomMusic();
         }
 
         public int GetCurrentRoomID()
