@@ -6,13 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Ceux Qui Restent/Scenes/[Ceux Qui Restent] - Jeudi Soir.unity
+    path: Assets/Ceux Qui Restent/Scenes/Ceux Qui Restent - 1.4.unity
+    guid: 13f6534410d52bd4d9bf32e23fbd5376
+  - enabled: 0
+    path: Assets/Ceux Qui Restent/Scenes/[Build] Playtest 3 - 2.unity
+    guid: 21c5a4d464c538e48b4b2b49e3ea8c51
+  - enabled: 0
+    path: Assets/Ceux Qui Restent/Scenes/Old/[Level Design] - All 5.unity
+    guid: dfc7ddd3969d87441bea00f4694f2da8
+  - enabled: 0
+    path: Assets/Ceux Qui Restent/Scenes/Old/[Dev] - Son.unity
+    guid: f57de8f5933134e49b3f1c787b90a850
+  - enabled: 0
+    path: Assets/Ceux Qui Restent/Scenes/Old/[Build] - Vendredi 1.unity
+    guid: 97bab8855f70c114ea5bb8bc88afaaf9
+  - enabled: 0
+    path: Assets/Ceux Qui Restent/Scenes/Old/[Ceux Qui Restent] - Jeudi Soir.unity
     guid: ca8875f50dd50d240ad57d6015281c25
   - enabled: 0
-    path: Assets/Ceux Qui Restent/Scenes/[Dev] - Scanning Build.unity
+    path: Assets/Ceux Qui Restent/Scenes/Old/[Dev] - Scanning Build.unity
     guid: dcb5435a8204ae4429a4c6eaafbea72d
   - enabled: 0
-    path: Assets/Ceux Qui Restent/Scenes/[Dev] - Scanning.unity
+    path: Assets/Ceux Qui Restent/Scenes/Old/[Dev] - Scanning.unity
     guid: db159a40dce97b34cbc299a5b2c961cb
   - enabled: 0
     path: 

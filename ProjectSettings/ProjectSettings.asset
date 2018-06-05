@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: CoolKids
-  productName: Ceux Qui Restent - Jeudi Build 3
+  productName: Ceux Qui Restent - 1.8.2
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -231,7 +231,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 52c6cdff84f8ff748b73d7f85fc92a85, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -536,15 +536,15 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: CeuxQuiRestent
-  metroPackageVersion: 1.0.0.0
+  metroPackageVersion: 1.8.2.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 801f9d3c2cf2d401
-  metroApplicationDescription: Ceux Qui Restent
+  metroApplicationDescription: Ceux Qui Restent - 1.8.2
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Ceux Qui Restent - 1.41
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0

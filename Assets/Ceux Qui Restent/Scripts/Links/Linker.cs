@@ -268,6 +268,7 @@ namespace CeuxQuiRestent.Links
         public void DestroyCurrentLink()
         {
             PlaySound(soundLinkBroke);
+            PlaySound(soundLinkEnd);
 
             // Link destruction
             for (int lc = linkCurves.Count - 1; lc >= 0; lc--)
