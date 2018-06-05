@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &71700171
 GameObject:
@@ -1967,7 +1967,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &160710691
 Transform:
@@ -7215,7 +7215,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &384188599
 GameObject:
@@ -14662,7 +14662,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1001 &656716201
 Prefab:
@@ -16597,7 +16597,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &823949772
 GameObject:
@@ -22355,7 +22355,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &975948036 stripped
 GameObject:
@@ -26490,7 +26490,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1204210105
 GameObject:
@@ -31654,7 +31654,7 @@ Transform:
   m_Children:
   - {fileID: 1197153452}
   m_Father: {fileID: 1710158247}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1330405786
 MonoBehaviour:
@@ -32201,7 +32201,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1372390269
 GameObject:
@@ -33480,7 +33480,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1001 &1482531490
 Prefab:
@@ -34414,6 +34414,26 @@ Prefab:
       propertyPath: Cursor
       value: 
       objectReference: {fileID: 1482531491}
+    - target: {fileID: 114399369137146444, guid: 13048d6b73bb2164694b6b458f6bb13f,
+        type: 2}
+      propertyPath: UseGazeManager
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114399369137146444, guid: 13048d6b73bb2164694b6b458f6bb13f,
+        type: 2}
+      propertyPath: DrawGizmos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114399369137146444, guid: 13048d6b73bb2164694b6b458f6bb13f,
+        type: 2}
+      propertyPath: LerpStabilizationPlanePowerCloser
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114399369137146444, guid: 13048d6b73bb2164694b6b458f6bb13f,
+        type: 2}
+      propertyPath: LerpStabilizationPlanePowerFarther
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13048d6b73bb2164694b6b458f6bb13f, type: 2}
   m_IsPrefabParent: 0
@@ -39199,7 +39219,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1614347461
 GameObject:
@@ -39462,7 +39482,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1639371221 stripped
 GameObject:
@@ -47025,14 +47045,14 @@ Transform:
   - {fileID: 1510033539}
   - {fileID: 1020216844}
   - {fileID: 38235129}
+  - {fileID: 1899467905}
   - {fileID: 2002185228}
   - {fileID: 1498847357}
   - {fileID: 781701579}
   - {fileID: 546642844}
   - {fileID: 423137477}
-  - {fileID: 1899467905}
-  - {fileID: 429780579}
   - {fileID: 1330405785}
+  - {fileID: 429780579}
   m_Father: {fileID: 1047377444}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48412,7 +48432,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1786793503
 GameObject:
@@ -57185,7 +57205,7 @@ Transform:
   m_Children:
   - {fileID: 2123697109}
   m_Father: {fileID: 1710158247}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1902647052
 GameObject:
@@ -57518,7 +57538,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1925210331
 GameObject:
@@ -57933,7 +57953,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1991204197
 GameObject:
@@ -62839,7 +62859,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &2083235555 stripped
 GameObject:
@@ -63691,7 +63711,7 @@ SpriteRenderer:
   m_Size: {x: 4.41, y: 4.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &2123697108
 GameObject:
